@@ -1,0 +1,9 @@
+{
+  "Common": {
+    "title": "Chào mừng",
+    "description": "Được tạo bởi create next app"
+  },
+  "Home": {
+    "hello": "Xin chào thế giới!"
+  }
+}

@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use './mixins' as *;
+
+// Example responsive helpers
+.container {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1rem;
+
+  @include respond-to(sm) {
+    max-width: 640px;
+  }
+  @include respond-to(md) {
+    max-width: 768px;
+  }
+  @include respond-to(lg) {
+    max-width: 1024px;
+  }
+  @include respond-to(xl) {
+    max-width: 1280px;
+  }
+  @include respond-to(2xl) {
+    max-width: 1536px;
+  }
+}
+
+.hide-on-mobile {
+  @media (max-width: 639px) {
+    display: none !important;
+  }
+}
+.hide-on-desktop {
+  @media (min-width: 1024px) {
+    display: none !important;
+  }
+}

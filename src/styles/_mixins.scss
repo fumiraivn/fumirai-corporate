@@ -1,0 +1,54 @@
+// Breakpoints
+$breakpoint-xs: 360px;
+$breakpoint-sm: 640px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 1024px;
+$breakpoint-xl: 1280px;
+$breakpoint-2xl: 1536px;
+
+// Mixin: respond-to — media queries by named breakpoint
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == xs {
+    @media (min-width: $breakpoint-xs) {
+      @content;
+    }
+  } @else if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) {
+      @content;
+    }
+  } @else if $breakpoint == 2xl {
+    @media (min-width: $breakpoint-2xl) {
+      @content;
+    }
+  } @else {
+    @warn 'Unknown breakpoint: #{$breakpoint}. Allowed: xs, sm, md, lg, xl, 2xl';
+  }
+}
+
+// Mixin: fluid — clamp-based fluid sizing between viewport widths
+// Example: font-size: fluid(16px, 24px, 360px, 1280px)
+@function fluid($min, $max, $minViewport: 360px, $maxViewport: 1280px) {
+  $slope: ($max - $min) / ($maxViewport - $minViewport);
+  $intercept: $min - $slope * $minViewport;
+  @return clamp($min, #{$intercept} + #{$slope} * 100vw, $max);
+}
+
+// Mixin: line-clamp
+@mixin line-clamp($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

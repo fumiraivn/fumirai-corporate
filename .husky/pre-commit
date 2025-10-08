@@ -1,0 +1,13 @@
+echo "Running Prettier check..."
+yarn format:check || exit 1
+
+echo "Running ESLint..."
+yarn lint || exit 1
+
+echo "Running TypeScript check..."
+yarn typecheck || exit 1
+
+echo "Building project to ensure no build errors..."
+yarn build || exit 1
+
+yarn test
