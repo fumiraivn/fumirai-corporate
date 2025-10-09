@@ -1,5 +1,7 @@
-import { Geist_Mono, Poppins } from 'next/font/google';
+import { GFS_Didot, Geist_Mono } from 'next/font/google';
 
+import { UserLayout } from '@/components';
+import LoadingFullPage from '@/components/user/layouts/LoadingFullPage';
 import { getMessages } from '@/i18n';
 import { getRequestLocale } from '@/i18n/request';
 
@@ -12,10 +14,10 @@ import { NextIntlClientProvider } from 'next-intl';
 
 import './globals.css';
 
-const poppins = Poppins({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '800'],
+const gfsDidot = GFS_Didot({
+  variable: '--font-gfs-didot',
+  subsets: ['latin', 'greek'],
+  weight: ['400'],
   display: 'swap',
 });
 
@@ -39,10 +41,13 @@ export default async function RootLayout({
   const antdLocale = locale === 'vi' ? viVN : enUS;
   return (
     <html lang="en">
-      <body className={`${poppins.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${gfsDidot.variable} ${geistMono.variable} antialiased`}>
+        <LoadingFullPage />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ConfigProvider locale={antdLocale} theme={{ algorithm: antdTheme.defaultAlgorithm }}>
-            <AntdApp>{children}</AntdApp>
+            <AntdApp>
+              <UserLayout>{children}</UserLayout>
+            </AntdApp>
           </ConfigProvider>
         </NextIntlClientProvider>
       </body>

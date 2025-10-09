@@ -1,0 +1,190 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.button {
+  // Base button styles
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+
+  // Hover effects
+  &:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  // Active state
+  &:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  // Focus state
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2);
+  }
+
+  // Disabled state
+  &:disabled {
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  // Size variations
+  &.ant-btn-sm {
+    padding: 4px 12px;
+    font-size: 12px;
+    height: 24px;
+  }
+
+  &.ant-btn-middle {
+    padding: 6px 16px;
+    font-size: 14px;
+    height: 32px;
+  }
+
+  &.ant-btn-lg {
+    padding: 8px 20px;
+    font-size: 16px;
+    height: 40px;
+  }
+
+  // Type variations
+  &.ant-btn-primary {
+    background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+    border: none;
+
+    &:hover {
+      background: linear-gradient(135deg, #40a9ff 0%, #1890ff 100%);
+    }
+  }
+
+  &.ant-btn-default {
+    border: 1px solid #d9d9d9;
+    background: #fff;
+
+    &:hover {
+      border-color: #40a9ff;
+      color: #40a9ff;
+    }
+  }
+
+  &.ant-btn-dashed {
+    border: 1px dashed #d9d9d9;
+    background: #fff;
+
+    &:hover {
+      border-color: #40a9ff;
+      color: #40a9ff;
+    }
+  }
+
+  &.ant-btn-text {
+    border: none;
+    background: transparent;
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.06);
+    }
+  }
+
+  &.ant-btn-link {
+    border: none;
+    background: transparent;
+    color: #1890ff;
+
+    &:hover {
+      color: #40a9ff;
+    }
+  }
+
+  // Danger variant
+  &.ant-btn-dangerous {
+    &.ant-btn-primary {
+      background: linear-gradient(135deg, #ff4d4f 0%, #cf1322 100%);
+
+      &:hover {
+        background: linear-gradient(135deg, #ff7875 0%, #ff4d4f 100%);
+      }
+    }
+
+    &.ant-btn-default {
+      border-color: #ff4d4f;
+      color: #ff4d4f;
+
+      &:hover {
+        border-color: #ff7875;
+        color: #ff7875;
+      }
+    }
+  }
+
+  // Ghost variant
+  &.ant-btn-background-ghost {
+    background: transparent;
+
+    &.ant-btn-primary {
+      color: #1890ff;
+      border-color: #1890ff;
+
+      &:hover {
+        background: #1890ff;
+        color: #fff;
+      }
+    }
+
+    &.ant-btn-dangerous {
+      color: #ff4d4f;
+      border-color: #ff4d4f;
+
+      &:hover {
+        background: #ff4d4f;
+        color: #fff;
+      }
+    }
+  }
+
+  // Block variant
+  &.ant-btn-block {
+    width: 100%;
+  }
+
+  // Loading state
+  &.ant-btn-loading {
+    cursor: not-allowed;
+
+    .ant-btn-loading-icon {
+      margin-right: 8px;
+    }
+  }
+}
+
+// Responsive adjustments
+@include mobile {
+  .button {
+    &.ant-btn-lg {
+      padding: 6px 16px;
+      font-size: 14px;
+      height: 36px;
+    }
+
+    &.ant-btn-middle {
+      padding: 4px 12px;
+      font-size: 13px;
+      height: 30px;
+    }
+  }
+}
+
+@include tablet {
+  .button {
+    &.ant-btn-lg {
+      padding: 7px 18px;
+      font-size: 15px;
+      height: 38px;
+    }
+  }
+}

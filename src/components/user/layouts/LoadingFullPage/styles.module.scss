@@ -1,0 +1,159 @@
+// Minimal styles to restore loading overlay
+.loadingContainer {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+.gradientBackground {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #1e1b4b 0%, #1e3a8a 45%, #3b82f6 70%, #93c5fd 90%);
+  animation: gradientShift 6s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.18) 100%);
+}
+
+.loadingContent {
+  position: relative;
+  z-index: 1;
+}
+
+.logoContainer {
+  position: relative;
+  width: 240px;
+  height: 240px;
+  display: grid;
+  place-items: center;
+}
+
+.ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+  animation: ripple 2.2s ease-out infinite;
+}
+
+.ringDelay {
+  animation-delay: 0.6s;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1.65);
+    opacity: 0.15;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.8);
+    opacity: 0;
+  }
+}
+
+.logo {
+  width: 240px;
+  height: 240px;
+  object-fit: contain;
+  filter: brightness(1.2) contrast(1.1);
+  animation:
+    logoFloat 3s ease-in-out infinite,
+    logoTilt 6s ease-in-out infinite alternate,
+    logoBreathe 1.8s ease-in-out infinite;
+  will-change: transform, filter;
+}
+
+@keyframes logoFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes logoTilt {
+  0% {
+    transform: rotate(-2deg);
+  }
+  100% {
+    transform: rotate(2deg);
+  }
+}
+
+@keyframes logoBreathe {
+  0%,
+  100% {
+    filter: brightness(1.22) contrast(1.1);
+    transform: scale(1);
+  }
+  50% {
+    filter: brightness(1.35) contrast(1.18);
+    transform: scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo {
+    animation: none;
+  }
+}
+
+.fadeOut {
+  animation: fadeOut 0.6s ease-out forwards;
+}
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .logoContainer {
+    width: 180px;
+    height: 180px;
+  }
+  .logo {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .logoContainer {
+    width: 140px;
+    height: 140px;
+  }
+  .logo {
+    width: 140px;
+    height: 140px;
+  }
+}

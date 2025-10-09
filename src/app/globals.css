@@ -1,5 +1,16 @@
 @import 'tailwindcss';
 
+/* Global CSS reset để loại bỏ góc tròn */
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -8,7 +19,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-gfs-didot);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -22,7 +33,38 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-gfs-didot), 'GFS Didot', 'Times New Roman', serif;
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1,
+    'calt' 1;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Font support for multiple languages */
+* {
+  font-family: var(--font-gfs-didot), 'GFS Didot', 'Times New Roman', serif;
+}
+
+/* Ensure proper rendering for Vietnamese, Japanese, and English */
+html[lang='vi'] *,
+html[lang='ja'] *,
+html[lang='en'] * {
+  font-family: var(--font-gfs-didot), 'GFS Didot', 'Times New Roman', serif;
+  font-feature-settings:
+    'kern' 1,
+    'liga' 1,
+    'calt' 1;
+  text-rendering: optimizeLegibility;
+}
+
+/* Fallback fonts for better language support */
+@supports not (font-family: var(--font-gfs-didot)) {
+  body {
+    font-family: 'Times New Roman', 'Georgia', serif;
+  }
 }
 
 /* Hero background utilities and animations */

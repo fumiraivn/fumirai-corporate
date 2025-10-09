@@ -1,5 +1,5 @@
-echo "Running Prettier check..."
-yarn format:check || exit 1
+echo "Running lint-staged (format + lint on staged files)..."
+npx --no lint-staged || exit 1
 
 echo "Running ESLint..."
 yarn lint || exit 1
