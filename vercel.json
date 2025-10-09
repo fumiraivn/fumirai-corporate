@@ -10,6 +10,11 @@
       "develop": true
     }
   },
+  "github": {
+    "enabled": true,
+    "silent": false,
+    "deploymentsOnlyFromIntegrations": false
+  },
   "functions": {
     "src/app/**/*.{js,ts,jsx,tsx}": {
       "maxDuration": 30
