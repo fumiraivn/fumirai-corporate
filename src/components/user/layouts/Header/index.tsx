@@ -1,22 +1,78 @@
+'use client';
+
+import { useEffect, useRef, useState } from 'react';
+
 import Image from 'next/image';
 
+import { Button, ButtonVariant } from '@/components/base';
+
 import CanvasBackground from './CanvasBackground';
+import Navigation from './Navigation';
 import styles from './styles.module.scss';
 
 export default function Header() {
+  const [isPinned, setIsPinned] = useState(false);
+  const [isPinnedVisible, setIsPinnedVisible] = useState(false);
+  const tickingRef = useRef(false);
+  const lastScrollYRef = useRef(0);
+
+  useEffect(() => {
+    const updatePinned = () => {
+      const y = lastScrollYRef.current;
+      setIsPinned((prevState) => {
+        // Hysteresis: pin after 64px, unpin under 8px to avoid flicker
+        if (prevState) {
+          return y <= 8 ? false : true;
+        }
+        return y >= 64 ? true : false;
+      });
+    };
+
+    const onScroll = () => {
+      lastScrollYRef.current = window.scrollY || 0;
+      if (!tickingRef.current) {
+        tickingRef.current = true;
+        requestAnimationFrame(() => {
+          updatePinned();
+          tickingRef.current = false;
+        });
+      }
+    };
+
+    // Initialize state on mount
+    lastScrollYRef.current = window.scrollY || 0;
+    updatePinned();
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    if (isPinned) {
+      // Defer to next frame to allow CSS transition from initial transform
+      const id = requestAnimationFrame(() => setIsPinnedVisible(true));
+      return () => cancelAnimationFrame(id);
+    }
+    setIsPinnedVisible(false);
+  }, [isPinned]);
+
   return (
     <header className={styles.header}>
       {/* Canvas Background */}
       <CanvasBackground />
 
       {/* Navigation Bar */}
-      <div className={styles.navBar}>
+      <div
+        className={`${styles.navBar} ${isPinned ? styles.navBarPinned : ''} ${
+          isPinned && isPinnedVisible ? styles.navBarPinnedVisible : ''
+        }`}
+      >
         <div className={styles.container}>
           {/* Logo */}
           <div className={styles.logo}>
             <div className={styles.logoIcon}>
               <Image
-                src="/logo.png"
+                src={isPinned ? '/logo-light.png' : '/logo.png'}
                 alt="fumirai logo"
                 width={200}
                 height={200}
@@ -27,52 +83,17 @@ export default function Header() {
           </div>
 
           {/* Navigation */}
-          <nav className={styles.navigation}>
-            <ul className={styles.navList}>
-              <li className={styles.navItem}>
-                <a href="#" className={styles.navLink}>
-                  Home
-                </a>
-              </li>
-              <li className={styles.navItem}>
-                <a href="#" className={styles.navLink}>
-                  About Us
-                </a>
-              </li>
-              <li className={styles.navItem}>
-                <a href="#" className={styles.navLink}>
-                  Services
-                </a>
-              </li>
-              <li className={styles.navItem}>
-                <a href="#" className={styles.navLink}>
-                  Portfolio
-                </a>
-              </li>
-              <li className={styles.navItem}>
-                <a href="#" className={styles.navLink}>
-                  Pages
-                </a>
-              </li>
-              <li className={styles.navItem}>
-                <a href="#" className={styles.navLink}>
-                  Blog
-                </a>
-              </li>
-              <li className={styles.navItem}>
-                <a href="#" className={styles.navLink}>
-                  Contact
-                </a>
-              </li>
-            </ul>
-          </nav>
+          <Navigation />
 
           {/* CTA Button */}
           <div className={styles.ctaSection}>
-            <button className={styles.ctaButton}>Get It Support</button>
+            <Button className={styles.ctaButton} variant={ButtonVariant.Solid} type="primary">
+              Get It Support
+            </Button>
           </div>
         </div>
       </div>
+      {isPinned && isPinnedVisible ? <div className={styles.navBarSpacer} /> : null}
 
       {/* Hero Section */}
       <div className={styles.heroSection}>
@@ -127,8 +148,20 @@ export default function Header() {
 
             {/* CTA Buttons */}
             <div className={styles.ctaButtons}>
-              <button className={styles.primaryButton}>Our Service</button>
-              <button className={styles.secondaryButton}>Contact Us</button>
+              <Button
+                className={styles.primaryButton}
+                variant={ButtonVariant.Outline}
+                type="default"
+              >
+                Our Service
+              </Button>
+              <Button
+                className={styles.secondaryButton}
+                variant={ButtonVariant.Solid}
+                type="primary"
+              >
+                Contact Us
+              </Button>
             </div>
           </div>
 

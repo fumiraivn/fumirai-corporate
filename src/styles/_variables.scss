@@ -32,3 +32,25 @@ $z-sticky: 1100;
 $z-modal: 1200;
 $z-popover: 1300;
 $z-toast: 1400;
+
+// Brand palette additions (Buttons, links, status colors)
+$color-primary-400: #fbbf24;
+$color-primary-500: #f59e0b;
+
+$color-gray-300: #d9d9d9;
+
+// Danger palette
+$color-danger-400: #ff7875;
+$color-danger-500: #ff4d4f;
+$color-danger-700: #cf1322;
+
+// Common aliases
+$color-white: #ffffff;
+$color-black: #000000;
+
+// Button-specific palette (primary tone for Base Button)
+// Base uses an indigo/purple tone; hover is a lighter shade; active is deeper
+$button-primary: #f59e0b; // base (amber-500)
+$button-primary-hover: #fbbf24; // hover (amber-400)
+$button-primary-active: #d97706; // active (amber-600)
+$button-text-on-primary: $color-black;

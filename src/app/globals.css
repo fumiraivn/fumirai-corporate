@@ -19,7 +19,7 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-gfs-didot);
+  --font-sans: var(--font-noto-sans);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -33,7 +33,18 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-gfs-didot), 'GFS Didot', 'Times New Roman', serif;
+  font-family:
+    var(--font-noto-sans),
+    var(--font-noto-sans-jp),
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    'Noto Sans JP',
+    sans-serif;
   font-feature-settings:
     'kern' 1,
     'liga' 1,
@@ -45,14 +56,36 @@ body {
 
 /* Font support for multiple languages */
 * {
-  font-family: var(--font-gfs-didot), 'GFS Didot', 'Times New Roman', serif;
+  font-family:
+    var(--font-noto-sans),
+    var(--font-noto-sans-jp),
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    'Noto Sans JP',
+    sans-serif;
 }
 
 /* Ensure proper rendering for Vietnamese, Japanese, and English */
 html[lang='vi'] *,
 html[lang='ja'] *,
 html[lang='en'] * {
-  font-family: var(--font-gfs-didot), 'GFS Didot', 'Times New Roman', serif;
+  font-family:
+    var(--font-noto-sans),
+    var(--font-noto-sans-jp),
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    'Noto Sans',
+    'Noto Sans JP',
+    sans-serif;
   font-feature-settings:
     'kern' 1,
     'liga' 1,
@@ -61,9 +94,10 @@ html[lang='en'] * {
 }
 
 /* Fallback fonts for better language support */
-@supports not (font-family: var(--font-gfs-didot)) {
+@supports not (font-family: var(--font-noto-sans)) {
   body {
-    font-family: 'Times New Roman', 'Georgia', serif;
+    font-family:
+      var(--font-noto-sans), var(--font-noto-sans-jp), 'Noto Sans', 'Noto Sans JP', sans-serif;
   }
 }
 

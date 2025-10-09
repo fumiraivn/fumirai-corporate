@@ -4,7 +4,13 @@ import { Button as AntButton, ButtonProps as AntButtonProps } from 'antd';
 
 import styles from './styles.module.scss';
 
-export interface ButtonProps extends Omit<AntButtonProps, 'loading'> {
+export enum ButtonVariant {
+  Solid = 'solid',
+  Outline = 'outline',
+  Icon = 'icon',
+}
+
+export interface ButtonProps extends Omit<AntButtonProps, 'loading' | 'variant'> {
   /**
    * Loading state of the button
    */
@@ -45,12 +51,16 @@ export interface ButtonProps extends Omit<AntButtonProps, 'loading'> {
    * Button content
    */
   children?: React.ReactNode;
+  /**
+   * Visual variant for the button
+   */
+  variant?: ButtonVariant;
 }
 
 const Button: React.FC<ButtonProps> = ({
   loading = false,
   size = 'middle',
-  type = 'default',
+  type = 'primary',
   danger = false,
   ghost = false,
   block = false,
@@ -58,9 +68,11 @@ const Button: React.FC<ButtonProps> = ({
   className = '',
   onClick,
   children,
+  variant = ButtonVariant.Solid,
   ...rest
 }) => {
-  const buttonClasses = [styles.button, className].filter(Boolean).join(' ');
+  const variantClassName = styles[variant] || '';
+  const buttonClasses = [styles.button, variantClassName, className].filter(Boolean).join(' ');
 
   return (
     <AntButton
@@ -81,3 +93,4 @@ const Button: React.FC<ButtonProps> = ({
 };
 
 export default Button;
+export type { ButtonVariant as TButtonVariant };

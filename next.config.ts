@@ -1,5 +1,6 @@
 import type { NextConfig } from 'next';
 import createNextIntlPlugin from 'next-intl/plugin';
+import path from 'path';
 
 const withNextIntl = createNextIntlPlugin();
 
@@ -19,6 +20,13 @@ const nextConfig: NextConfig = {
   // Enable experimental features for better performance
   experimental: {
     optimizePackageImports: ['antd', '@ant-design/icons'],
+  },
+
+  // Global Sass configuration
+  sassOptions: {
+    includePaths: [path.join(__dirname, 'src', 'styles')],
+    // Inject shared variables and mixins via modern @use to avoid @import deprecation
+    additionalData: `@use 'variables' as *;\n@use 'mixins' as *;`,
   },
 
   // Security headers

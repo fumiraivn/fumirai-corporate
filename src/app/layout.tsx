@@ -1,4 +1,4 @@
-import { GFS_Didot, Geist_Mono } from 'next/font/google';
+import { Geist_Mono, Noto_Sans, Noto_Sans_JP } from 'next/font/google';
 
 import { UserLayout } from '@/components';
 import LoadingFullPage from '@/components/user/layouts/LoadingFullPage';
@@ -14,10 +14,17 @@ import { NextIntlClientProvider } from 'next-intl';
 
 import './globals.css';
 
-const gfsDidot = GFS_Didot({
-  variable: '--font-gfs-didot',
-  subsets: ['latin', 'greek'],
-  weight: ['400'],
+const notoSans = Noto_Sans({
+  variable: '--font-noto-sans',
+  subsets: ['latin', 'vietnamese'],
+  weight: ['400', '500', '700'],
+  display: 'swap',
+});
+
+const notoSansJP = Noto_Sans_JP({
+  variable: '--font-noto-sans-jp',
+  subsets: ['latin'],
+  weight: ['400', '500', '700'],
   display: 'swap',
 });
 
@@ -41,7 +48,9 @@ export default async function RootLayout({
   const antdLocale = locale === 'vi' ? viVN : enUS;
   return (
     <html lang="en">
-      <body className={`${gfsDidot.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${notoSans.variable} ${notoSansJP.variable} ${geistMono.variable} antialiased`}
+      >
         <LoadingFullPage />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ConfigProvider locale={antdLocale} theme={{ algorithm: antdTheme.defaultAlgorithm }}>
