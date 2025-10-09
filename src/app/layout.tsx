@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Geist_Mono, Poppins } from 'next/font/google';
 
 import { getMessages } from '@/i18n';
 import { getRequestLocale } from '@/i18n/request';
@@ -12,9 +12,11 @@ import { NextIntlClientProvider } from 'next-intl';
 
 import './globals.css';
 
-const geistSans = Geist({
+const poppins = Poppins({
   variable: '--font-geist-sans',
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700', '800'],
+  display: 'swap',
 });
 
 const geistMono = Geist_Mono({
@@ -37,7 +39,7 @@ export default async function RootLayout({
   const antdLocale = locale === 'vi' ? viVN : enUS;
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+      <body className={`${poppins.variable} ${geistMono.variable} antialiased`}>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ConfigProvider locale={antdLocale} theme={{ algorithm: antdTheme.defaultAlgorithm }}>
             <AntdApp>{children}</AntdApp>
