@@ -1,0 +1,9 @@
+# Enforce LF line endings across the repo
+* text=auto eol=lf
+
+# Ensure common text files always use LF
+*.{js,jsx,ts,tsx,css,scss,md,json} text eol=lf
+
+# Husky hooks must be LF on Windows
+.husky/* text eol=lf
+
