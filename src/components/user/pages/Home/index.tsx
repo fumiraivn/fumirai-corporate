@@ -6,7 +6,7 @@ import WhyChooseUs from './WhyChooseUs';
 export default function HomePage() {
   return (
     <>
-      <InfoCard title="What We Provide" subtitle="Our Services">
+      <InfoCard title="What We Provide" subtitle="Our Services" position="center">
         <OurServices />
       </InfoCard>
       <InfoCard
