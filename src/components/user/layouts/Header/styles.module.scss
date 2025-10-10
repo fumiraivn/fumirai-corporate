@@ -37,7 +37,7 @@
     // Xanh dương rất nhạt
     #dbeafe 95%,
     // Xanh dương cực nhạt
-    #ffffff 100% // Trắng hoàn toàn ở đáy
+    $color-white 100% // Trắng hoàn toàn ở đáy
   );
   overflow: hidden;
   display: flex;
@@ -67,9 +67,6 @@
     box-shadow 240ms ease,
     backdrop-filter 240ms ease;
   will-change: transform, opacity;
-  // default link variables for dark-on-hero
-  --nav-link-color: #ffffff;
-  --nav-link-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
   // nav sizing
   --nav-height: 80px;
   min-height: var(--nav-height);
@@ -86,9 +83,6 @@
   background: rgba(255, 255, 255, 0.9);
   backdrop-filter: saturate(160%) blur(10px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-  // link variables for light bar
-  --nav-link-color: #111827; // gray-900
-  --nav-link-shadow: none;
   // logo shows real colors (no force-dark)
   --logo-filter: none;
   --logo-blend: normal;
@@ -136,25 +130,21 @@
 }
 
 .logoText {
-  color: #ffffff; // Màu trắng để nổi bật hơn
+  color: $color-white; // Màu trắng để nổi bật hơn
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); // Thêm shadow để dễ đọc
   font-size: 1.5rem;
   font-weight: 700;
   font-family: inherit;
   letter-spacing: -0.025em;
-  color: #ffffff; // Màu trắng để nổi bật hơn
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); // Thêm shadow để dễ đọc
 }
-
-// navigation styles moved to Navigation/styles.module.scss
 
 .ctaSection {
   display: flex;
   align-items: center;
+  gap: 16px;
 }
 
 .ctaButton {
-  // Use component's primary styles; keep only spacing/typography
   border: none;
   border-radius: 0.5rem;
   padding: 0.75rem 1.5rem;
@@ -216,7 +206,7 @@
 }
 
 .mainHeading {
-  color: #ffffff; // Màu trắng để nổi bật hơn
+  color: $color-white; // Màu trắng để nổi bật hơn
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); // Thêm shadow để dễ đọc
   font-size: 3.5rem;
   font-weight: 800;
@@ -227,7 +217,7 @@
 }
 
 .description {
-  color: #ffffff; // Màu trắng để nổi bật hơn
+  color: $color-white; // Màu trắng để nổi bật hơn
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); // Thêm shadow để dễ đọc
   font-size: 1.125rem;
   line-height: 1.6;
@@ -317,7 +307,7 @@
   left: 10px;
   right: 10px;
   bottom: 10px;
-  background: white;
+  background: $color-white;
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -354,7 +344,7 @@
 
 .browserHeader {
   height: 30px;
-  background: #f3f4f6;
+  background: $color-bg-disabled;
   border-radius: 10px 10px 0 0;
   display: flex;
   align-items: center;
@@ -371,7 +361,7 @@
 
 .contentBlock {
   height: 20px;
-  background: #e5e7eb;
+  background: $color-gray-300;
   border-radius: 4px;
 }
 
@@ -461,11 +451,6 @@
   border-radius: 50%;
 }
 
-// Wave Bottom - Loại bỏ núi, chỉ giữ nền trời
-.waveBottom {
-  display: none; // Ẩn hoàn toàn phần núi
-}
-
 // Footer Logo - Trải dài từ phải sang trái
 .footerLogo {
   position: absolute;
@@ -500,8 +485,6 @@
 
 // Responsive design
 @media (max-width: 1024px) {
-  // navigation responsive styles moved to Navigation/styles.module.scss
-
   .mainHeading {
     font-size: 2.5rem;
   }
@@ -509,15 +492,9 @@
   .heroContent {
     padding-right: 1rem;
   }
-
-  .waveBottom {
-    height: 300px; // Giảm chiều cao trên tablet
-  }
 }
 
 @media (max-width: 768px) {
-  // navigation responsive styles moved to Navigation/styles.module.scss
-
   .logoText {
     font-size: 1.25rem;
   }
@@ -559,10 +536,6 @@
   .socialIcons {
     justify-content: center;
   }
-
-  .waveBottom {
-    height: 250px; // Giảm chiều cao trên mobile
-  }
 }
 
 @media (max-width: 480px) {
@@ -590,9 +563,5 @@
   .socialIcon {
     width: 35px;
     height: 35px;
-  }
-
-  .waveBottom {
-    height: 200px; // Giảm chiều cao trên mobile nhỏ
   }
 }

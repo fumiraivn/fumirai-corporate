@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { Button, ButtonVariant, Container } from '@/components/base';
 
 import CanvasBackground from './CanvasBackground';
+import LanguageDropdown from './LanguageDropdown';
 import Navigation from './Navigation';
 import styles from './styles.module.scss';
 
@@ -84,10 +85,11 @@ export default function Header() {
             </div>
 
             {/* Navigation */}
-            <Navigation />
+            <Navigation navBarPinnedVisible={isPinnedVisible} />
 
-            {/* CTA Button */}
+            {/* CTA Section */}
             <div className={styles.ctaSection}>
+              <LanguageDropdown className={styles.languageDropdown} />
               <Button className={styles.ctaButton} variant={ButtonVariant.Solid} type="primary">
                 Get It Support
               </Button>
@@ -202,9 +204,6 @@ export default function Header() {
           </div>
         </Container>
       </div>
-
-      {/* Wave Bottom */}
-      <div className={styles.waveBottom}></div>
     </header>
   );
 }

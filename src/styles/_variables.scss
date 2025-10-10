@@ -54,6 +54,7 @@ $color-info-500-alpha-20: rgba(24, 144, 255, 0.2);
 $color-text-primary: #262626;
 $color-text-placeholder: #bfbfbf;
 $color-text-disabled: rgba(0, 0, 0, 0.25);
+$color-text-primary-alpha-20: rgba(38, 38, 38, 0.2);
 
 // Background colors
 $color-bg-disabled: #f5f5f5;
@@ -61,6 +62,8 @@ $color-bg-disabled: #f5f5f5;
 // Common aliases
 $color-white: #ffffff;
 $color-black: #000000;
+$color-white-alpha-60: rgba(255, 255, 255, 0.6);
+$color-black-alpha-30: rgba(0, 0, 0, 0.3);
 
 // Button-specific palette (primary tone for Base Button)
 // Base uses an indigo/purple tone; hover is a lighter shade; active is deeper

@@ -1,8 +1,14 @@
 import styles from './styles.module.scss';
 
-export default function Navigation() {
+interface NavigationProps {
+  navBarPinnedVisible?: boolean;
+}
+
+export default function Navigation({ navBarPinnedVisible = false }: NavigationProps) {
   return (
-    <nav className={styles.navigation}>
+    <nav
+      className={`${styles.navigation} ${!navBarPinnedVisible ? styles.navigationUnpinned : ''}`}
+    >
       <ul className={styles.navList}>
         <li className={styles.navItem}>
           <a href="#" className={styles.navLink}>

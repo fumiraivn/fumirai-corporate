@@ -2,6 +2,65 @@
   flex: 1;
   display: flex;
   justify-content: center;
+
+  .navLink {
+    // Base styles
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.5rem 0;
+    position: relative;
+    transition: all 0.3s ease;
+
+    // Underline effect
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: linear-gradient(90deg, $color-primary-400, $color-primary-500);
+      transition: width 0.3s ease;
+    }
+
+    // Common hover effects
+    &:hover {
+      transform: translateY(-1px);
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  // Default styling for pinned state
+  .navLink {
+    color: $color-text-primary;
+    text-shadow: none;
+
+    &:hover {
+      color: $color-text-primary;
+      text-shadow: 0 2px 8px $color-text-primary-alpha-20;
+    }
+  }
+
+  // Override for unpinned state
+  &.navigationUnpinned {
+    .navLink {
+      color: $color-white;
+      text-shadow: 0 2px 4px $color-black-alpha-30;
+
+      &:hover {
+        color: $color-white;
+        text-shadow: 0 2px 8px $color-white-alpha-60;
+      }
+    }
+  }
 }
 
 .navList {
@@ -17,45 +76,10 @@
   position: relative;
 }
 
-.navLink {
-  color: var(--nav-link-color, #ffffff);
-  text-shadow: var(--nav-link-shadow, 0 2px 4px rgba(0, 0, 0, 0.3));
-  text-decoration: none;
-  font-size: 1rem;
-  font-weight: 500;
-  font-family: inherit;
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.5rem 0;
-  transition: color 200ms ease;
-
-  &:hover {
-    color: var(--nav-link-color, #ffffff);
-    text-shadow: var(--nav-link-shadow, 0 2px 4px rgba(0, 0, 0, 0.3));
-  }
-}
-
 .dropdownIcon {
   transition: transform 0.2s ease;
 }
 
 .navLink:hover .dropdownIcon {
   transform: rotate(180deg);
-}
-
-@media (max-width: 1024px) {
-  .navList {
-    gap: 1.5rem;
-  }
-
-  .navLink {
-    font-size: 0.9rem;
-  }
-}
-
-@media (max-width: 768px) {
-  .navigation {
-    display: none;
-  }
 }
