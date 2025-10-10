@@ -22,22 +22,14 @@
   background: linear-gradient(
     to bottom,
     #0a0829 0%,
-    // Tím rất đậm ở trên (ít)
     #1d1c50 10%,
-    // Tím đậm (ít)
     #1e3a8a 20%,
-    // Xanh dương rất đậm
     #1e40af 35%,
-    // Xanh dương đậm
     #3b82f6 50%,
-    // Xanh dương vừa
     #60a5fa 70%,
-    // Xanh dương nhạt
     #93c5fd 85%,
-    // Xanh dương rất nhạt
     #dbeafe 95%,
-    // Xanh dương cực nhạt
-    $color-white 100% // Trắng hoàn toàn ở đáy
+    $color-white 100%
   );
   overflow: hidden;
   display: flex;
@@ -53,8 +45,8 @@
   position: relative;
   z-index: 10;
   padding: 1rem 0;
-  background: transparent; // Loại bỏ background mờ
-  backdrop-filter: none; // Loại bỏ blur effect
+  background: transparent;
+  backdrop-filter: none;
   border-radius: 0 !important;
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
@@ -103,41 +95,6 @@
   justify-content: space-between;
 }
 
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  cursor: pointer;
-  border-radius: 0 !important;
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-}
-
-.logoIcon img {
-  border-radius: 0 !important;
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-  object-fit: contain;
-  filter: var(--logo-filter, brightness(1.1) contrast(1.05)); // Giảm độ sáng, chỉ sáng nhẹ
-  mix-blend-mode: var(--logo-blend, overlay); // Tạo hiệu ứng hòa trộn với nền
-  transition:
-    filter 240ms ease,
-    mix-blend-mode 240ms ease;
-}
-
-.logoText {
-  color: $color-white; // Màu trắng để nổi bật hơn
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); // Thêm shadow để dễ đọc
-  font-size: 1.5rem;
-  font-weight: 700;
-  font-family: inherit;
-  letter-spacing: -0.025em;
-}
-
 .ctaSection {
   display: flex;
   align-items: center;
@@ -146,13 +103,12 @@
 
 .ctaButton {
   border: none;
-  border-radius: 0.5rem;
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
+  border-radius: 0.3rem !important;
+  font-size: 0.9rem;
   font-family: inherit;
   cursor: pointer;
   transition: all 0.2s ease;
+  height: 3rem;
 
   &:hover {
     transform: translateY(-1px);
@@ -228,43 +184,6 @@
 .ctaButtons {
   display: flex;
   gap: 1rem;
-}
-
-.primaryButton {
-  // Outline-style button using primary (yellow) palette
-  background: transparent;
-  color: $color-primary-500;
-  border: 2px solid $color-primary-500;
-  border-radius: 0.5rem;
-  padding: 0.875rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    background: $color-primary-500;
-    color: $button-text-on-primary;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-  }
-}
-
-.secondaryButton {
-  // Use component's primary styles; keep only spacing/typography
-  border: none;
-  border-radius: 0.5rem;
-  padding: 0.875rem 2rem;
-  font-size: 1rem;
-  font-weight: 600;
-  font-family: inherit;
-  cursor: pointer;
-  transition: all 0.3s ease;
-
-  &:hover {
-    transform: translateY(-2px);
-  }
 }
 
 // Hero Illustration
@@ -515,12 +434,6 @@
   .ctaButtons {
     flex-direction: column;
     gap: 0.75rem;
-  }
-
-  .primaryButton,
-  .secondaryButton {
-    padding: 0.75rem 1.5rem;
-    font-size: 0.9rem;
   }
 
   .heroSection {

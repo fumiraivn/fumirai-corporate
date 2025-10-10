@@ -61,6 +61,7 @@ export const JapaneseFlagIcon: React.FC<IconProps> = ({
     fill="none"
     className={className}
     xmlns="http://www.w3.org/2000/svg"
+    style={{ filter: 'drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1))' }}
   >
     <rect width="24" height="24" rx="2" fill="#fff" />
     <circle cx="12" cy="12" r="7.2" fill="#BC002D" />

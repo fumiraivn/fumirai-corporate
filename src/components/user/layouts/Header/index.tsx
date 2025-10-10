@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 
 import { Button, ButtonVariant, Container } from '@/components/base';
+import { ButtonType } from '@/components/base/Button';
 
 import CanvasBackground from './CanvasBackground';
 import LanguageDropdown from './LanguageDropdown';
@@ -71,27 +72,23 @@ export default function Header() {
         <Container>
           <div className={styles.navBarContent}>
             {/* Logo */}
-            <div className={styles.logo}>
-              <div className={styles.logoIcon}>
-                <Image
-                  src={isPinned ? '/logo-light.png' : '/logo.png'}
-                  alt="fumirai logo"
-                  width={200}
-                  height={200}
-                  style={{ borderRadius: 0 }}
-                  priority
-                />
-              </div>
-            </div>
+            <Image
+              src={isPinned ? '/logo-light.png' : '/logo.png'}
+              alt="fumirai logo"
+              width={200}
+              height={200}
+              style={{ borderRadius: 0 }}
+              priority
+            />
 
             {/* Navigation */}
             <Navigation navBarPinnedVisible={isPinnedVisible} />
 
             {/* CTA Section */}
             <div className={styles.ctaSection}>
-              <LanguageDropdown className={styles.languageDropdown} />
-              <Button className={styles.ctaButton} variant={ButtonVariant.Solid} type="primary">
-                Get It Support
+              <LanguageDropdown />
+              <Button className={styles.ctaButton} buttonType={ButtonType.Default}>
+                Tuyển dụng
               </Button>
             </div>
           </div>
@@ -151,7 +148,7 @@ export default function Header() {
             </p>
 
             {/* CTA Buttons */}
-            <div className={styles.ctaButtons}>
+            {/* <div className={styles.ctaButtons}>
               <Button
                 className={styles.primaryButton}
                 variant={ButtonVariant.Outline}
@@ -166,7 +163,7 @@ export default function Header() {
               >
                 Contact Us
               </Button>
-            </div>
+            </div> */}
           </div>
 
           {/* Hero Illustration */}
