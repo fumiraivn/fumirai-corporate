@@ -4,51 +4,37 @@ import styles from './styles.module.scss';
 
 interface NavigationProps {
   navBarPinnedVisible?: boolean;
+  direction?: 'horizontal' | 'vertical';
 }
 
-export default function Navigation({ navBarPinnedVisible = false }: NavigationProps) {
+export default function Navigation({
+  navBarPinnedVisible = false,
+  direction = 'horizontal',
+}: NavigationProps) {
   const t = useTranslations('homePage.navigation');
 
   return (
     <nav
-      className={`${styles.navigation} ${!navBarPinnedVisible ? styles.navigationUnpinned : ''}`}
+      className={`${styles.navigation} ${!navBarPinnedVisible ? styles.navigationUnpinned : ''} ${
+        direction === 'vertical' ? styles.navigationVertical : ''
+      }`}
     >
       <ul className={styles.navList}>
-        <li className={styles.navItem}>
-          <a href="#" className={styles.navLink}>
-            {t('home')}
-          </a>
-        </li>
-        <li className={styles.navItem}>
-          <a href="#" className={styles.navLink}>
-            {t('aboutUs')}
-          </a>
-        </li>
-        <li className={styles.navItem}>
-          <a href="#" className={styles.navLink}>
-            {t('services')}
-          </a>
-        </li>
-        <li className={styles.navItem}>
-          <a href="#" className={styles.navLink}>
-            {t('portfolio')}
-          </a>
-        </li>
-        <li className={styles.navItem}>
-          <a href="#" className={styles.navLink}>
-            {t('pages')}
-          </a>
-        </li>
-        <li className={styles.navItem}>
-          <a href="#" className={styles.navLink}>
-            {t('blog')}
-          </a>
-        </li>
-        <li className={styles.navItem}>
-          <a href="#" className={styles.navLink}>
-            {t('contact')}
-          </a>
-        </li>
+        {[
+          { key: 'home', href: '#' },
+          { key: 'aboutUs', href: '#' },
+          { key: 'services', href: '#' },
+          { key: 'portfolio', href: '#' },
+          { key: 'pages', href: '#' },
+          { key: 'blog', href: '#' },
+          { key: 'contact', href: '#' },
+        ].map((item) => (
+          <li className={styles.navItem} key={item.key}>
+            <a href={item.href} className={styles.navLink}>
+              {t(item.key)}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
   );

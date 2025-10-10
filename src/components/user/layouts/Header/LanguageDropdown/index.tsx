@@ -34,9 +34,13 @@ const languageOptions: LanguageOption[] = [
 
 interface LanguageDropdownProps {
   className?: string;
+  isMobile?: boolean;
 }
 
-const LanguageDropdown: React.FC<LanguageDropdownProps> = ({ className = '' }) => {
+const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
+  className = '',
+  isMobile = false,
+}) => {
   const { currentLocale, switchLocale } = useLocaleSwitcher();
   const [selectedValue, setSelectedValue] = useState(currentLocale);
 
@@ -49,8 +53,15 @@ const LanguageDropdown: React.FC<LanguageDropdownProps> = ({ className = '' }) =
 
   const selectedOption = languageOptions.find((option) => option.value === selectedValue);
 
-  // Custom trigger component - chỉ hiển thị icon
-  const triggerComponent = <div className={styles.trigger}>{selectedOption?.flag}</div>;
+  // Trigger component
+  const triggerComponent = isMobile ? (
+    <div className={styles.mobileTrigger}>
+      <span className={styles.mobileTriggerIcon}>{selectedOption?.flag}</span>
+      <span className={styles.mobileTriggerText}>{selectedOption?.label}</span>
+    </div>
+  ) : (
+    <div className={styles.trigger}>{selectedOption?.flag}</div>
+  );
 
   // Menu items
   const menuItems = languageOptions.map((option) => ({

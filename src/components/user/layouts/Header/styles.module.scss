@@ -85,6 +85,12 @@
   opacity: 1;
 }
 
+.navBarPinned {
+  .menuButton {
+    color: $color-text-primary;
+  }
+}
+
 .navBarSpacer {
   height: var(--nav-height, 80px);
 }
@@ -95,10 +101,23 @@
   justify-content: space-between;
 }
 
+.navDesktop {
+  display: block;
+}
+
 .ctaSection {
   display: flex;
   align-items: center;
   gap: 16px;
+}
+
+.menuButton {
+  display: none;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  color: $color-white;
 }
 
 .ctaButton {
@@ -402,8 +421,8 @@
   }
 }
 
-// Responsive design
-@media (max-width: 1024px) {
+// Responsive design via respond-to
+@include respond-to(xs) {
   .mainHeading {
     font-size: 2.5rem;
   }
@@ -411,9 +430,105 @@
   .heroContent {
     padding-right: 1rem;
   }
+
+  // Hide desktop nav/cta; show menu button on md and below
+  .navDesktop {
+    display: none;
+  }
+
+  .ctaSection {
+    display: none;
+  }
+
+  .menuButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .logoText {
+    font-size: 1.25rem;
+  }
+
+  .ctaButton {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .mainHeading {
+    font-size: 1.75rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
+
+  .ctaButtons {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .heroSection {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .heroContent {
+    padding-right: 0;
+    margin-bottom: 2rem;
+  }
+
+  .socialIcons {
+    justify-content: center;
+  }
+
+  .logo {
+    gap: 0.5rem;
+  }
+
+  .logoText {
+    font-size: 1.125rem;
+  }
+
+  .ctaButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  .socialIcons {
+    gap: 0.75rem;
+  }
+
+  .socialIcon {
+    width: 35px;
+    height: 35px;
+  }
 }
 
-@media (max-width: 768px) {
+@include respond-to(sm) {
+  .mainHeading {
+    font-size: 2.5rem;
+  }
+
+  .heroContent {
+    padding-right: 1rem;
+  }
+
+  // Hide desktop nav/cta; show menu button on md and below
+  .navDesktop {
+    display: none;
+  }
+
+  .ctaSection {
+    display: none;
+  }
+
+  .menuButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   .logoText {
     font-size: 1.25rem;
   }
@@ -451,30 +566,31 @@
   }
 }
 
-@media (max-width: 480px) {
-  .logo {
-    gap: 0.5rem;
+@include respond-to(md) {
+  .mainHeading {
+    font-size: 2.5rem;
   }
 
-  .logoText {
-    font-size: 1.125rem;
+  .heroContent {
+    padding-right: 1rem;
   }
 
-  .ctaButton {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+  // Hide desktop nav/cta; show menu button on md and below
+  .navDesktop {
+    display: none;
+  }
+
+  .ctaSection {
+    display: none;
+  }
+
+  .menuButton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
 
   .mainHeading {
-    font-size: 1.75rem;
-  }
-
-  .socialIcons {
-    gap: 0.75rem;
-  }
-
-  .socialIcon {
-    width: 35px;
-    height: 35px;
+    font-size: 2rem;
   }
 }

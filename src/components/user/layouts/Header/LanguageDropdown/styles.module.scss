@@ -19,6 +19,31 @@
   }
 }
 
+.mobileTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 3rem;
+  padding: 0 12px;
+  border: 1px solid $color-gray-300;
+  border-radius: 0.3rem;
+  background-color: $color-background-light;
+  min-width: 10rem;
+}
+
+.mobileTriggerIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.mobileTriggerText {
+  font-size: 14px;
+  color: $color-text-primary;
+}
+
 // Dropdown menu styles
 :global(.ant-dropdown) {
   .ant-dropdown-menu {

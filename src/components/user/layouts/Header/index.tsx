@@ -4,17 +4,20 @@ import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
 
-import { Button, ButtonVariant, Container } from '@/components/base';
+import { Button, Container } from '@/components/base';
 import { ButtonType } from '@/components/base/Button';
+import { MenuIcon } from '@/svgs/user/HomeIcon';
 
 import CanvasBackground from './CanvasBackground';
 import LanguageDropdown from './LanguageDropdown';
+import MobileMenu from './MobileMenu';
 import Navigation from './Navigation';
 import styles from './styles.module.scss';
 
 export default function Header() {
   const [isPinned, setIsPinned] = useState(false);
   const [isPinnedVisible, setIsPinnedVisible] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tickingRef = useRef(false);
   const lastScrollYRef = useRef(0);
 
@@ -81,19 +84,31 @@ export default function Header() {
               priority
             />
 
-            {/* Navigation */}
-            <Navigation navBarPinnedVisible={isPinnedVisible} />
+            {/* Navigation (desktop only) */}
+            <div className={styles.navDesktop}>
+              <Navigation navBarPinnedVisible={isPinnedVisible} />
+            </div>
 
-            {/* CTA Section */}
+            {/* CTA Section (desktop only) */}
             <div className={styles.ctaSection}>
               <LanguageDropdown />
               <Button className={styles.ctaButton} buttonType={ButtonType.Default}>
                 Tuyển dụng
               </Button>
             </div>
+
+            {/* Mobile menu button (md and below) */}
+            <button
+              aria-label="Open menu"
+              className={styles.menuButton}
+              onClick={() => setIsMenuOpen(true)}
+            >
+              <MenuIcon width={28} height={28} />
+            </button>
           </div>
         </Container>
       </div>
+      <MobileMenu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
       {isPinned && isPinnedVisible ? <div className={styles.navBarSpacer} /> : null}
 
       {/* Hero Section */}
