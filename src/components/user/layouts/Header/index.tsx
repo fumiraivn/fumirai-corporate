@@ -78,9 +78,9 @@ export default function Header() {
             <Image
               src={isPinned ? '/logo-light.png' : '/logo.png'}
               alt="fumirai logo"
-              width={200}
-              height={200}
-              style={{ borderRadius: 0 }}
+              width={150}
+              height={150}
+              style={{ borderRadius: 0, width: 'auto', height: 'auto' }}
               priority
             />
 
