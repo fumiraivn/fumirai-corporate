@@ -1,0 +1,91 @@
+.trigger {
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-width: unset !important;
+
+  &:hover {
+    scale: 1.1;
+    border-color: $color-info-400;
+  }
+
+  svg {
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+  }
+}
+
+.mobileTrigger {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 3rem;
+  padding: 0 12px;
+  border: 1px solid $color-gray-300;
+  border-radius: 0.3rem;
+  background-color: $color-background-light;
+  min-width: 10rem;
+}
+
+.mobileTriggerIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.mobileTriggerText {
+  font-size: 14px;
+  color: $color-text-primary;
+}
+
+// Dropdown menu styles
+:global(.ant-dropdown) {
+  .ant-dropdown-menu {
+    border-radius: 8px;
+    border: 1px solid $color-gray-300;
+    padding: 8px 0;
+
+    .ant-dropdown-menu-item {
+      padding: 12px 20px;
+      border-radius: 6px;
+      margin: 4px 8px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: $color-info-500-alpha-20;
+      }
+    }
+  }
+}
+
+.optionContent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.optionIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.optionLabel {
+  font-size: 14px;
+  color: $color-text-primary;
+  font-weight: 400;
+}

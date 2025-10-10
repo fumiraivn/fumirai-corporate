@@ -1,9 +1,11 @@
 import en from './messages/en.json';
+import ja from './messages/ja.json';
 import vi from './messages/vi.json';
 import { DEFAULT_LOCALE } from './request';
 
 export const messagesMap = {
   en,
+  ja,
   vi,
 };
 

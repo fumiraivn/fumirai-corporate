@@ -37,6 +37,94 @@ $breakpoint-2xl: 1536px;
   }
 }
 
+// Mixin: respond-below — single max-width query (below given breakpoint)
+@mixin respond-below($breakpoint) {
+  $value: null;
+  @if $breakpoint == sm {
+    $value: $breakpoint-sm;
+  } @else if $breakpoint == md {
+    $value: $breakpoint-md;
+  } @else if $breakpoint == lg {
+    $value: $breakpoint-lg;
+  } @else if $breakpoint == xl {
+    $value: $breakpoint-xl;
+  } @else if $breakpoint == 2xl {
+    $value: $breakpoint-2xl;
+  }
+
+  @if $value != null {
+    @media (max-width: #{$value - 1px}) {
+      @content;
+    }
+  } @else {
+    @warn 'Unknown breakpoint for respond-below: #{$breakpoint}. Allowed: sm, md, lg, xl, 2xl';
+  }
+}
+
+// Mixin: respond-above — single min-width query (from given breakpoint and up)
+@mixin respond-above($breakpoint) {
+  $value: null;
+  @if $breakpoint == xs {
+    $value: $breakpoint-xs;
+  } @else if $breakpoint == sm {
+    $value: $breakpoint-sm;
+  } @else if $breakpoint == md {
+    $value: $breakpoint-md;
+  } @else if $breakpoint == lg {
+    $value: $breakpoint-lg;
+  } @else if $breakpoint == xl {
+    $value: $breakpoint-xl;
+  } @else if $breakpoint == 2xl {
+    $value: $breakpoint-2xl;
+  }
+
+  @if $value != null {
+    @media (min-width: #{$value}) {
+      @content;
+    }
+  } @else {
+    @warn 'Unknown breakpoint for respond-above: #{$breakpoint}. Allowed: xs, sm, md, lg, xl, 2xl';
+  }
+}
+
+// Mixin: respond-between — range between two named breakpoints (inclusive of min, exclusive of max)
+@mixin respond-between($from, $to) {
+  $min: null;
+  $max: null;
+
+  @if $from == xs {
+    $min: $breakpoint-xs;
+  } @else if $from == sm {
+    $min: $breakpoint-sm;
+  } @else if $from == md {
+    $min: $breakpoint-md;
+  } @else if $from == lg {
+    $min: $breakpoint-lg;
+  } @else if $from == xl {
+    $min: $breakpoint-xl;
+  }
+
+  @if $to == sm {
+    $max: $breakpoint-sm;
+  } @else if $to == md {
+    $max: $breakpoint-md;
+  } @else if $to == lg {
+    $max: $breakpoint-lg;
+  } @else if $to == xl {
+    $max: $breakpoint-xl;
+  } @else if $to == 2xl {
+    $max: $breakpoint-2xl;
+  }
+
+  @if $min != null and $max != null {
+    @media (min-width: #{$min}) and (max-width: #{$max - 1px}) {
+      @content;
+    }
+  } @else {
+    @warn 'Unknown breakpoint(s) for respond-between: from=#{$from}, to=#{$to}.';
+  }
+}
+
 // Mixin: line-clamp
 @mixin line-clamp($lines) {
   display: -webkit-box;

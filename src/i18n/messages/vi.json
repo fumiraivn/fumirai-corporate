@@ -1,9 +1,13 @@
 {
-  "Common": {
-    "title": "Chào mừng",
-    "description": "Được tạo bởi create next app"
-  },
-  "Home": {
-    "hello": "Xin chào thế giới!"
+  "homePage": {
+    "navigation": {
+      "home": "Trang chủ",
+      "aboutUs": "Về chúng tôi",
+      "services": "Dịch vụ",
+      "portfolio": "Danh mục",
+      "pages": "Trang",
+      "blog": "Blog",
+      "contact": "Liên hệ"
+    }
   }
 }

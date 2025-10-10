@@ -1,0 +1,82 @@
+.dropdown {
+  width: 100%;
+
+  :global(.ant-select) {
+    width: 100%;
+
+    .ant-select-selector {
+      border-radius: 8px;
+      border: 1px solid $color-gray-300;
+      transition: all 0.3s ease;
+
+      &:hover {
+        border-color: $color-info-400;
+      }
+    }
+
+    &.ant-select-focused .ant-select-selector {
+      border-color: $color-info-400;
+      box-shadow: 0 0 0 2px $color-info-500-alpha-20;
+    }
+
+    .ant-select-selection-item {
+      color: $color-text-primary;
+      font-size: 14px;
+    }
+
+    .ant-select-selection-placeholder {
+      color: $color-text-placeholder;
+      font-size: 14px;
+    }
+  }
+
+  // Size variants
+  &.ant-select-sm {
+    .ant-select-selector {
+      min-height: 24px;
+      padding: 0 7px;
+    }
+
+    .ant-select-selection-item,
+    .ant-select-selection-placeholder {
+      font-size: 12px;
+    }
+  }
+
+  &.ant-select-lg {
+    .ant-select-selector {
+      min-height: 40px;
+      padding: 0 11px;
+    }
+
+    .ant-select-selection-item,
+    .ant-select-selection-placeholder {
+      font-size: 16px;
+    }
+  }
+
+  // Disabled state
+  &.ant-select-disabled {
+    .ant-select-selector {
+      background-color: $color-bg-disabled;
+      border-color: $color-gray-300;
+      color: $color-text-disabled;
+    }
+  }
+
+  // Error state
+  &.ant-select-status-error {
+    .ant-select-selector {
+      border-color: $color-danger-500;
+
+      &:hover {
+        border-color: $color-danger-500;
+      }
+    }
+
+    &.ant-select-focused .ant-select-selector {
+      border-color: $color-danger-500;
+      box-shadow: 0 0 0 2px $color-danger-500-alpha-20;
+    }
+  }
+}

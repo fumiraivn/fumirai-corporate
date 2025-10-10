@@ -43,14 +43,32 @@ $color-gray-300: #d9d9d9;
 $color-danger-400: #ff7875;
 $color-danger-500: #ff4d4f;
 $color-danger-700: #cf1322;
+$color-danger-500-alpha-20: rgba(255, 77, 79, 0.2);
+
+// Info palette (for focus states)
+$color-info-400: #40a9ff;
+$color-info-500: #1890ff;
+$color-info-500-alpha-20: rgba(24, 144, 255, 0.2);
+
+// Text colors
+$color-text-primary: #262626;
+$color-text-placeholder: #bfbfbf;
+$color-text-disabled: rgba(0, 0, 0, 0.25);
+$color-text-primary-alpha-20: rgba(38, 38, 38, 0.2);
+
+// Background colors
+$color-bg-disabled: #f5f5f5;
 
 // Common aliases
 $color-white: #ffffff;
 $color-black: #000000;
+$color-white-alpha-60: rgba(255, 255, 255, 0.6);
+$color-black-alpha-30: rgba(0, 0, 0, 0.3);
 
-// Button-specific palette (primary tone for Base Button)
-// Base uses an indigo/purple tone; hover is a lighter shade; active is deeper
-$button-primary: #f59e0b; // base (amber-500)
-$button-primary-hover: #fbbf24; // hover (amber-400)
-$button-primary-active: #d97706; // active (amber-600)
-$button-text-on-primary: $color-black;
+// Button colors
+$button-default: #7b68ee;
+$button-default-hover: #3e57d0;
+$button-default-active: #3e57d0;
+$button-default-disabled: $color-bg-disabled;
+$button-text-on-default: $color-white;
+$button-text-on-default-disabled: $color-text-disabled;

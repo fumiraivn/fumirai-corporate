@@ -1,0 +1,13 @@
+{
+  "homePage": {
+    "navigation": {
+      "home": "ホーム",
+      "aboutUs": "私たちについて",
+      "services": "サービス",
+      "portfolio": "ポートフォリオ",
+      "pages": "ページ",
+      "blog": "ブログ",
+      "contact": "お問い合わせ"
+    }
+  }
+}
