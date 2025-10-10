@@ -298,15 +298,6 @@ const CherryBlossomCanvas = () => {
       // Draw bottom shape
       drawBottomShape();
 
-      // Debug: Draw hover radius (commented out to remove visual artifact)
-      // ctx.save();
-      // ctx.globalAlpha = 0.1;
-      // ctx.fillStyle = '#be185d';
-      // ctx.beginPath();
-      // ctx.arc(mouseRef.current.x, mouseRef.current.y, 150, 0, Math.PI * 2);
-      // ctx.fill();
-      // ctx.restore();
-
       // Update and draw cherry blossoms
       blossomsRef.current.forEach((blossom) => {
         // Calculate distance from mouse
@@ -444,8 +435,8 @@ const CherryBlossomCanvas = () => {
         width: '100%',
         height: '100%',
         zIndex: 1,
-        pointerEvents: 'auto', // Cho phép mouse events
-        cursor: 'none', // Ẩn cursor để tạo hiệu ứng đẹp hơn
+        pointerEvents: 'auto',
+        cursor: 'pointer',
       }}
     />
   );

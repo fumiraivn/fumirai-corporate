@@ -138,459 +138,51 @@
   }
 }
 
-// Hero Section
-.heroSection {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  position: relative;
-  z-index: 5;
-  padding: 2rem 0;
-}
-
-.heroContent {
-  flex: 1;
-  max-width: 600px;
-  padding-right: 2rem;
-}
-
-.socialIcons {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.socialIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 2px solid rgba(190, 24, 93, 0.3);
-  border-radius: 50%;
-  background: rgba(190, 24, 93, 0.1);
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  cursor: pointer;
-
-  &:hover {
-    background: rgba(190, 24, 93, 0.2);
-    border-color: rgba(190, 24, 93, 0.5);
-    transform: translateY(-2px);
-  }
-}
-
-.mainHeading {
-  color: $color-white; // Màu trắng để nổi bật hơn
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); // Thêm shadow để dễ đọc
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-  font-family: inherit;
-  text-shadow: 0 2px 4px rgba(190, 24, 93, 0.2);
-}
-
-.description {
-  color: $color-white; // Màu trắng để nổi bật hơn
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); // Thêm shadow để dễ đọc
-  font-size: 1.125rem;
-  line-height: 1.6;
-  margin-bottom: 2.5rem;
-  font-family: inherit;
-}
-
-.ctaButtons {
-  display: flex;
-  gap: 1rem;
-}
-
-// Hero Illustration
-.heroIllustration {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  height: 100%;
-}
-
-.illustrationPlaceholder {
-  position: relative;
-  width: 100%;
-  height: 500px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.device {
-  position: relative;
-  z-index: 3;
-}
-
-.smartphone {
-  position: relative;
-  width: 120px;
-  height: 200px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 20px;
-  transform: rotate(-15deg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.screen {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  right: 10px;
-  bottom: 10px;
-  background: $color-white;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.chart {
-  width: 40px;
-  height: 40px;
-  background: conic-gradient(from 0deg, #8b5cf6, #3b82f6, #1e3a8a);
-  border-radius: 50%;
-}
-
-.profile {
-  width: 20px;
-  height: 20px;
-  background: #8b5cf6;
-  border-radius: 50%;
-}
-
-.browser {
-  position: absolute;
-  top: 50px;
-  left: 80px;
-  width: 200px;
-  height: 150px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 10px;
-  transform: rotate(10deg);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.browserHeader {
-  height: 30px;
-  background: $color-bg-disabled;
-  border-radius: 10px 10px 0 0;
-  display: flex;
-  align-items: center;
-  padding: 0 10px;
-  gap: 5px;
-}
-
-.browserContent {
-  padding: 15px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.contentBlock {
-  height: 20px;
-  background: $color-gray-300;
-  border-radius: 4px;
-}
-
-.figures {
-  position: absolute;
-  z-index: 2;
-}
-
-.figure {
-  position: absolute;
-  width: 30px;
-  height: 40px;
-  background: linear-gradient(45deg, #8b5cf6, #3b82f6);
-  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-
-  &:nth-child(1) {
-    top: 100px;
-    left: 50px;
-    background: linear-gradient(45deg, #8b5cf6, #a855f7);
-  }
-
-  &:nth-child(2) {
-    top: 150px;
-    right: 100px;
-    background: linear-gradient(45deg, #f59e0b, #f97316);
-  }
-
-  &:nth-child(3) {
-    bottom: 100px;
-    left: 100px;
-    background: linear-gradient(45deg, #1e3a8a, #3b82f6);
-  }
-
-  &:nth-child(4) {
-    bottom: 150px;
-    right: 50px;
-    background: linear-gradient(45deg, #f59e0b, #f97316);
-  }
-}
-
-.elements {
-  position: absolute;
-  z-index: 1;
-}
-
-.steps {
-  position: absolute;
-  top: 200px;
-  left: 150px;
-  width: 80px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.7);
-  transform: skewY(-15deg);
-  border-radius: 4px;
-}
-
-.documents {
-  position: absolute;
-  bottom: 200px;
-  right: 150px;
-  width: 60px;
-  height: 80px;
-  background: rgba(255, 255, 255, 0.7);
-  transform: skewY(15deg);
-  border-radius: 4px;
-}
-
-.portal {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 40px;
-  background: radial-gradient(circle, #3b82f6, #1e3a8a);
-  border-radius: 50%;
-  box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
-}
-
-.sphere {
-  position: absolute;
-  top: 50px;
-  right: 200px;
-  width: 60px;
-  height: 60px;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
-  border-radius: 50%;
-}
-
-// Footer Logo - Trải dài từ phải sang trái
-.footerLogo {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
-  height: auto;
-  z-index: 20;
-  opacity: 0.8;
-  transition: opacity 0.3s ease;
-
-  &:hover {
-    opacity: 1;
-  }
-
-  img {
-    width: 100%;
-    height: 120px; // Giảm chiều cao xuống
-    border-radius: 0 !important;
-    border-top-left-radius: 0 !important;
-    border-top-right-radius: 0 !important;
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-    filter: brightness(1.1) contrast(1.05);
-    mix-blend-mode: overlay;
-    object-fit: cover;
-    object-position: bottom;
-    transform: scaleX(-1); // Xoay ngược từ phải sang trái
-  }
-}
-
-// Responsive design via respond-to
+// Mobile/Tablet (md and below): show menu button, hide desktop nav & CTA
 @include respond-to(xs) {
-  .mainHeading {
-    font-size: 2.5rem;
-  }
-
-  .heroContent {
-    padding-right: 1rem;
-  }
-
-  // Hide desktop nav/cta; show menu button on md and below
-  .navDesktop {
-    display: none;
-  }
-
-  .ctaSection {
-    display: none;
-  }
-
   .menuButton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
-  .logoText {
-    font-size: 1.25rem;
+  .navDesktop {
+    display: none;
   }
 
-  .ctaButton {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  .mainHeading {
-    font-size: 1.75rem;
-  }
-
-  .description {
-    font-size: 1rem;
-  }
-
-  .ctaButtons {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .heroSection {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .heroContent {
-    padding-right: 0;
-    margin-bottom: 2rem;
-  }
-
-  .socialIcons {
-    justify-content: center;
-  }
-
-  .logo {
-    gap: 0.5rem;
-  }
-
-  .logoText {
-    font-size: 1.125rem;
-  }
-
-  .ctaButton {
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
-  }
-
-  .socialIcons {
-    gap: 0.75rem;
-  }
-
-  .socialIcon {
-    width: 35px;
-    height: 35px;
+  .ctaSection {
+    display: none;
   }
 }
 
 @include respond-to(sm) {
-  .mainHeading {
-    font-size: 2.5rem;
-  }
-
-  .heroContent {
-    padding-right: 1rem;
-  }
-
-  // Hide desktop nav/cta; show menu button on md and below
-  .navDesktop {
-    display: none;
-  }
-
-  .ctaSection {
-    display: none;
-  }
-
   .menuButton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
-  .logoText {
-    font-size: 1.25rem;
+  .navDesktop {
+    display: none;
   }
 
-  .ctaButton {
-    padding: 0.625rem 1.25rem;
-    font-size: 0.9rem;
-  }
-
-  .mainHeading {
-    font-size: 2rem;
-  }
-
-  .description {
-    font-size: 1rem;
-  }
-
-  .ctaButtons {
-    flex-direction: column;
-    gap: 0.75rem;
-  }
-
-  .heroSection {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .heroContent {
-    padding-right: 0;
-    margin-bottom: 2rem;
-  }
-
-  .socialIcons {
-    justify-content: center;
+  .ctaSection {
+    display: none;
   }
 }
 
 @include respond-to(md) {
-  .mainHeading {
-    font-size: 2.5rem;
-  }
-
-  .heroContent {
-    padding-right: 1rem;
-  }
-
-  // Hide desktop nav/cta; show menu button on md and below
-  .navDesktop {
-    display: none;
-  }
-
-  .ctaSection {
-    display: none;
-  }
-
   .menuButton {
     display: inline-flex;
     align-items: center;
     justify-content: center;
   }
 
-  .mainHeading {
-    font-size: 2rem;
+  .navDesktop {
+    display: none;
+  }
+
+  .ctaSection {
+    display: none;
   }
 }
