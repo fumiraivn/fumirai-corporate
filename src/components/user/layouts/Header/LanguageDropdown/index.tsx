@@ -1,57 +1,48 @@
 import React, { useState } from 'react';
 
+import { useLocaleSwitcher } from '@/hooks';
 import { EnglishFlagIcon, JapaneseFlagIcon, VietnameseFlagIcon } from '@/svgs/user/HomeIcon';
+import { ELanguage } from '@/types';
 
 import { Dropdown } from 'antd';
 
 import styles from './styles.module.scss';
 
-enum Language {
-  EN = 'en',
-  JA = 'ja',
-  VI = 'vi',
-}
-
 export interface LanguageOption {
-  value: Language;
+  value: ELanguage;
   label: string;
   flag: React.ReactNode;
 }
 
 const languageOptions: LanguageOption[] = [
   {
-    value: Language.EN,
+    value: ELanguage.EN,
     label: 'English',
     flag: <EnglishFlagIcon width={24} height={24} />,
   },
   {
-    value: Language.JA,
+    value: ELanguage.JA,
     label: '日本語',
     flag: <JapaneseFlagIcon width={24} height={24} />,
   },
   {
-    value: Language.VI,
+    value: ELanguage.VI,
     label: 'Tiếng Việt',
     flag: <VietnameseFlagIcon width={24} height={24} />,
   },
 ];
 
 interface LanguageDropdownProps {
-  value?: string;
-  onChange?: (value: string) => void;
   className?: string;
 }
 
-const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
-  value = Language.JA,
-  onChange,
-  className = '',
-}) => {
-  const [selectedValue, setSelectedValue] = useState(value);
+const LanguageDropdown: React.FC<LanguageDropdownProps> = ({ className = '' }) => {
+  const { currentLocale, switchLocale } = useLocaleSwitcher();
+  const [selectedValue, setSelectedValue] = useState(currentLocale);
 
   const handleChange = (newValue: string) => {
     setSelectedValue(newValue);
-    onChange?.(newValue);
+    switchLocale(newValue);
   };
 
   const dropdownClasses = [styles.languageDropdown, className].filter(Boolean).join(' ');

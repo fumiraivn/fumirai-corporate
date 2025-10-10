@@ -1,3 +1,5 @@
+import { useTranslations } from 'next-intl';
+
 import styles from './styles.module.scss';
 
 interface NavigationProps {
@@ -5,6 +7,8 @@ interface NavigationProps {
 }
 
 export default function Navigation({ navBarPinnedVisible = false }: NavigationProps) {
+  const t = useTranslations('homePage.navigation');
+
   return (
     <nav
       className={`${styles.navigation} ${!navBarPinnedVisible ? styles.navigationUnpinned : ''}`}
@@ -12,37 +16,37 @@ export default function Navigation({ navBarPinnedVisible = false }: NavigationPr
       <ul className={styles.navList}>
         <li className={styles.navItem}>
           <a href="#" className={styles.navLink}>
-            Home
+            {t('home')}
           </a>
         </li>
         <li className={styles.navItem}>
           <a href="#" className={styles.navLink}>
-            About Us
+            {t('aboutUs')}
           </a>
         </li>
         <li className={styles.navItem}>
           <a href="#" className={styles.navLink}>
-            Services
+            {t('services')}
           </a>
         </li>
         <li className={styles.navItem}>
           <a href="#" className={styles.navLink}>
-            Portfolio
+            {t('portfolio')}
           </a>
         </li>
         <li className={styles.navItem}>
           <a href="#" className={styles.navLink}>
-            Pages
+            {t('pages')}
           </a>
         </li>
         <li className={styles.navItem}>
           <a href="#" className={styles.navLink}>
-            Blog
+            {t('blog')}
           </a>
         </li>
         <li className={styles.navItem}>
           <a href="#" className={styles.navLink}>
-            Contact
+            {t('contact')}
           </a>
         </li>
       </ul>
