@@ -8,6 +8,9 @@
       "pages": "ページ",
       "blog": "ブログ",
       "contact": "お問い合わせ"
+    },
+    "cta": {
+      "recruitment": "採用情報"
     }
   }
 }

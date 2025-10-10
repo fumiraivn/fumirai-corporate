@@ -8,6 +8,9 @@
       "pages": "Pages",
       "blog": "Blog",
       "contact": "Contact"
+    },
+    "cta": {
+      "recruitment": "Recruitment"
     }
   }
 }

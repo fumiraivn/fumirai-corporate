@@ -4,6 +4,7 @@ import { Button } from '@/components/base';
 import { ButtonType } from '@/components/base/Button';
 
 import { Drawer } from 'antd';
+import { useTranslations } from 'next-intl';
 
 import LanguageDropdown from '../LanguageDropdown';
 import Navigation from '../Navigation';
@@ -16,6 +17,7 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ open, onClose }: MobileMenuProps) {
+  const t = useTranslations('homePage.cta');
   return (
     <Drawer
       placement="right"
@@ -35,7 +37,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
       </div>
       <div className={styles.menuFooter}>
         <Button className={styles.ctaButton} buttonType={ButtonType.Default} onClick={onClose}>
-          Tuyển dụng
+          {t('recruitment')}
         </Button>
         <LanguageDropdown isMobile />
       </div>
