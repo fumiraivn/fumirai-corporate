@@ -6,26 +6,26 @@ $breakpoint-lg: 1024px;
 $breakpoint-xl: 1280px;
 $breakpoint-2xl: 1536px;
 
-// Mixin: respond-to — media queries by named breakpoint
+// Mixin: respond-to — media queries by named breakpoint with ranges
 @mixin respond-to($breakpoint) {
   @if $breakpoint == xs {
-    @media (min-width: $breakpoint-xs) {
+    @media (min-width: $breakpoint-xs) and (max-width: #{$breakpoint-sm - 1px}) {
       @content;
     }
   } @else if $breakpoint == sm {
-    @media (min-width: $breakpoint-sm) {
+    @media (min-width: $breakpoint-sm) and (max-width: #{$breakpoint-md - 1px}) {
       @content;
     }
   } @else if $breakpoint == md {
-    @media (min-width: $breakpoint-md) {
+    @media (min-width: $breakpoint-md) and (max-width: #{$breakpoint-lg - 1px}) {
       @content;
     }
   } @else if $breakpoint == lg {
-    @media (min-width: $breakpoint-lg) {
+    @media (min-width: $breakpoint-lg) and (max-width: #{$breakpoint-xl - 1px}) {
       @content;
     }
   } @else if $breakpoint == xl {
-    @media (min-width: $breakpoint-xl) {
+    @media (min-width: $breakpoint-xl) and (max-width: #{$breakpoint-2xl - 1px}) {
       @content;
     }
   } @else if $breakpoint == 2xl {
@@ -35,14 +35,6 @@ $breakpoint-2xl: 1536px;
   } @else {
     @warn 'Unknown breakpoint: #{$breakpoint}. Allowed: xs, sm, md, lg, xl, 2xl';
   }
-}
-
-// Mixin: fluid — clamp-based fluid sizing between viewport widths
-// Example: font-size: fluid(16px, 24px, 360px, 1280px)
-@function fluid($min, $max, $minViewport: 360px, $maxViewport: 1280px) {
-  $slope: ($max - $min) / ($maxViewport - $minViewport);
-  $intercept: $min - $slope * $minViewport;
-  @return clamp($min, #{$intercept} + #{$slope} * 100vw, $max);
 }
 
 // Mixin: line-clamp

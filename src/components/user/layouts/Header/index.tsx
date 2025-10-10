@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 
 import Image from 'next/image';
 
-import { Button, ButtonVariant } from '@/components/base';
+import { Button, ButtonVariant, Container } from '@/components/base';
 
 import CanvasBackground from './CanvasBackground';
 import Navigation from './Navigation';
@@ -67,37 +67,39 @@ export default function Header() {
           isPinned && isPinnedVisible ? styles.navBarPinnedVisible : ''
         }`}
       >
-        <div className={styles.container}>
-          {/* Logo */}
-          <div className={styles.logo}>
-            <div className={styles.logoIcon}>
-              <Image
-                src={isPinned ? '/logo-light.png' : '/logo.png'}
-                alt="fumirai logo"
-                width={200}
-                height={200}
-                style={{ borderRadius: 0 }}
-                priority
-              />
+        <Container>
+          <div className={styles.navBarContent}>
+            {/* Logo */}
+            <div className={styles.logo}>
+              <div className={styles.logoIcon}>
+                <Image
+                  src={isPinned ? '/logo-light.png' : '/logo.png'}
+                  alt="fumirai logo"
+                  width={200}
+                  height={200}
+                  style={{ borderRadius: 0 }}
+                  priority
+                />
+              </div>
+            </div>
+
+            {/* Navigation */}
+            <Navigation />
+
+            {/* CTA Button */}
+            <div className={styles.ctaSection}>
+              <Button className={styles.ctaButton} variant={ButtonVariant.Solid} type="primary">
+                Get It Support
+              </Button>
             </div>
           </div>
-
-          {/* Navigation */}
-          <Navigation />
-
-          {/* CTA Button */}
-          <div className={styles.ctaSection}>
-            <Button className={styles.ctaButton} variant={ButtonVariant.Solid} type="primary">
-              Get It Support
-            </Button>
-          </div>
-        </div>
+        </Container>
       </div>
       {isPinned && isPinnedVisible ? <div className={styles.navBarSpacer} /> : null}
 
       {/* Hero Section */}
       <div className={styles.heroSection}>
-        <div className={styles.container}>
+        <Container>
           <div className={styles.heroContent}>
             {/* Social Media Icons */}
             <div className={styles.socialIcons}>
@@ -198,7 +200,7 @@ export default function Header() {
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </div>
 
       {/* Wave Bottom */}

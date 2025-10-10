@@ -103,10 +103,7 @@
   height: var(--nav-height, 80px);
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 4rem;
+.navBarContent {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -503,10 +500,6 @@
 
 // Responsive design
 @media (max-width: 1024px) {
-  .container {
-    padding: 0 2rem;
-  }
-
   // navigation responsive styles moved to Navigation/styles.module.scss
 
   .mainHeading {
@@ -523,10 +516,6 @@
 }
 
 @media (max-width: 768px) {
-  .container {
-    padding: 0 1.5rem;
-  }
-
   // navigation responsive styles moved to Navigation/styles.module.scss
 
   .logoText {
@@ -577,10 +566,6 @@
 }
 
 @media (max-width: 480px) {
-  .container {
-    padding: 0 1rem;
-  }
-
   .logo {
     gap: 0.5rem;
   }
