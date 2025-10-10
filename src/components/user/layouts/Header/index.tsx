@@ -8,6 +8,8 @@ import { Button, Container } from '@/components/base';
 import { ButtonType } from '@/components/base/Button';
 import { MenuIcon } from '@/svgs/user/HomeIcon';
 
+import { useTranslations } from 'next-intl';
+
 import Banner from './Banner';
 import CanvasBackground from './CanvasBackground';
 import LanguageDropdown from './LanguageDropdown';
@@ -21,6 +23,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const tickingRef = useRef(false);
   const lastScrollYRef = useRef(0);
+  const t = useTranslations('homePage.cta');
 
   useEffect(() => {
     const updatePinned = () => {
@@ -94,7 +97,7 @@ export default function Header() {
             <div className={styles.ctaSection}>
               <LanguageDropdown />
               <Button className={styles.ctaButton} buttonType={ButtonType.Default}>
-                Tuyển dụng
+                {t('recruitment')}
               </Button>
             </div>
 

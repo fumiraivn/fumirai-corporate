@@ -8,6 +8,9 @@
       "pages": "Trang",
       "blog": "Blog",
       "contact": "Liên hệ"
+    },
+    "cta": {
+      "recruitment": "Tuyển dụng"
     }
   }
 }
