@@ -66,7 +66,7 @@
   flex-shrink: 0;
   transition: color 0.3s ease;
 
-  @include respond-to($container-md) {
+  @include respond-to(md) {
     margin-bottom: 0;
   }
 }

@@ -17,8 +17,8 @@ export default function Footer() {
               <Image
                 src="/logo-light.png"
                 alt="FUMIRAI Company Logo"
-                width={180}
-                height={120}
+                width={200}
+                height={100}
                 className={styles.logo}
               />
             </div>

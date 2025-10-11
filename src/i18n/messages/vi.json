@@ -2,12 +2,9 @@
   "homePage": {
     "navigation": {
       "home": "Trang chủ",
+      "ourServices": "Dịch vụ của chúng tôi",
       "aboutUs": "Về chúng tôi",
-      "services": "Dịch vụ",
-      "portfolio": "Danh mục",
-      "pages": "Trang",
-      "blog": "Blog",
-      "contact": "Liên hệ"
+      "teamMembers": "Đội ngũ nhân sự"
     },
     "cta": {
       "recruitment": "Tuyển dụng"

@@ -1,3 +1,5 @@
+import { scrollToSection } from '@/ultils/constant';
+
 import { useTranslations } from 'next-intl';
 
 import styles from './styles.module.scss';
@@ -13,6 +15,18 @@ export default function Navigation({
 }: NavigationProps) {
   const t = useTranslations('homePage.navigation');
 
+  const navigationItems = [
+    { key: 'home', sectionId: 'home' },
+    { key: 'ourServices', sectionId: 'our-services' },
+    { key: 'aboutUs', sectionId: 'about-us' },
+    { key: 'teamMembers', sectionId: 'team-members' },
+  ];
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
+    e.preventDefault();
+    scrollToSection(sectionId);
+  };
+
   return (
     <nav
       className={`${styles.navigation} ${!navBarPinnedVisible ? styles.navigationUnpinned : ''} ${
@@ -20,17 +34,13 @@ export default function Navigation({
       }`}
     >
       <ul className={styles.navList}>
-        {[
-          { key: 'home', href: '#' },
-          { key: 'aboutUs', href: '#' },
-          { key: 'services', href: '#' },
-          { key: 'portfolio', href: '#' },
-          { key: 'pages', href: '#' },
-          { key: 'blog', href: '#' },
-          { key: 'contact', href: '#' },
-        ].map((item) => (
+        {navigationItems.map((item) => (
           <li className={styles.navItem} key={item.key}>
-            <a href={item.href} className={styles.navLink}>
+            <a
+              href={`#${item.sectionId}`}
+              className={styles.navLink}
+              onClick={(e) => handleNavClick(e, item.sectionId)}
+            >
               {t(item.key)}
             </a>
           </li>

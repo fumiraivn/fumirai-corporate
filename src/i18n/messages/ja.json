@@ -2,12 +2,9 @@
   "homePage": {
     "navigation": {
       "home": "ホーム",
+      "ourServices": "私たちのサービス",
       "aboutUs": "私たちについて",
-      "services": "サービス",
-      "portfolio": "ポートフォリオ",
-      "pages": "ページ",
-      "blog": "ブログ",
-      "contact": "お問い合わせ"
+      "teamMembers": "チームメンバー"
     },
     "cta": {
       "recruitment": "採用情報"

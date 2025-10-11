@@ -33,14 +33,19 @@ export default function HomePage() {
   return (
     <div className={styles.homePage}>
       <Container>
-        <InfoCard title="What We Provide" subtitle="Our Services" position="center">
+        <InfoCard
+          id="our-services"
+          title="What We Provide"
+          subtitle="Our Services"
+          position="center"
+        >
           <OurServices />
         </InfoCard>
       </Container>
 
       <Container isFullWidth className={styles.aboutOurCompanyContainerFull}>
         <Container className={styles.aboutOurCompanyContainer}>
-          <InfoCard title="Thông tin về chúng tôi">
+          <InfoCard id="about-us" title="Thông tin về chúng tôi">
             <AboutCompany companyInfo={ourCompanyInfo} />
           </InfoCard>
           <InfoCard title="Công ty mẹ tại Nhật Bản">
@@ -50,7 +55,12 @@ export default function HomePage() {
       </Container>
 
       <Container>
-        <InfoCard title="Đội ngũ nhân sự" subtitle="Ban giám đốc" position="center">
+        <InfoCard
+          id="team-members"
+          title="Đội ngũ nhân sự"
+          subtitle="Ban giám đốc"
+          position="center"
+        >
           <TeamMembers />
         </InfoCard>
       </Container>

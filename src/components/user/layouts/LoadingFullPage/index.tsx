@@ -44,8 +44,8 @@ export default function LoadingFullPage() {
           <Image
             src="/logo.png"
             alt="Fumirai Logo"
-            width={240}
-            height={240}
+            width={300}
+            height={300}
             className={styles.logo}
             priority
           />

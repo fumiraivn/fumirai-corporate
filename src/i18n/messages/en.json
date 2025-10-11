@@ -2,12 +2,9 @@
   "homePage": {
     "navigation": {
       "home": "Home",
+      "ourServices": "Our Services",
       "aboutUs": "About Us",
-      "services": "Services",
-      "portfolio": "Portfolio",
-      "pages": "Pages",
-      "blog": "Blog",
-      "contact": "Contact"
+      "teamMembers": "Team Members"
     },
     "cta": {
       "recruitment": "Recruitment"
