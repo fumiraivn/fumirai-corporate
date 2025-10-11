@@ -2,6 +2,8 @@ import { PropsWithChildren } from 'react';
 
 import Image from 'next/image';
 
+import { useTranslations } from 'next-intl';
+
 import styles from './styles.module.scss';
 
 type ServiceItem = {
@@ -16,56 +18,53 @@ export type OurServicesProps = PropsWithChildren<{
   position?: 'left' | 'right' | 'center';
 }>;
 
-const defaultServices: ServiceItem[] = [
-  {
-    id: 'web-dev',
-    title: 'Phát Triển Website',
-    description:
-      'Thiết kế và phát triển website chuyên nghiệp, responsive với công nghệ hiện đại, tối ưu trải nghiệm người dùng và hiệu suất cao',
-    icon: '/window.svg',
-  },
-  {
-    id: 'digital-marketing',
-    title: 'Marketing Số',
-    description:
-      'Chiến lược marketing toàn diện trên các nền tảng số, tăng cường nhận diện thương hiệu và thu hút khách hàng tiềm năng',
-    icon: '/globe.svg',
-  },
-  {
-    id: 'startup-solutions',
-    title: 'Giải Pháp Khởi Nghiệp',
-    description:
-      'Hỗ trợ toàn diện cho các startup từ ý tưởng đến thực thi, bao gồm tư vấn chiến lược, phát triển sản phẩm và kết nối đầu tư',
-    icon: '/next.svg',
-  },
-  {
-    id: 'networking-services',
-    title: 'Dịch Vụ Mạng',
-    description:
-      'Thiết kế và triển khai hệ thống mạng doanh nghiệp, đảm bảo kết nối ổn định, bảo mật cao và hiệu suất tối ưu',
-    icon: '/globe.svg',
-  },
-  {
-    id: 'seo-optimization',
-    title: 'Tối Ưu SEO',
-    description:
-      'Tối ưu hóa công cụ tìm kiếm, nâng cao thứ hạng website trên Google, tăng lưu lượng truy cập tự nhiên và chuyển đổi khách hàng',
-    icon: '/file.svg',
-  },
-  {
-    id: 'apps-development',
-    title: 'Phát Triển Ứng Dụng',
-    description:
-      'Phát triển ứng dụng di động và desktop đa nền tảng, từ thiết kế UI/UX đến triển khai và bảo trì hệ thống',
-    icon: '/window.svg',
-  },
-];
+export default function OurServices({ data }: OurServicesProps) {
+  const t = useTranslations('homePage.ourServices.services');
 
-export default function OurServices({ data = defaultServices }: OurServicesProps) {
+  const defaultServices: ServiceItem[] = [
+    {
+      id: 'web-dev',
+      title: t('webDev.title'),
+      description: t('webDev.description'),
+      icon: '/window.svg',
+    },
+    {
+      id: 'digital-marketing',
+      title: t('digitalMarketing.title'),
+      description: t('digitalMarketing.description'),
+      icon: '/globe.svg',
+    },
+    {
+      id: 'startup-solutions',
+      title: t('startupSolutions.title'),
+      description: t('startupSolutions.description'),
+      icon: '/next.svg',
+    },
+    {
+      id: 'networking-services',
+      title: t('networkingServices.title'),
+      description: t('networkingServices.description'),
+      icon: '/globe.svg',
+    },
+    {
+      id: 'seo-optimization',
+      title: t('seoOptimization.title'),
+      description: t('seoOptimization.description'),
+      icon: '/file.svg',
+    },
+    {
+      id: 'apps-development',
+      title: t('appsDevelopment.title'),
+      description: t('appsDevelopment.description'),
+      icon: '/window.svg',
+    },
+  ];
+
+  const servicesData = data || defaultServices;
   return (
     <div className={styles.ourServices}>
       <div className={styles.grid}>
-        {data.map((item) => (
+        {servicesData.map((item) => (
           <div key={item.id} className={styles.card}>
             {item.icon ? (
               <div className={styles.iconWrapper}>

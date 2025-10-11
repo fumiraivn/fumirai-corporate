@@ -1,5 +1,7 @@
 import { Container } from '@/components/base';
 
+import { useTranslations } from 'next-intl';
+
 import AboutCompany from './AboutCompany';
 import Customers from './Customers';
 import InfoCard from './InfoCard';
@@ -8,27 +10,32 @@ import TeamMembers from './TeamMembers';
 import styles from './styles.module.scss';
 
 export default function HomePage() {
+  const t = useTranslations('homePage');
+  const tOurCompany = useTranslations('homePage.aboutCompany.ourCompany.labels');
+  const tParentCompany = useTranslations('homePage.aboutCompany.parentCompany.labels');
+  const tParentValues = useTranslations('homePage.aboutCompany.parentCompany.values');
+
   const ourCompanyInfo = [
-    { label: 'Tên công ty', value: 'FUMIRAI COMPANY LIMITED' },
+    { label: tOurCompany('companyName'), value: 'FUMIRAI COMPANY LIMITED' },
     {
-      label: 'Địa chỉ Thuế',
+      label: tOurCompany('taxAddress'),
       value: 'Tầng 3, số 35 Thái Phiên, Phường Hải Châu, TP Đà Nẵng, Việt Nam',
     },
-    { label: 'Mã số thuế', value: '0402302956' },
-    { label: 'Điện thoại', value: '0385-135-531' },
-    { label: 'Ngày hoạt động', value: '2025-10-09' },
+    { label: tOurCompany('taxCode'), value: '0402302956' },
+    { label: tOurCompany('phone'), value: '0385-135-531' },
+    { label: tOurCompany('operationDate'), value: '2025-10-09' },
   ];
 
   const parentCompanyInfo = [
-    { label: 'Tên công ty', value: 'Fulfillments Ltd.' },
+    { label: tParentCompany('companyName'), value: 'Fulfillments Ltd.' },
     {
-      label: 'Địa chỉ',
+      label: tParentCompany('address'),
       value:
         '〒103-0025 東京都中央区日本橋茅場町2-7-4 Aster茅場町9F 東京メトロ茅場町5番出口から徒歩0分',
     },
-    { label: 'Email', value: 'info@fulfillments.co.jp' },
-    { label: 'Ngày thành lập', value: '2013年2月14日' },
-    { label: 'Ban lãnh đạo', value: '代表取締役　宇野 文康' },
+    { label: tParentCompany('email'), value: 'info@fulfillments.co.jp' },
+    { label: tParentCompany('establishmentDate'), value: '2013年2月14日' },
+    { label: tParentCompany('leadership'), value: `${tParentValues('leadership')} 宇野 文康` },
   ];
 
   return (
@@ -36,8 +43,8 @@ export default function HomePage() {
       <Container>
         <InfoCard
           id="our-services"
-          title="What We Provide"
-          subtitle="Our Services"
+          title={t('ourServices.title')}
+          subtitle={t('ourServices.subtitle')}
           position="center"
         >
           <OurServices />
@@ -46,10 +53,10 @@ export default function HomePage() {
 
       <Container isFullWidth className={styles.aboutOurCompanyContainerFull}>
         <Container className={styles.aboutOurCompanyContainer}>
-          <InfoCard id="about-us" title="Thông tin về chúng tôi">
+          <InfoCard id="about-us" title={t('aboutCompany.ourCompany.title')}>
             <AboutCompany companyInfo={ourCompanyInfo} />
           </InfoCard>
-          <InfoCard title="Công ty mẹ tại Nhật Bản">
+          <InfoCard title={t('aboutCompany.parentCompany.title')}>
             <AboutCompany companyInfo={parentCompanyInfo} />
           </InfoCard>
         </Container>
@@ -57,9 +64,9 @@ export default function HomePage() {
 
       <Container isFullWidth>
         <InfoCard
-          title="Khách hàng của chúng tôi"
+          title={t('customers.title')}
           id="customers"
-          subtitle="Đối tác của nhiều doanh nghiệp đầu tại Nhật Bản"
+          subtitle={t('customers.subtitle')}
           position="center"
         >
           <Customers />
@@ -69,8 +76,8 @@ export default function HomePage() {
       <Container>
         <InfoCard
           id="team-members"
-          title="Đội ngũ nhân sự"
-          subtitle="Ban giám đốc"
+          title={t('teamMembers.title')}
+          subtitle={t('teamMembers.subtitle')}
           position="center"
         >
           <TeamMembers />

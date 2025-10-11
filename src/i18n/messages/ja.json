@@ -7,8 +7,88 @@
       "customers": "お客様",
       "teamMembers": "チームメンバー"
     },
+    "banner": {
+      "title": "日本市場とグローバル市場向けのソフトウェアソリューションを提供するテクノロジー企業。",
+      "description": "fulfillmentsを親会社とする100%日本投資企業。ソフトウェア設計分野で豊富な経験を持つ若いチームを擁しています。"
+    },
+    "ourServices": {
+      "title": "私たちが提供するもの",
+      "subtitle": "私たちのサービス",
+      "services": {
+        "webDev": {
+          "title": "ウェブ開発",
+          "description": "モダンな技術を使用したレスポンシブなプロフェッショナルなウェブサイトの設計と開発、ユーザーエクスペリエンスと高性能の最適化"
+        },
+        "digitalMarketing": {
+          "title": "デジタルマーケティング",
+          "description": "デジタルプラットフォームでの包括的なマーケティング戦略、ブランド認知度の向上と潜在顧客の獲得"
+        },
+        "startupSolutions": {
+          "title": "スタートアップソリューション",
+          "description": "アイデアから実行までスタートアップへの包括的なサポート、戦略コンサルティング、製品開発、投資接続を含む"
+        },
+        "networkingServices": {
+          "title": "ネットワークサービス",
+          "description": "企業ネットワークシステムの設計と展開、安定した接続、高いセキュリティ、最適なパフォーマンスを保証"
+        },
+        "seoOptimization": {
+          "title": "SEO最適化",
+          "description": "検索エンジン最適化、Googleでのウェブサイトランキング向上、オーガニックトラフィックと顧客コンバージョンの増加"
+        },
+        "appsDevelopment": {
+          "title": "アプリ開発",
+          "description": "クロスプラットフォームのモバイルおよびデスクトップアプリケーション開発、UI/UXデザインからシステム展開とメンテナンスまで"
+        }
+      }
+    },
+    "aboutCompany": {
+      "ourCompany": {
+        "title": "私たちについて",
+        "labels": {
+          "companyName": "会社名",
+          "taxAddress": "税務住所",
+          "taxCode": "税務コード",
+          "phone": "電話番号",
+          "operationDate": "営業開始日"
+        }
+      },
+      "parentCompany": {
+        "title": "日本の親会社",
+        "labels": {
+          "companyName": "会社名",
+          "address": "住所",
+          "email": "メール",
+          "establishmentDate": "設立日",
+          "leadership": "リーダーシップ"
+        },
+        "values": {
+          "leadership": "代表取締役"
+        }
+      }
+    },
+    "customers": {
+      "title": "私たちの顧客",
+      "subtitle": "日本の多くの主要企業のパートナー"
+    },
+    "teamMembers": {
+      "title": "私たちのチーム",
+      "subtitle": "取締役会",
+      "positions": {
+        "founderCeo": "創設者、CEO",
+        "coFounderCto": "共同創設者、CTO",
+        "chiefCreativeOfficer": "最高クリエイティブ責任者",
+        "leadDeveloper": "リード開発者"
+      }
+    },
     "cta": {
       "recruitment": "採用情報"
+    },
+    "footer": {
+      "contact": {
+        "phone": "電話:",
+        "email": "メール:"
+      },
+      "copyright": "FUMIRAI COMPANY LIMITED 全著作権所有。"
     }
   }
 }

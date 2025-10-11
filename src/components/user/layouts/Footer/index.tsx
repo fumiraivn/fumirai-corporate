@@ -3,9 +3,13 @@ import Image from 'next/image';
 import { Container } from '@/components/base';
 import { FacebookIcon, LinkedInIcon, YouTubeIcon } from '@/svgs/user/HomeIcon';
 
+import { useTranslations } from 'next-intl';
+
 import styles from './styles.module.scss';
 
 export default function Footer() {
+  const t = useTranslations('homePage.footer');
+  const currentYear = new Date().getFullYear();
   return (
     <footer className={styles.footer}>
       {/* Top Section */}
@@ -27,13 +31,13 @@ export default function Footer() {
             <div className={styles.contactSection}>
               <div className={styles.contactRow}>
                 <div className={styles.contactItem}>
-                  <span className={styles.contactLabel}>Phone:</span>
+                  <span className={styles.contactLabel}>{t('contact.phone')}</span>
                   <a href="tel:+84385135531" className={styles.contactLink}>
                     (+84) 385 135 531
                   </a>
                 </div>
                 <div className={styles.contactItem}>
-                  <span className={styles.contactLabel}>Email:</span>
+                  <span className={styles.contactLabel}>{t('contact.email')}</span>
                   <a href="mailto:fumirai@ltd.com" className={styles.contactLink}>
                     fumirai@ltd.com
                   </a>
@@ -79,7 +83,7 @@ export default function Footer() {
       <div className={styles.bottomSection}>
         <Container isFullWidth className={styles.copyrightContainer}>
           <Container className={styles.copyright}>
-            © 2025 FUMIRAI COMPANY LIMITED All Rights Reserved.
+            © {currentYear} {t('copyright')}
           </Container>
         </Container>
       </div>
