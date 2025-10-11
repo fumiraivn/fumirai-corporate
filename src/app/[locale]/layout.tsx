@@ -56,14 +56,15 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const antdLocale = locale === ELanguage.VI ? viVN : locale === ELanguage.JA ? jaJP : enUS;
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <body
         className={`${notoSans.variable} ${notoSansJP.variable} ${geistMono.variable} antialiased`}
+        suppressHydrationWarning
       >
-        <LoadingFullPage />
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ConfigProvider locale={antdLocale} theme={{ algorithm: antdTheme.defaultAlgorithm }}>
             <AntdApp>
+              <LoadingFullPage />
               <UserLayout>{children}</UserLayout>
             </AntdApp>
           </ConfigProvider>

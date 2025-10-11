@@ -4,20 +4,19 @@ import Image from 'next/image';
 
 import { Container } from '@/components/base';
 
+import { useTranslations } from 'next-intl';
+
 import styles from './styles.module.scss';
 
 export default function Banner() {
+  const t = useTranslations('homePage.banner');
+
   return (
     <Container>
       <div className={styles.bannerContent}>
         <div className={styles.bannerContentLeft}>
-          <p className={styles.bannerTitle}>
-            Công ty công nghệ giải pháp phần mềm cho thị trường Nhật Bản & toàn cầu.
-          </p>
-          <p className={styles.bannerDescription}>
-            Công ty vốn đầu tư 100% từ Nhật với công ty mẹ là fulfillments . Với đội ngũ nhân sự trẻ
-            có nhiều kinh nghiệm trong lĩnh vực thiết kế phần mềm.
-          </p>
+          <p className={styles.bannerTitle}>{t('title')}</p>
+          <p className={styles.bannerDescription}>{t('description')}</p>
         </div>
         <div className={styles.bannerImage}>
           <Image src="/banner.png" alt="hero illustration" width={1000} height={1000} />

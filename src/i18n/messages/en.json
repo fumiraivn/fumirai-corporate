@@ -2,15 +2,93 @@
   "homePage": {
     "navigation": {
       "home": "Home",
+      "ourServices": "Our Services",
       "aboutUs": "About Us",
-      "services": "Services",
-      "portfolio": "Portfolio",
-      "pages": "Pages",
-      "blog": "Blog",
-      "contact": "Contact"
+      "customers": "Customers",
+      "teamMembers": "Team Members"
+    },
+    "banner": {
+      "title": "Technology company providing software solutions for the Japanese market & globally.",
+      "description": "A 100% Japanese-invested company with fulfillments as the parent company. With a young team with extensive experience in software design."
+    },
+    "ourServices": {
+      "title": "What We Provide",
+      "subtitle": "Our Services",
+      "services": {
+        "webDev": {
+          "title": "Web Development",
+          "description": "Professional website design and development, responsive with modern technology, optimized user experience and high performance"
+        },
+        "digitalMarketing": {
+          "title": "Digital Marketing",
+          "description": "Comprehensive marketing strategy on digital platforms, enhancing brand recognition and attracting potential customers"
+        },
+        "startupSolutions": {
+          "title": "Startup Solutions",
+          "description": "Comprehensive support for startups from idea to execution, including strategy consulting, product development and investment connections"
+        },
+        "networkingServices": {
+          "title": "Networking Services",
+          "description": "Design and deploy enterprise network systems, ensuring stable connections, high security and optimal performance"
+        },
+        "seoOptimization": {
+          "title": "SEO Optimization",
+          "description": "Search engine optimization, improving website ranking on Google, increasing organic traffic and customer conversion"
+        },
+        "appsDevelopment": {
+          "title": "App Development",
+          "description": "Cross-platform mobile and desktop application development, from UI/UX design to system deployment and maintenance"
+        }
+      }
+    },
+    "aboutCompany": {
+      "ourCompany": {
+        "title": "About Us",
+        "labels": {
+          "companyName": "Company Name",
+          "taxAddress": "Tax Address",
+          "taxCode": "Tax Code",
+          "phone": "Phone",
+          "operationDate": "Operation Date"
+        }
+      },
+      "parentCompany": {
+        "title": "Parent Company in Japan",
+        "labels": {
+          "companyName": "Company Name",
+          "address": "Address",
+          "email": "Email",
+          "establishmentDate": "Establishment Date",
+          "leadership": "Leadership"
+        },
+        "values": {
+          "leadership": "Representative Director"
+        }
+      }
+    },
+    "customers": {
+      "title": "Our Customers",
+      "subtitle": "Partners of many leading businesses in Japan"
+    },
+    "teamMembers": {
+      "title": "Our Team",
+      "subtitle": "Board of Directors",
+      "positions": {
+        "founderCeo": "Founder, CEO",
+        "coFounderCto": "Co-Founder, CTO",
+        "chiefCreativeOfficer": "Chief Creative Officer",
+        "leadDeveloper": "Lead Developer"
+      }
     },
     "cta": {
       "recruitment": "Recruitment"
+    },
+    "footer": {
+      "contact": {
+        "phone": "Phone:",
+        "email": "Email:"
+      },
+      "copyright": "FUMIRAI COMPANY LIMITED All Rights Reserved."
     }
   }
 }

@@ -2,15 +2,93 @@
   "homePage": {
     "navigation": {
       "home": "Trang chủ",
+      "ourServices": "Dịch vụ của chúng tôi",
       "aboutUs": "Về chúng tôi",
-      "services": "Dịch vụ",
-      "portfolio": "Danh mục",
-      "pages": "Trang",
-      "blog": "Blog",
-      "contact": "Liên hệ"
+      "customers": "Khách hàng",
+      "teamMembers": "Đội ngũ nhân sự"
+    },
+    "banner": {
+      "title": "Công ty công nghệ giải pháp phần mềm cho thị trường Nhật Bản & toàn cầu.",
+      "description": "Công ty vốn đầu tư 100% từ Nhật với công ty mẹ là fulfillments. Với đội ngũ nhân sự trẻ có nhiều kinh nghiệm trong lĩnh vực thiết kế phần mềm."
+    },
+    "ourServices": {
+      "title": "Những gì chúng tôi cung cấp",
+      "subtitle": "Dịch vụ của chúng tôi",
+      "services": {
+        "webDev": {
+          "title": "Phát Triển Website",
+          "description": "Thiết kế và phát triển website chuyên nghiệp, responsive với công nghệ hiện đại, tối ưu trải nghiệm người dùng và hiệu suất cao"
+        },
+        "digitalMarketing": {
+          "title": "Marketing Số",
+          "description": "Chiến lược marketing toàn diện trên các nền tảng số, tăng cường nhận diện thương hiệu và thu hút khách hàng tiềm năng"
+        },
+        "startupSolutions": {
+          "title": "Giải Pháp Khởi Nghiệp",
+          "description": "Hỗ trợ toàn diện cho các startup từ ý tưởng đến thực thi, bao gồm tư vấn chiến lược, phát triển sản phẩm và kết nối đầu tư"
+        },
+        "networkingServices": {
+          "title": "Dịch Vụ Mạng",
+          "description": "Thiết kế và triển khai hệ thống mạng doanh nghiệp, đảm bảo kết nối ổn định, bảo mật cao và hiệu suất tối ưu"
+        },
+        "seoOptimization": {
+          "title": "Tối Ưu SEO",
+          "description": "Tối ưu hóa công cụ tìm kiếm, nâng cao thứ hạng website trên Google, tăng lưu lượng truy cập tự nhiên và chuyển đổi khách hàng"
+        },
+        "appsDevelopment": {
+          "title": "Phát Triển Ứng Dụng",
+          "description": "Phát triển ứng dụng di động và desktop đa nền tảng, từ thiết kế UI/UX đến triển khai và bảo trì hệ thống"
+        }
+      }
+    },
+    "aboutCompany": {
+      "ourCompany": {
+        "title": "Thông tin về chúng tôi",
+        "labels": {
+          "companyName": "Tên công ty",
+          "taxAddress": "Địa chỉ Thuế",
+          "taxCode": "Mã số thuế",
+          "phone": "Điện thoại",
+          "operationDate": "Ngày hoạt động"
+        }
+      },
+      "parentCompany": {
+        "title": "Công ty mẹ tại Nhật Bản",
+        "labels": {
+          "companyName": "Tên công ty",
+          "address": "Địa chỉ",
+          "email": "Email",
+          "establishmentDate": "Ngày thành lập",
+          "leadership": "Ban lãnh đạo"
+        },
+        "values": {
+          "leadership": "代表取締役"
+        }
+      }
+    },
+    "customers": {
+      "title": "Khách hàng của chúng tôi",
+      "subtitle": "Đối tác của nhiều doanh nghiệp đầu tại Nhật Bản"
+    },
+    "teamMembers": {
+      "title": "Đội ngũ nhân sự",
+      "subtitle": "Ban giám đốc",
+      "positions": {
+        "founderCeo": "Người sáng lập, CEO",
+        "coFounderCto": "Đồng sáng lập, CTO",
+        "chiefCreativeOfficer": "Giám đốc Sáng tạo",
+        "leadDeveloper": "Trưởng nhóm Phát triển"
+      }
     },
     "cta": {
       "recruitment": "Tuyển dụng"
+    },
+    "footer": {
+      "contact": {
+        "phone": "Điện thoại:",
+        "email": "Email:"
+      },
+      "copyright": "FUMIRAI COMPANY LIMITED Bảo lưu mọi quyền."
     }
   }
 }
