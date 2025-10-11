@@ -18,35 +18,51 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
-  @include respond-to('mobile') {
+
+  @include respond-to(xs) {
     grid-template-columns: 1fr;
   }
-  @include respond-to('tablet') {
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to(md) {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 .card {
   text-align: left;
-  border: 1px solid $color-gray-300;
-  border-radius: 12px;
+  border: none;
+  cursor: pointer;
   background-color: $color-background-light;
   padding: 32px;
-  box-shadow: 0 10px 30px 0 $color-info-500-alpha-20;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   transition:
-    box-shadow 0.2s ease,
-    transform 0.2s ease,
-    border-color 0.2s ease;
+    box-shadow 0.6s ease,
+    transform 0.6s ease;
+
+  // Cloud-like border shape
+  border-radius: 60px 30px 60px 30px / 30px 60px 30px 60px;
 
   &:hover {
-    transform: translateY(-2px);
-    border-color: $color-info-400;
-    box-shadow: 0 12px 34px 0 $color-info-500-alpha-20;
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
   }
 }
 
 .iconWrapper {
   margin-bottom: 16px;
+  transition: transform 0.6s ease;
+
+  img {
+    min-height: 40px;
+    transition: transform 0.6s ease;
+  }
+}
+
+.card:hover .iconWrapper img {
+  transform: rotateY(180deg);
 }
 
 .cardTitle {
@@ -60,5 +76,5 @@
   margin: 0;
   font-size: 14px;
   line-height: 1.6;
-  color: $color-text-primary;
+  color: $color-text-sub-primary;
 }

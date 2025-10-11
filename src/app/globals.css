@@ -1,16 +1,5 @@
 @import 'tailwindcss';
 
-/* Global CSS reset để loại bỏ góc tròn */
-*,
-*::before,
-*::after {
-  border-radius: 0 !important;
-  border-top-left-radius: 0 !important;
-  border-top-right-radius: 0 !important;
-  border-bottom-left-radius: 0 !important;
-  border-bottom-right-radius: 0 !important;
-}
-
 :root {
   --background: #ffffff;
   --foreground: #171717;

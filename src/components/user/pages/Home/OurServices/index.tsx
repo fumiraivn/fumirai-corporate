@@ -21,44 +21,44 @@ export type OurServicesProps = PropsWithChildren<{
 const defaultServices: ServiceItem[] = [
   {
     id: 'web-dev',
-    title: 'Web Development',
+    title: 'Phát Triển Website',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua',
+      'Thiết kế và phát triển website chuyên nghiệp, responsive với công nghệ hiện đại, tối ưu trải nghiệm người dùng và hiệu suất cao',
     icon: '/window.svg',
   },
   {
     id: 'digital-marketing',
-    title: 'Digital Marketing',
+    title: 'Marketing Số',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua',
+      'Chiến lược marketing toàn diện trên các nền tảng số, tăng cường nhận diện thương hiệu và thu hút khách hàng tiềm năng',
     icon: '/globe.svg',
   },
   {
     id: 'startup-solutions',
-    title: 'Startup Solutions',
+    title: 'Giải Pháp Khởi Nghiệp',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua',
+      'Hỗ trợ toàn diện cho các startup từ ý tưởng đến thực thi, bao gồm tư vấn chiến lược, phát triển sản phẩm và kết nối đầu tư',
     icon: '/next.svg',
   },
   {
     id: 'networking-services',
-    title: 'Networking Services',
+    title: 'Dịch Vụ Mạng',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua',
+      'Thiết kế và triển khai hệ thống mạng doanh nghiệp, đảm bảo kết nối ổn định, bảo mật cao và hiệu suất tối ưu',
     icon: '/globe.svg',
   },
   {
     id: 'seo-optimization',
-    title: 'SEO Optimization',
+    title: 'Tối Ưu SEO',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua',
+      'Tối ưu hóa công cụ tìm kiếm, nâng cao thứ hạng website trên Google, tăng lưu lượng truy cập tự nhiên và chuyển đổi khách hàng',
     icon: '/file.svg',
   },
   {
     id: 'apps-development',
-    title: 'Apps Development',
+    title: 'Phát Triển Ứng Dụng',
     description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt dolore magna aliqua',
+      'Phát triển ứng dụng di động và desktop đa nền tảng, từ thiết kế UI/UX đến triển khai và bảo trì hệ thống',
     icon: '/window.svg',
   },
 ];
