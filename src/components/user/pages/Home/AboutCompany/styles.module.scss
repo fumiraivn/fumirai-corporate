@@ -31,7 +31,6 @@
   display: flex;
   gap: $space-2;
   padding: $space-4;
-  padding-bottom: $space-6;
   border-bottom: 1px solid transparent;
   border-radius: 8px;
   transition: all 0.5s ease;
@@ -46,10 +45,15 @@
     border-bottom-color: $color-primary-500;
   }
 
-  @include respond-to($container-md) {
+  @include respond-to(md) {
     flex-direction: row;
     align-items: flex-start;
     gap: $space-8;
+  }
+
+  @include respond-to(xs) {
+    gap: unset !important;
+    flex-direction: column;
   }
 }
 
