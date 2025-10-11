@@ -19,6 +19,7 @@ export default function Navigation({
     { key: 'home', sectionId: 'home' },
     { key: 'ourServices', sectionId: 'our-services' },
     { key: 'aboutUs', sectionId: 'about-us' },
+    { key: 'customers', sectionId: 'customers' },
     { key: 'teamMembers', sectionId: 'team-members' },
   ];
 

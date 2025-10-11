@@ -1,6 +1,7 @@
 import { Container } from '@/components/base';
 
 import AboutCompany from './AboutCompany';
+import Customers from './Customers';
 import InfoCard from './InfoCard';
 import OurServices from './OurServices';
 import TeamMembers from './TeamMembers';
@@ -52,6 +53,17 @@ export default function HomePage() {
             <AboutCompany companyInfo={parentCompanyInfo} />
           </InfoCard>
         </Container>
+      </Container>
+
+      <Container isFullWidth>
+        <InfoCard
+          title="Khách hàng của chúng tôi"
+          id="customers"
+          subtitle="Đối tác của nhiều doanh nghiệp đầu tại Nhật Bản"
+          position="center"
+        >
+          <Customers />
+        </InfoCard>
       </Container>
 
       <Container>

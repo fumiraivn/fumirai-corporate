@@ -1,0 +1,105 @@
+.outerContainer {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  overflow: hidden;
+}
+
+.container {
+  width: 100%;
+  overflow: hidden;
+  padding: 20px 0;
+  position: relative;
+  margin: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.scrollContainer {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.scrollContent {
+  display: flex;
+  animation: scroll 20s linear infinite;
+  width: max-content;
+  padding: 1rem 0;
+
+  &:hover {
+    animation-play-state: paused;
+  }
+}
+
+.imageWrapper {
+  flex-shrink: 0;
+  margin-right: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+  height: 150px;
+  max-height: 150px;
+  padding: 15px;
+  background: $color-background-light;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+
+  @include respond-to(md) {
+    height: 130px;
+  }
+
+  @include respond-to(sm) {
+    height: 100px;
+  }
+
+  @include respond-to(xs) {
+    height: 90px;
+  }
+}
+
+.customerImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(70%);
+  transition:
+    filter 0.3s ease,
+    opacity 0.3s ease;
+
+  &:hover {
+    filter: grayscale(0%);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
