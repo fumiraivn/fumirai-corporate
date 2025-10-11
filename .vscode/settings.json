@@ -7,5 +7,6 @@
   },
   "eslint.useFlatConfig": true,
   "eslint.validate": ["typescript", "typescriptreact", "javascript", "javascriptreact"],
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "i18n-ally.localesPaths": ["src/i18n", "src/i18n/messages"]
 }
