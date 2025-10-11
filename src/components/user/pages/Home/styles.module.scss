@@ -1,0 +1,22 @@
+.homePage {
+  display: grid;
+  gap: 80px;
+}
+
+.aboutOurCompanyContainerFull {
+  background: #f7f8f9;
+  padding: 50px 0;
+}
+
+.aboutOurCompanyContainer {
+  display: flex;
+  gap: 2rem;
+
+  > * {
+    flex: 1;
+  }
+
+  @include respond-below(xl) {
+    flex-direction: column;
+  }
+}

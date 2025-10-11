@@ -1,26 +1,60 @@
-import AboutOurCompany from './AboutOurCompany';
+import { Container } from '@/components/base';
+
+import AboutCompany from './AboutCompany';
 import InfoCard from './InfoCard';
 import OurServices from './OurServices';
 import WhyChooseUs from './WhyChooseUs';
+import styles from './styles.module.scss';
 
 export default function HomePage() {
+  const ourCompanyInfo = [
+    { label: 'Tên công ty', value: 'FUMIRAI COMPANY LIMITED' },
+    {
+      label: 'Địa chỉ Thuế',
+      value: 'Tầng 3, số 35 Thái Phiên, Phường Hải Châu, TP Đà Nẵng, Việt Nam',
+    },
+    { label: 'Mã số thuế', value: '0402302956' },
+    { label: 'Điện thoại', value: '0385-135-531' },
+    { label: 'Ngày hoạt động', value: '2025-10-09' },
+  ];
+
+  const parentCompanyInfo = [
+    { label: 'Tên công ty', value: 'Fulfillments Ltd.' },
+    {
+      label: 'Địa chỉ',
+      value:
+        '〒103-0025 東京都中央区日本橋茅場町2-7-4 Aster茅場町9F 東京メトロ茅場町5番出口から徒歩0分',
+    },
+    { label: 'Email', value: 'info@fulfillments.co.jp' },
+    { label: 'Ngày thành lập', value: '2013年2月14日' },
+    { label: 'Ban lãnh đạo', value: '代表取締役　宇野 文康' },
+  ];
+
   return (
-    <>
-      <InfoCard title="What We Provide" subtitle="Our Services" position="center">
-        <OurServices />
-      </InfoCard>
-      <InfoCard
-        title="About Our Company"
-        subtitle="Providing Your Business With A Quality IT Service is Our Passion"
-      >
-        <AboutOurCompany />
-      </InfoCard>
+    <div className={styles.homePage}>
+      <Container>
+        <InfoCard title="What We Provide" subtitle="Our Services" position="center">
+          <OurServices />
+        </InfoCard>
+      </Container>
+
+      <Container isFullWidth className={styles.aboutOurCompanyContainerFull}>
+        <Container className={styles.aboutOurCompanyContainer}>
+          <InfoCard title="Thông tin về chúng tôi">
+            <AboutCompany companyInfo={ourCompanyInfo} />
+          </InfoCard>
+          <InfoCard title="Công ty mẹ tại Nhật Bản">
+            <AboutCompany companyInfo={parentCompanyInfo} />
+          </InfoCard>
+        </Container>
+      </Container>
+
       <InfoCard
         title="Why Choose Us?"
         subtitle="Safeguard Your Brand with Cyber Security and IT Solutions"
       >
         <WhyChooseUs />
       </InfoCard>
-    </>
+    </div>
   );
 }
