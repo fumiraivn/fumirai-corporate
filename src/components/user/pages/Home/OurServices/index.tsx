@@ -2,8 +2,6 @@ import { PropsWithChildren } from 'react';
 
 import Image from 'next/image';
 
-import clsx from 'clsx';
-
 import styles from './styles.module.scss';
 
 type ServiceItem = {

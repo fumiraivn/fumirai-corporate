@@ -9,8 +9,11 @@ import styles from './styles.module.scss';
 export default function LoadingFullPage() {
   const [isFading, setIsFading] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+
     const minTime = 1200; // minimal brand exposure time
     const start = Date.now();
 
@@ -29,7 +32,8 @@ export default function LoadingFullPage() {
     done();
   }, []);
 
-  if (isHidden) return null;
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!isMounted || isHidden) return null;
 
   return (
     <div className={`${styles.loadingContainer} ${isFading ? styles.fadeOut : ''}`}>

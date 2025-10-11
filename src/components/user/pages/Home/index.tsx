@@ -3,7 +3,7 @@ import { Container } from '@/components/base';
 import AboutCompany from './AboutCompany';
 import InfoCard from './InfoCard';
 import OurServices from './OurServices';
-import WhyChooseUs from './WhyChooseUs';
+import TeamMembers from './TeamMembers';
 import styles from './styles.module.scss';
 
 export default function HomePage() {
@@ -49,12 +49,11 @@ export default function HomePage() {
         </Container>
       </Container>
 
-      <InfoCard
-        title="Why Choose Us?"
-        subtitle="Safeguard Your Brand with Cyber Security and IT Solutions"
-      >
-        <WhyChooseUs />
-      </InfoCard>
+      <Container>
+        <InfoCard title="Đội ngũ nhân sự" subtitle="Ban giám đốc" position="center">
+          <TeamMembers />
+        </InfoCard>
+      </Container>
     </div>
   );
 }
