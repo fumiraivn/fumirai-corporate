@@ -1,0 +1,48 @@
+.recruitmentPage {
+  padding: 80px 0;
+  min-height: calc(100vh - 80px); // Subtract header height
+  position: relative;
+  z-index: 1;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 600;
+  color: $color-primary-500;
+  margin: 0 0 16px 0;
+  line-height: 1.2;
+
+  @include respond-below(md) {
+    font-size: 2.5rem;
+  }
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: $color-text-primary;
+  margin: 0;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+
+  @include respond-below(md) {
+    font-size: 1.125rem;
+  }
+}
+
+.jobGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  margin-top: 2rem;
+
+  @include respond-below(lg) {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}

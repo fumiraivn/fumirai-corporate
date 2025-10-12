@@ -5,7 +5,8 @@
       "ourServices": "私たちのサービス",
       "aboutUs": "私たちについて",
       "customers": "お客様",
-      "teamMembers": "チームメンバー"
+      "teamMembers": "チームメンバー",
+      "recruitment": "採用情報"
     },
     "banner": {
       "title": "日本市場とグローバル市場向けのソフトウェアソリューションを提供するテクノロジー企業。",
@@ -89,6 +90,79 @@
         "email": "メール:"
       },
       "copyright": "FUMIRAI COMPANY LIMITED 全著作権所有。"
+    }
+  },
+  "recruitmentPage": {
+    "title": "採用情報",
+    "subtitle": "私たちのチームに参加し、テクノロジー分野でキャリアを成長させましょう",
+    "requirements": "要件",
+    "benefits": "福利厚生",
+    "jobDesc": "求人詳細を見る",
+    "positions": {
+      "developer": {
+        "title": "開発者",
+        "description": "モダンな技術を使用してWebアプリケーションとモバイルアプリケーションを開発し、日本のクライアントとの国際的な環境で働きます。",
+        "requirements": {
+          "experience": "Web/モバイル開発で2年以上の経験",
+          "skills": "React、Node.js、TypeScriptまたは類似のフレームワークに精通",
+          "language": "日本語N3レベル以上、または良好な英語コミュニケーション",
+          "communication": "良好なコミュニケーションとチームワークスキル"
+        },
+        "benefits": {
+          "salary": "競争力のある給与 15-30百万VND",
+          "workEnvironment": "ダイナミックで創造的な職場環境",
+          "training": "専門家からのスキルトレーニングと学習機会",
+          "career": "キャリアの昇進と発展の機会"
+        }
+      },
+      "tester": {
+        "title": "テスター",
+        "description": "包括的なテストを通じて製品の品質を確保し、バグを正確に検出して報告します。",
+        "requirements": {
+          "experience": "ソフトウェアテストで1年以上の経験",
+          "skills": "テストプロセス、バグ追跡、テスト自動化の理解",
+          "attention": "注意深く、細心で、細部に注意を払う",
+          "teamwork": "チームで働き、効果的にコミュニケーションを取る能力"
+        },
+        "benefits": {
+          "salary": "競争力のある給与 12-25百万VND",
+          "workEnvironment": "プロフェッショナルな職場環境",
+          "training": "テストスキルと新しいツールのトレーニング",
+          "career": "テストリードまたはQAマネージャーに発展する機会"
+        }
+      },
+      "brse": {
+        "title": "BRSE（ブリッジシステムエンジニア）",
+        "description": "日本のクライアントと開発チームの架け橋として機能し、要件を分析してプロジェクトの成功を確保します。",
+        "requirements": {
+          "experience": "BRSEまたはビジネスアナリストの役割で2年以上の経験",
+          "language": "日本語N2レベル以上、クライアントと直接コミュニケーション可能",
+          "communication": "優れたコミュニケーションとプレゼンテーションスキル",
+          "analysis": "要件を分析し、ソリューションを設計する能力"
+        },
+        "benefits": {
+          "salary": "競争力のある給与 20-40百万VND",
+          "workEnvironment": "国際的なクライアントと直接働く",
+          "training": "プロジェクト管理とコミュニケーションスキルのトレーニング",
+          "career": "プロジェクトマネージャーまたはビジネスアナリストになる機会"
+        }
+      },
+      "other": {
+        "title": "その他のポジション",
+        "description": "UI/UXデザイン、DevOps、マーケティング、セールスなど、多くの分野で新しい才能を常に探しています。",
+        "requirements": {
+          "experience": "応募ポジションに関連する経験",
+          "skills": "専門スキルと創造的思考",
+          "adaptability": "適応し、素早く学習する能力",
+          "learning": "学習精神と自己発展"
+        },
+        "benefits": {
+          "salary": "能力に基づく競争力のある給与",
+          "workEnvironment": "多様で柔軟な職場環境",
+          "training": "包括的なスキルトレーニングと発展",
+          "career": "多くのキャリア昇進と発展の機会"
+        }
+      }
     }
   }
 }

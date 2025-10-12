@@ -2,10 +2,11 @@
   "homePage": {
     "navigation": {
       "home": "Trang chủ",
-      "ourServices": "Dịch vụ của chúng tôi",
+      "ourServices": "Dịch vụ",
       "aboutUs": "Về chúng tôi",
       "customers": "Khách hàng",
-      "teamMembers": "Đội ngũ nhân sự"
+      "teamMembers": "Nhân sự",
+      "recruitment": "Tuyển dụng"
     },
     "banner": {
       "title": "Công ty công nghệ giải pháp phần mềm cho thị trường Nhật Bản & toàn cầu.",
@@ -89,6 +90,79 @@
         "email": "Email:"
       },
       "copyright": "FUMIRAI COMPANY LIMITED Bảo lưu mọi quyền."
+    }
+  },
+  "recruitmentPage": {
+    "title": "Tuyển dụng",
+    "subtitle": "Tham gia đội ngũ của chúng tôi và cùng phát triển sự nghiệp trong lĩnh vực công nghệ",
+    "requirements": "Yêu cầu",
+    "benefits": "Quyền lợi",
+    "jobDesc": "Xem chi tiết",
+    "positions": {
+      "developer": {
+        "title": "Developer",
+        "description": "Phát triển các ứng dụng web và mobile với công nghệ hiện đại, làm việc trong môi trường quốc tế với khách hàng Nhật Bản.",
+        "requirements": {
+          "experience": "Kinh nghiệm 2+ năm phát triển web/mobile",
+          "skills": "Thành thạo React, Node.js, TypeScript hoặc các framework tương tự",
+          "language": "Tiếng Nhật N3 trở lên hoặc tiếng Anh giao tiếp tốt",
+          "communication": "Kỹ năng giao tiếp và làm việc nhóm tốt"
+        },
+        "benefits": {
+          "salary": "Lương cạnh tranh 15-30 triệu VNĐ",
+          "workEnvironment": "Môi trường làm việc năng động, sáng tạo",
+          "training": "Đào tạo kỹ năng và cơ hội học hỏi từ chuyên gia",
+          "career": "Cơ hội thăng tiến và phát triển sự nghiệp"
+        }
+      },
+      "tester": {
+        "title": "Tester",
+        "description": "Đảm bảo chất lượng sản phẩm thông qua việc kiểm thử toàn diện, phát hiện và báo cáo lỗi một cách chính xác.",
+        "requirements": {
+          "experience": "Kinh nghiệm 1+ năm trong lĩnh vực kiểm thử phần mềm",
+          "skills": "Hiểu biết về quy trình test, bug tracking và test automation",
+          "attention": "Tính cẩn thận, tỉ mỉ và chú ý đến chi tiết",
+          "teamwork": "Khả năng làm việc nhóm và giao tiếp hiệu quả"
+        },
+        "benefits": {
+          "salary": "Lương cạnh tranh 12-25 triệu VNĐ",
+          "workEnvironment": "Môi trường làm việc chuyên nghiệp",
+          "training": "Đào tạo kỹ năng test và công cụ mới",
+          "career": "Cơ hội phát triển thành Test Lead hoặc QA Manager"
+        }
+      },
+      "brse": {
+        "title": "BRSE (Bridge System Engineer)",
+        "description": "Đóng vai trò cầu nối giữa khách hàng Nhật Bản và team phát triển, phân tích yêu cầu và đảm bảo dự án thành công.",
+        "requirements": {
+          "experience": "Kinh nghiệm 2+ năm trong vai trò BRSE hoặc Business Analyst",
+          "language": "Tiếng Nhật N2 trở lên, có thể giao tiếp trực tiếp với khách hàng",
+          "communication": "Kỹ năng giao tiếp và thuyết trình xuất sắc",
+          "analysis": "Khả năng phân tích yêu cầu và thiết kế giải pháp"
+        },
+        "benefits": {
+          "salary": "Lương cạnh tranh 20-40 triệu VNĐ",
+          "workEnvironment": "Làm việc trực tiếp với khách hàng quốc tế",
+          "training": "Đào tạo kỹ năng quản lý dự án và giao tiếp",
+          "career": "Cơ hội trở thành Project Manager hoặc Business Analyst"
+        }
+      },
+      "other": {
+        "title": "Các vị trí khác",
+        "description": "Chúng tôi luôn tìm kiếm những tài năng mới trong các lĩnh vực như UI/UX Design, DevOps, Marketing, Sales và nhiều vị trí khác.",
+        "requirements": {
+          "experience": "Kinh nghiệm phù hợp với vị trí ứng tuyển",
+          "skills": "Kỹ năng chuyên môn và tư duy sáng tạo",
+          "adaptability": "Khả năng thích ứng và học hỏi nhanh",
+          "learning": "Tinh thần học hỏi và phát triển bản thân"
+        },
+        "benefits": {
+          "salary": "Lương cạnh tranh theo năng lực",
+          "workEnvironment": "Môi trường làm việc đa dạng và linh hoạt",
+          "training": "Đào tạo và phát triển kỹ năng toàn diện",
+          "career": "Nhiều cơ hội thăng tiến và phát triển sự nghiệp"
+        }
+      }
     }
   }
 }

@@ -5,7 +5,8 @@
       "ourServices": "Our Services",
       "aboutUs": "About Us",
       "customers": "Customers",
-      "teamMembers": "Team Members"
+      "teamMembers": "Team Members",
+      "recruitment": "Recruitment"
     },
     "banner": {
       "title": "Technology company providing software solutions for the Japanese market & globally.",
@@ -89,6 +90,79 @@
         "email": "Email:"
       },
       "copyright": "FUMIRAI COMPANY LIMITED All Rights Reserved."
+    }
+  },
+  "recruitmentPage": {
+    "title": "Recruitment",
+    "subtitle": "Join our team and grow your career in the technology field",
+    "requirements": "Requirements",
+    "benefits": "Benefits",
+    "jobDesc": "Job Description",
+    "positions": {
+      "developer": {
+        "title": "Developer",
+        "description": "Develop web and mobile applications with modern technology, working in an international environment with Japanese clients.",
+        "requirements": {
+          "experience": "2+ years experience in web/mobile development",
+          "skills": "Proficient in React, Node.js, TypeScript or similar frameworks",
+          "language": "Japanese N3 level or above, or good English communication",
+          "communication": "Good communication and teamwork skills"
+        },
+        "benefits": {
+          "salary": "Competitive salary 15-30 million VND",
+          "workEnvironment": "Dynamic and creative work environment",
+          "training": "Skill training and learning opportunities from experts",
+          "career": "Career advancement and development opportunities"
+        }
+      },
+      "tester": {
+        "title": "Tester",
+        "description": "Ensure product quality through comprehensive testing, accurately detecting and reporting bugs.",
+        "requirements": {
+          "experience": "1+ years experience in software testing",
+          "skills": "Understanding of test processes, bug tracking and test automation",
+          "attention": "Careful, meticulous and detail-oriented",
+          "teamwork": "Ability to work in teams and communicate effectively"
+        },
+        "benefits": {
+          "salary": "Competitive salary 12-25 million VND",
+          "workEnvironment": "Professional work environment",
+          "training": "Test skills and new tools training",
+          "career": "Opportunity to develop into Test Lead or QA Manager"
+        }
+      },
+      "brse": {
+        "title": "BRSE (Bridge System Engineer)",
+        "description": "Act as a bridge between Japanese clients and development team, analyze requirements and ensure project success.",
+        "requirements": {
+          "experience": "2+ years experience in BRSE or Business Analyst role",
+          "language": "Japanese N2 level or above, able to communicate directly with clients",
+          "communication": "Excellent communication and presentation skills",
+          "analysis": "Ability to analyze requirements and design solutions"
+        },
+        "benefits": {
+          "salary": "Competitive salary 20-40 million VND",
+          "workEnvironment": "Working directly with international clients",
+          "training": "Project management and communication skills training",
+          "career": "Opportunity to become Project Manager or Business Analyst"
+        }
+      },
+      "other": {
+        "title": "Other Positions",
+        "description": "We are always looking for new talents in fields such as UI/UX Design, DevOps, Marketing, Sales and many other positions.",
+        "requirements": {
+          "experience": "Relevant experience for the applied position",
+          "skills": "Professional skills and creative thinking",
+          "adaptability": "Ability to adapt and learn quickly",
+          "learning": "Learning spirit and self-development"
+        },
+        "benefits": {
+          "salary": "Competitive salary based on ability",
+          "workEnvironment": "Diverse and flexible work environment",
+          "training": "Comprehensive skill training and development",
+          "career": "Many career advancement and development opportunities"
+        }
+      }
     }
   }
 }
