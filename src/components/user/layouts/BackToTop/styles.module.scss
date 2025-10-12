@@ -1,0 +1,63 @@
+.backToTopButton {
+  position: fixed;
+  bottom: 100px;
+  right: 14px;
+  z-index: $z-dropdown;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  background: $color-primary-500;
+  color: $color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px $color-black-alpha-30;
+  border: none;
+  transition:
+    opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    visibility 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.3s ease;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px) scale(0.8);
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0) scale(1);
+  }
+
+  &:hover {
+    background: $color-primary-400;
+    transform: translateY(-4px) scale(1.05);
+    box-shadow: 0 8px 25px $color-black-alpha-30;
+    transition:
+      transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      background-color 0.3s ease;
+  }
+
+  &:active {
+    background: darken($color-primary-500, 10%);
+    transform: translateY(-2px) scale(0.98);
+    transition:
+      transform 0.1s ease,
+      box-shadow 0.1s ease,
+      background-color 0.1s ease;
+  }
+
+  &:focus {
+    outline: 2px solid $color-primary-400;
+    outline-offset: 2px;
+  }
+
+  .arrowIcon {
+    transition: transform 0.3s ease;
+  }
+
+  &:hover .arrowIcon {
+    transform: translateY(-1px);
+  }
+}

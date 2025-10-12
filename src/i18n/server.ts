@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 
-import { COOKIE_KEYS } from '@/ultils/constant';
+import { COOKIE_KEYS } from '@/utils/constant';
 
 import { type AppLocale, DEFAULT_LOCALE, SUPPORTED_LOCALES } from './request';
 

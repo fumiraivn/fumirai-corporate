@@ -9,7 +9,13 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Only scroll to top if there's no hash in the URL
+    // If there's a hash, let useScrollToHash handle the scrolling
+    const hash = window.location.hash;
+    if (!hash) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }, [pathname]);
 
   return null;

@@ -1,5 +1,5 @@
-import Home from '@/components/user/pages/Home';
+import { HomePage } from '@/components';
 
 export default async function LocalePage() {
-  return <Home />;
+  return <HomePage />;
 }

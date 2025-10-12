@@ -1,6 +1,8 @@
-import { scrollToSection } from '@/ultils/constant';
+import { usePathname, useRouter } from 'next/navigation';
 
-import { useTranslations } from 'next-intl';
+import { ROUTERS, scrollToSection } from '@/utils/constant';
+
+import { useLocale, useTranslations } from 'next-intl';
 
 import styles from './styles.module.scss';
 
@@ -14,6 +16,9 @@ export default function Navigation({
   direction = 'horizontal',
 }: NavigationProps) {
   const t = useTranslations('homePage.navigation');
+  const router = useRouter();
+  const pathname = usePathname();
+  const locale = useLocale();
 
   const navigationItems = [
     { key: 'home', sectionId: 'home' },
@@ -25,7 +30,17 @@ export default function Navigation({
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
-    scrollToSection(sectionId);
+
+    // Check if we're on home page
+    const isHomePage = pathname === `/${locale}` || pathname === `/${locale}/` || pathname === '/';
+
+    if (!isHomePage) {
+      // If not on home page, navigate to home with hash
+      router.push(`${ROUTERS.HOME(locale)}#${sectionId}`);
+    } else {
+      // If already on home page, just scroll to section
+      scrollToSection(sectionId);
+    }
   };
 
   return (
@@ -40,7 +55,7 @@ export default function Navigation({
             <a
               href={`#${item.sectionId}`}
               className={styles.navLink}
-              onClick={(e) => handleNavClick(e, item.sectionId)}
+              onClick={(e) => handleNavClick(e, item.sectionId!)}
             >
               {t(item.key)}
             </a>

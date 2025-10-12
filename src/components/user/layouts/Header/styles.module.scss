@@ -41,6 +41,16 @@
   border-bottom-right-radius: 0 !important;
 }
 
+.headerPinnedOnly {
+  position: relative;
+  background: transparent;
+  overflow: visible;
+  display: block;
+  height: auto;
+  min-height: auto;
+  max-height: none;
+}
+
 .navBar {
   position: relative;
   z-index: 10;

@@ -1,12 +1,22 @@
 import { Footer, Header, ScrollToTop } from '@/components';
 
-export default function MasterLayout({ children }: { children: React.ReactNode }) {
+interface MasterLayoutProps {
+  children: React.ReactNode;
+  showHeader?: boolean;
+  usePinnedHeader?: boolean;
+}
+
+export default function MasterLayout({
+  children,
+  showHeader = true,
+  usePinnedHeader = false,
+}: MasterLayoutProps) {
   return (
-    <div>
+    <>
       <ScrollToTop />
-      <Header />
+      {showHeader && <Header pinnedOnly={usePinnedHeader} />}
       {children}
       <Footer />
-    </div>
+    </>
   );
 }
