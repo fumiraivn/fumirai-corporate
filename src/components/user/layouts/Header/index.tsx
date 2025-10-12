@@ -8,7 +8,7 @@ import Link from 'next/link';
 import { Button, Container } from '@/components/base';
 import { ButtonType } from '@/components/base/Button';
 import { MenuIcon } from '@/svgs/user/HomeIcon';
-import { ROUTERS } from '@/ultils/constant';
+import { ROUTERS } from '@/utils/constant';
 
 import { useLocale, useTranslations } from 'next-intl';
 

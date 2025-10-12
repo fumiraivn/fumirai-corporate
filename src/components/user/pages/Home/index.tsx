@@ -1,4 +1,7 @@
+'use client';
+
 import { Container } from '@/components/base';
+import { useScrollToHash } from '@/hooks/useScrollToHash';
 
 import { useTranslations } from 'next-intl';
 
@@ -14,6 +17,9 @@ export default function HomePage() {
   const tOurCompany = useTranslations('homePage.aboutCompany.ourCompany.labels');
   const tParentCompany = useTranslations('homePage.aboutCompany.parentCompany.labels');
   const tParentValues = useTranslations('homePage.aboutCompany.parentCompany.values');
+
+  // Handle scrolling to section based on URL hash
+  useScrollToHash();
 
   const ourCompanyInfo = [
     { label: tOurCompany('companyName'), value: 'FUMIRAI COMPANY LIMITED' },
@@ -40,6 +46,8 @@ export default function HomePage() {
 
   return (
     <div className={styles.homePage}>
+      {/* Home section for navigation */}
+      <div id="home" />
       <Container>
         <InfoCard
           id="our-services"

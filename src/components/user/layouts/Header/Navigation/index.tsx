@@ -1,6 +1,6 @@
 import { usePathname, useRouter } from 'next/navigation';
 
-import { ROUTERS, scrollToSection } from '@/ultils/constant';
+import { ROUTERS, scrollToSection } from '@/utils/constant';
 
 import { useLocale, useTranslations } from 'next-intl';
 
@@ -35,12 +35,8 @@ export default function Navigation({
     const isHomePage = pathname === `/${locale}` || pathname === `/${locale}/` || pathname === '/';
 
     if (!isHomePage) {
-      // If not on home page, navigate to home first, then scroll to section
-      router.push(ROUTERS.HOME(locale));
-      // Use setTimeout to ensure navigation completes before scrolling
-      setTimeout(() => {
-        scrollToSection(sectionId);
-      }, 100);
+      // If not on home page, navigate to home with hash
+      router.push(`${ROUTERS.HOME(locale)}#${sectionId}`);
     } else {
       // If already on home page, just scroll to section
       scrollToSection(sectionId);

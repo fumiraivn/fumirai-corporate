@@ -3,7 +3,7 @@ import '@ant-design/v5-patch-for-react-19';
 import { Geist_Mono, Noto_Sans, Noto_Sans_JP } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
-import { ConditionalLayout } from '@/components';
+import { BackToTop, ConditionalLayout } from '@/components';
 import LoadingFullPage from '@/components/user/layouts/LoadingFullPage';
 import { getMessages } from '@/i18n';
 import { type AppLocale, SUPPORTED_LOCALES } from '@/i18n/request';
@@ -68,6 +68,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
             <AntdApp>
               <LoadingFullPage />
               <ConditionalLayout>{children}</ConditionalLayout>
+              <BackToTop />
             </AntdApp>
           </ConfigProvider>
         </NextIntlClientProvider>

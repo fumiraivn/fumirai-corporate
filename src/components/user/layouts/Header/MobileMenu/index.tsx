@@ -4,7 +4,7 @@ import Link from 'next/link';
 
 import { Button } from '@/components/base';
 import { ButtonType } from '@/components/base/Button';
-import { ROUTERS } from '@/ultils/constant';
+import { ROUTERS } from '@/utils/constant';
 
 import { Drawer } from 'antd';
 import { useLocale, useTranslations } from 'next-intl';

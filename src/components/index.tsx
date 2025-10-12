@@ -1,4 +1,5 @@
 // USER LAYOUTS
+export { default as BackToTop } from './user/layouts/BackToTop';
 export { default as ConditionalLayout } from './user/layouts/ConditionalLayout';
 export { default as Footer } from './user/layouts/Footer';
 export { default as Header } from './user/layouts/Header';
