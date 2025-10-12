@@ -36,14 +36,6 @@
         width: 100%;
       }
     }
-
-    @include respond-to(lg) {
-      font-size: 0.7rem;
-    }
-
-    @include respond-to(xl) {
-      font-size: 0.8rem;
-    }
   }
 
   // Default styling for pinned state
