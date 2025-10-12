@@ -11,5 +11,9 @@ const ROUTERS = {
   TEAM_MEMBERS: (locale: string) => `/${locale}#team-members`,
 };
 
+const API_ENDPOINTS = {
+  HOME: (locale: string) => `home-${locale}`,
+};
+
 export * from './scrollUtils';
-export { COOKIE_KEYS, ROUTERS };
+export { API_ENDPOINTS, COOKIE_KEYS, ROUTERS };
