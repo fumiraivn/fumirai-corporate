@@ -41,6 +41,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: 'Fumirai Corporate',
   description: 'Fumirai Corporate Website',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 interface LocaleLayoutProps {
