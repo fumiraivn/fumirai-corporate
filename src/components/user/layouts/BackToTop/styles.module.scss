@@ -49,7 +49,6 @@
   }
 
   &:focus {
-    outline: 2px solid $color-primary-400;
     outline-offset: 2px;
   }
 
@@ -59,5 +58,10 @@
 
   &:hover .arrowIcon {
     transform: translateY(-1px);
+  }
+
+  @include respond-below(sm) {
+    width: 35px;
+    height: 35px;
   }
 }
