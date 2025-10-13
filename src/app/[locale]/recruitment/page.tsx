@@ -1,7 +1,7 @@
 import { RecruitmentPage } from '@/components';
 import { generateRecruitmentMetadata } from '@/lib/recruitmentSEO';
 
-export async function generateMetadata({ params }: { params: { locale: string } }) {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
   return generateRecruitmentMetadata(locale);
 }
