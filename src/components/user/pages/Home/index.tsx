@@ -68,7 +68,7 @@ export default function HomePage() {
         </InfoCard>
       </Container>
 
-      <Container isFullWidth className={styles.aboutOurCompanyContainerFull}>
+      <Container>
         <Container className={styles.aboutOurCompanyContainer}>
           <InfoCard id="about-us" subtitle={t('aboutCompany.ourCompany.title')}>
             <AboutCompany

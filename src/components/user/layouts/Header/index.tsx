@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useRouter } from 'next/navigation';
 
@@ -18,13 +18,58 @@ import styles from './styles.module.scss';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isPinned, setIsPinned] = useState(false);
+  const [isPinnedVisible, setIsPinnedVisible] = useState(false);
+  const [navHeight, setNavHeight] = useState(0);
+  const navBarRef = useRef<HTMLDivElement | null>(null);
+  const lastScrollYRef = useRef(0);
   const locale = useLocale();
   const router = useRouter();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentY = window.scrollY || window.pageYOffset;
+
+      // Pin when we have scrolled past a threshold
+      const shouldPin = currentY > 80;
+      setIsPinned(shouldPin);
+
+      // Show the pinned bar when scrolling down or when near top unpin
+      // We want the bar to slide in when pinned and user scrolls down, and remain when scrolling up
+      if (shouldPin) {
+        setIsPinnedVisible(true);
+      } else {
+        setIsPinnedVisible(false);
+      }
+
+      lastScrollYRef.current = currentY;
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const measure = () => {
+      if (navBarRef.current) {
+        setNavHeight(navBarRef.current.offsetHeight || 0);
+      }
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header className={styles.header} style={{ paddingTop: isPinned ? navHeight : 0 }}>
       {/* Navigation Bar */}
-      <div className={`${styles.navBar} ${styles.navBarPinned} ${styles.navBarPinnedVisible}`}>
+      <div
+        ref={navBarRef}
+        className={`${styles.navBar} ${isPinned ? styles.navBarPinned : ''} ${
+          isPinned && isPinnedVisible ? styles.navBarPinnedVisible : ''
+        }`}
+      >
         <Container>
           <div className={styles.navBarContent}>
             {/* Logo */}

@@ -8,9 +8,8 @@
 
 .navBar {
   position: relative;
-  z-index: 10;
+  z-index: 1000;
   padding: 1rem 0;
-  background: #ffff;
 }
 
 .navBarPinned {
@@ -18,14 +17,27 @@
   top: 0;
   left: 0;
   right: 0;
-  transform: translateY(0);
-  opacity: 1;
+  width: 100%;
+  transform: translateY(-100%);
+  opacity: 0;
+  background: $color-white;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+  transition:
+    transform 220ms ease,
+    opacity 220ms ease,
+    background-color 220ms ease;
 }
 
 .navBarPinned {
   .menuButton {
     color: $color-text-primary;
   }
+}
+
+.navBarPinnedVisible {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 .navBarContent {
