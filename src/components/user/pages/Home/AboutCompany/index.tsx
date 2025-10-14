@@ -2,6 +2,8 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+import Map from '../Map';
+
 import styles from './styles.module.scss';
 
 export type CompanyInfo = {
@@ -11,24 +13,28 @@ export type CompanyInfo = {
 
 export type AboutCompanyProps = {
   companyInfo: CompanyInfo[];
+  mapUrl?: string; // external link to open Google Maps
+  embedAddress?: string; // address text for embedding in iframe
+  mapHeight?: number;
 };
 
-export default function AboutCompany({ companyInfo }: AboutCompanyProps) {
+export default function AboutCompany({
+  companyInfo,
+  mapUrl,
+  embedAddress,
+  mapHeight,
+}: AboutCompanyProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const hasAnimatedRef = useRef(false);
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          // Reset animation by first hiding, then showing
-          setIsVisible(false);
-          setTimeout(() => {
-            setIsVisible(true);
-          }, 50);
-        } else {
-          // Hide when out of view to prepare for next animation
-          setIsVisible(false);
+        if (entry.isIntersecting && !hasAnimatedRef.current) {
+          hasAnimatedRef.current = true;
+          setIsVisible(true);
+          if (ref.current) observer.unobserve(ref.current);
         }
       },
       {
@@ -43,9 +49,7 @@ export default function AboutCompany({ companyInfo }: AboutCompanyProps) {
     }
 
     return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
+      observer.disconnect();
     };
   }, []);
 
@@ -66,6 +70,12 @@ export default function AboutCompany({ companyInfo }: AboutCompanyProps) {
           </div>
         ))}
       </div>
+
+      {embedAddress ? (
+        <div className={styles.mapBlock}>
+          <Map address={embedAddress} mapUrl={mapUrl} height={mapHeight} />
+        </div>
+      ) : null}
     </div>
   );
 }

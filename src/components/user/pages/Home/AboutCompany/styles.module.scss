@@ -37,14 +37,6 @@
   cursor: pointer;
   animation-fill-mode: both;
 
-  &:hover {
-    border-bottom: 1px solid #f3f4f6;
-    background: rgba($color-primary-500, 0.05);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    border-bottom-color: $color-primary-500;
-  }
-
   @include respond-to(md) {
     flex-direction: row;
     align-items: flex-start;
@@ -59,7 +51,7 @@
 
 .label {
   font-weight: 500;
-  color: $color-text-sub-primary;
+  color: $color-text-sub;
   font-size: 0.875rem;
   margin-bottom: $space-1;
   min-width: 100px;
@@ -72,22 +64,12 @@
 }
 
 .value {
-  color: $color-text-primary;
+  color: $color-text-main;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   flex: 1;
   transition: color 0.5s ease;
-}
-
-.infoItem:hover {
-  .label {
-    color: $color-primary-500;
-  }
-
-  .value {
-    color: $color-text-primary;
-  }
 }
 
 .itemAnimateIn {
@@ -109,4 +91,10 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+.mapBlock {
+  margin-top: $space-8;
+  padding-top: $space-6;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
 }

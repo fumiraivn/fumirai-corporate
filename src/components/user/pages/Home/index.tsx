@@ -6,10 +6,8 @@ import { useScrollToHash } from '@/hooks/useScrollToHash';
 import { useTranslations } from 'next-intl';
 
 import AboutCompany from './AboutCompany';
-import Customers from './Customers';
 import InfoCard from './InfoCard';
 import OurServices from './OurServices';
-import TeamMembers from './TeamMembers';
 import styles from './styles.module.scss';
 
 export default function HomePage() {
@@ -61,35 +59,24 @@ export default function HomePage() {
 
       <Container isFullWidth className={styles.aboutOurCompanyContainerFull}>
         <Container className={styles.aboutOurCompanyContainer}>
-          <InfoCard id="about-us" title={t('aboutCompany.ourCompany.title')}>
-            <AboutCompany companyInfo={ourCompanyInfo} />
+          <InfoCard id="about-us" subtitle={t('aboutCompany.ourCompany.title')}>
+            <AboutCompany
+              companyInfo={ourCompanyInfo}
+              embedAddress={'Tầng 3, số 35 Thái Phiên, Phường Hải Châu, TP Đà Nẵng, Việt Nam'}
+              mapUrl={'https://maps.app.goo.gl/41mSu8LCktE8FJyu9'}
+              mapHeight={380}
+            />
           </InfoCard>
-          <InfoCard title={t('aboutCompany.parentCompany.title')}>
-            <AboutCompany companyInfo={parentCompanyInfo} />
+          <InfoCard subtitle={t('aboutCompany.parentCompany.title')}>
+            <AboutCompany
+              companyInfo={parentCompanyInfo}
+              embedAddress={'〒103-0025 東京都中央区日本橋茅場町2-7-4 Aster茅場町9F'}
+              mapUrl={'https://maps.app.goo.gl/McP4NWUEcgGAS3c27'}
+              mapHeight={380}
+            />
           </InfoCard>
         </Container>
-      </Container>
-
-      <Container isFullWidth>
-        <InfoCard
-          title={t('customers.title')}
-          id="customers"
-          subtitle={t('customers.subtitle')}
-          position="center"
-        >
-          <Customers />
-        </InfoCard>
-      </Container>
-
-      <Container>
-        <InfoCard
-          id="team-members"
-          title={t('teamMembers.title')}
-          subtitle={t('teamMembers.subtitle')}
-          position="center"
-        >
-          <TeamMembers />
-        </InfoCard>
+        {/* Removed separate Map section; maps now shown inside each AboutCompany */}
       </Container>
     </div>
   );
