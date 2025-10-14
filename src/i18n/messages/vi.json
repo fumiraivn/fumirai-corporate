@@ -42,6 +42,14 @@
         }
       }
     },
+    "aboutUs": {
+      "title": "Giới thiệu Fumirai",
+      "subtitle": "Hồ sơ công ty",
+      "lead": "FUMIRAI COMPANY LIMITED là công ty công nghệ tập trung xây dựng các sản phẩm và dịch vụ phần mềm chất lượng cao cho thị trường Nhật Bản và toàn cầu.",
+      "p1": "Chúng tôi quy tụ đội ngũ trẻ trung, nhiệt huyết với kinh nghiệm vững vàng trong thiết kế hệ thống, phát triển sản phẩm và hợp tác khách hàng.",
+      "p2": "Với tư duy lấy khách hàng làm trung tâm, chúng tôi cung cấp giải pháp end-to-end từ tư vấn, UX/UI đến phát triển, triển khai và vận hành.",
+      "p3": "Chúng tôi không ngừng học hỏi và cải tiến để mang lại giá trị bền vững, minh bạch và mối quan hệ đối tác lâu dài."
+    },
     "aboutCompany": {
       "ourCompany": {
         "title": "Thông tin về chúng tôi",

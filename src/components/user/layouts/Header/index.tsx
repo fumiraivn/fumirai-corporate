@@ -2,7 +2,9 @@
 
 import { useState } from 'react';
 
-import { Container, Logo } from '@/components/base';
+import { useRouter } from 'next/navigation';
+
+import { Button, ButtonType, Container, Logo } from '@/components/base';
 import { MenuIcon } from '@/svgs/user/HomeIcon';
 import { ROUTERS } from '@/utils/constant';
 
@@ -17,6 +19,7 @@ import styles from './styles.module.scss';
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const locale = useLocale();
+  const router = useRouter();
 
   return (
     <header className={styles.header}>
@@ -35,6 +38,12 @@ export default function Header() {
             {/* CTA Section (desktop only) */}
             <div className={styles.ctaSection}>
               <LanguageDropdown />
+              <Button
+                onClick={() => router.push(ROUTERS.RECRUITMENT(locale))}
+                buttonType={ButtonType.Default}
+              >
+                Tuyển dụng
+              </Button>
             </div>
 
             {/* Mobile menu button (md and below) */}

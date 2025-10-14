@@ -1,3 +1,5 @@
+import { Button, ButtonType } from '@/components/base';
+
 import { Tooltip } from 'antd';
 import { useTranslations } from 'next-intl';
 
@@ -54,7 +56,9 @@ export default function JobCard({ job }: JobCardProps) {
       </div>
 
       <div className={styles.cardFooter}>
-        <button className={styles.applyButton}>{t('jobDesc')}</button>
+        <Button buttonType={ButtonType.Default} className={styles.applyButton}>
+          {t('jobDesc')}
+        </Button>
       </div>
     </div>
   );

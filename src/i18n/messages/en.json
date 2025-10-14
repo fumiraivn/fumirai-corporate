@@ -42,6 +42,14 @@
         }
       }
     },
+    "aboutUs": {
+      "title": "About Fumirai",
+      "subtitle": "Company Profile",
+      "lead": "FUMIRAI COMPANY LIMITED is a technology company focused on building high-quality software products and services for Japan and global markets.",
+      "p1": "We bring together a young, passionate team with strong experience in system design, product development, and customer collaboration.",
+      "p2": "With a customer-first mindset, we provide end-to-end solutions from consulting and UX/UI to development, deployment, and operation.",
+      "p3": "We continuously learn and improve to deliver sustainable value, transparency, and long-term partnerships."
+    },
     "aboutCompany": {
       "ourCompany": {
         "title": "About Us",

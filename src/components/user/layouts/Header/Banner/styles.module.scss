@@ -54,3 +54,16 @@
     width: 10rem !important;
   }
 }
+
+.arrowBounce {
+  animation: arrow-bounce 1s ease-in-out infinite alternate;
+}
+
+@keyframes arrow-bounce {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(2px);
+  }
+}

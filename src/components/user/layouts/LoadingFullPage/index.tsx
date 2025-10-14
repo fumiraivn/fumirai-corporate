@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import Image from 'next/image';
+import { Logo } from '@/components/base';
 
 import styles from './styles.module.scss';
 
@@ -40,16 +40,7 @@ export default function LoadingFullPage() {
       <div className={styles.gradientBackground}></div>
       <div className={styles.vignette}></div>
       <div className={styles.loadingContent}>
-        <div className={styles.logoContainer}>
-          <Image
-            src="/logo.png"
-            alt="Fumirai Logo"
-            width={300}
-            height={300}
-            className={styles.logo}
-            priority
-          />
-        </div>
+        <Logo className={styles.logo} />
       </div>
     </div>
   );

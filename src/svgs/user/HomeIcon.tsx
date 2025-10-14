@@ -161,3 +161,45 @@ export const ArrowUpIcon: React.FC<IconProps> = ({ className = '', width = 24, h
     />
   </svg>
 );
+
+export const ArrowRightIcon: React.FC<IconProps> = ({
+  className = '',
+  width = 24,
+  height = 24,
+}) => (
+  <svg
+    width={width}
+    height={height}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M5 12h14M13 5l7 7-7 7"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
+export const ArrowDownIcon: React.FC<IconProps> = ({ className = '', width = 24, height = 24 }) => (
+  <svg
+    width={width}
+    height={height}
+    viewBox="0 0 24 24"
+    fill="none"
+    className={className}
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M12 5v14M5 12l7 7 7-7"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);

@@ -11,7 +11,8 @@
 .gradientBackground {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, #1e1b4b 0%, #1e3a8a 45%, #3b82f6 70%, #93c5fd 90%);
+  background: linear-gradient(to top right, rgb(164, 197, 241) 0%, #ffffff 100%);
+  // background: linear-gradient(180deg, #1e1b4b 0%, #1e3a8a 45%, #3b82f6 70%, #93c5fd 90%);
   animation: gradientShift 6s ease-in-out infinite;
 }
 
@@ -35,14 +36,6 @@
 .loadingContent {
   position: relative;
   z-index: 1;
-}
-
-.logoContainer {
-  position: relative;
-  width: 240px;
-  height: 240px;
-  display: grid;
-  place-items: center;
 }
 
 .ring {

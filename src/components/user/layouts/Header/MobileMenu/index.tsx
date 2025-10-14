@@ -1,6 +1,12 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
+
+import { Button, ButtonType } from '@/components/base';
+import { ROUTERS } from '@/utils/constant';
+
 import { Drawer } from 'antd';
+import { useLocale } from 'next-intl';
 
 import LanguageDropdown from '../LanguageDropdown';
 import Navigation from '../Navigation';
@@ -13,6 +19,9 @@ interface MobileMenuProps {
 }
 
 export default function MobileMenu({ open, onClose }: MobileMenuProps) {
+  const router = useRouter();
+  const locale = useLocale();
+
   return (
     <Drawer
       placement="right"
@@ -31,6 +40,12 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
         <Navigation direction="vertical" />
       </div>
       <div className={styles.menuFooter}>
+        <Button
+          buttonType={ButtonType.Default}
+          onClick={() => router.push(ROUTERS.RECRUITMENT(locale))}
+        >
+          Tuyển dụng
+        </Button>
         <LanguageDropdown isMobile />
       </div>
     </Drawer>

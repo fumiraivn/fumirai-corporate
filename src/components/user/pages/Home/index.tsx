@@ -6,6 +6,7 @@ import { useScrollToHash } from '@/hooks/useScrollToHash';
 import { useTranslations } from 'next-intl';
 
 import AboutCompany from './AboutCompany';
+import AboutUs from './AboutUs';
 import InfoCard from './InfoCard';
 import OurServices from './OurServices';
 import styles from './styles.module.scss';
@@ -46,6 +47,16 @@ export default function HomePage() {
     <div className={styles.homePage}>
       {/* Home section for navigation */}
       <div id="home" />
+      <Container>
+        <InfoCard
+          id="about-us"
+          title={t('aboutUs.title')}
+          subtitle={t('aboutUs.subtitle')}
+          position="center"
+        >
+          <AboutUs />
+        </InfoCard>
+      </Container>
       <Container>
         <InfoCard
           id="our-services"

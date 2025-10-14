@@ -4,7 +4,7 @@ import Link from 'next/link';
 import styles from './styles.module.scss';
 
 export type LogoProps = {
-  href: string;
+  href?: string;
   className?: string;
   imgSrc?: string;
   alt?: string;
@@ -15,7 +15,7 @@ export type LogoProps = {
 };
 
 export default function Logo({
-  href,
+  href = '/',
   className,
   imgSrc = '/only_logo.png',
   alt = 'fumirai logo',

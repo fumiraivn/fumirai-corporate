@@ -1,0 +1,38 @@
+.aboutUs {
+  padding: $space-8;
+  background: $color-background-light;
+  border-radius: 8px;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.animateIn {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.animateOut {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+}
+
+.lead {
+  font-size: 1.125rem;
+  color: $color-text-main;
+  margin-bottom: $space-6;
+  line-height: 1.7;
+}
+
+.grid {
+  display: grid;
+  gap: $space-6;
+  grid-template-columns: 1fr;
+
+  @include respond-to(md) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.paragraph {
+  color: $color-text-sub;
+  line-height: 1.8;
+}

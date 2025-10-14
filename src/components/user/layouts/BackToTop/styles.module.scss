@@ -6,7 +6,7 @@
   border-radius: 50%;
   width: 48px;
   height: 48px;
-  background: $color-primary-500;
+  background: $color-text-sub;
   color: $color-white;
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@
   }
 
   &:hover {
-    background: $color-primary-400;
+    background: $color-text-main;
     transform: translateY(-4px) scale(1.05);
     box-shadow: 0 8px 25px $color-black-alpha-30;
     transition:
