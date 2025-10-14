@@ -14,7 +14,6 @@
     gap: 0.25rem;
     padding: 0.5rem 0;
     position: relative;
-    transition: all 0.3s ease;
 
     // Underline effect
     &::after {
@@ -24,14 +23,11 @@
       left: 0;
       width: 0;
       height: 2px;
-      background: linear-gradient(90deg, $color-primary-400, $color-primary-500);
+      background: linear-gradient(90deg, $color-text-sub, $color-text-sub);
       transition: width 0.3s ease;
     }
 
-    // Common hover effects
     &:hover {
-      transform: translateY(-1px);
-
       &::after {
         width: 100%;
       }
@@ -40,25 +36,11 @@
 
   // Default styling for pinned state
   .navLink {
-    color: $color-text-primary;
+    color: $color-text-main;
     text-shadow: none;
 
     &:hover {
-      color: $color-text-primary;
-      text-shadow: 0 2px 8px $color-text-primary-alpha-20;
-    }
-  }
-
-  // Override for unpinned state
-  &.navigationUnpinned {
-    .navLink {
-      color: $color-white;
-      text-shadow: 0 2px 4px $color-black-alpha-30;
-
-      &:hover {
-        color: $color-white;
-        text-shadow: 0 2px 8px $color-white-alpha-60;
-      }
+      color: $color-text-main;
     }
   }
 }

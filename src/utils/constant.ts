@@ -12,7 +12,8 @@ const ROUTERS = {
 };
 
 const API_ENDPOINTS = {
-  HOME: (locale: string) => `home-${locale}`,
+  COMMON: (locale: string) => `common/${locale}`,
+  HOME: (locale: string) => `pages/home-${locale}`,
 };
 
 export * from './scrollUtils';

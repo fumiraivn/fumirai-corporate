@@ -7,14 +7,10 @@ import { useLocale, useTranslations } from 'next-intl';
 import styles from './styles.module.scss';
 
 interface NavigationProps {
-  navBarPinnedVisible?: boolean;
   direction?: 'horizontal' | 'vertical';
 }
 
-export default function Navigation({
-  navBarPinnedVisible = false,
-  direction = 'horizontal',
-}: NavigationProps) {
+export default function Navigation({ direction = 'horizontal' }: NavigationProps) {
   const t = useTranslations('homePage.navigation');
   const router = useRouter();
   const pathname = usePathname();
@@ -45,9 +41,7 @@ export default function Navigation({
 
   return (
     <nav
-      className={`${styles.navigation} ${!navBarPinnedVisible ? styles.navigationUnpinned : ''} ${
-        direction === 'vertical' ? styles.navigationVertical : ''
-      }`}
+      className={`${styles.navigation} ${direction === 'vertical' ? styles.navigationVertical : ''}`}
     >
       <ul className={styles.navList}>
         {navigationItems.map((item) => (

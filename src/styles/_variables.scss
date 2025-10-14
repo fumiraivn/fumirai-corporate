@@ -70,13 +70,25 @@ $color-black: #000000;
 $color-white-alpha-60: rgba(255, 255, 255, 0.6);
 $color-black-alpha-30: rgba(0, 0, 0, 0.3);
 
-// Button colors
-$button-default: #7b68ee;
-$button-default-hover: #3e57d0;
-$button-default-active: #3e57d0;
-$button-default-disabled: $color-bg-disabled;
-$button-text-on-default: $color-white;
-$button-text-on-default-disabled: $color-text-disabled;
-
 // Text green color
 $color-text-green: #059669;
+
+// new style colors
+$button-default: #1e3567;
+$button-default-hover: #304b85;
+$button-default-active: #102a61;
+$button-default-disabled: #0a0a0a;
+$button-text-on-default: #ffffff;
+$button-text-on-default-disabled: #ffffff;
+
+$button-info: #ffffff;
+$button-info-hover: #f0f1f3;
+$button-info-border: #dce3ef;
+$button-info-active: #e1e3e7;
+$button-info-disabled: #0a0a0a;
+$button-text-on-info: #0c1c36;
+$button-text-on-info-disabled: #0c1c36;
+
+// Colors text
+$color-text-main: #0c1c36;
+$color-text-sub: #4d5975;

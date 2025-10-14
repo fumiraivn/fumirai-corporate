@@ -1,8 +1,6 @@
 'use client';
 
-import Image from 'next/image';
-
-import { Container } from '@/components/base';
+import { Button, ButtonType, Container } from '@/components/base';
 
 import { useTranslations } from 'next-intl';
 
@@ -14,12 +12,11 @@ export default function Banner() {
   return (
     <Container>
       <div className={styles.bannerContent}>
-        <div className={styles.bannerContentLeft}>
-          <p className={styles.bannerTitle}>{t('title')}</p>
-          <p className={styles.bannerDescription}>{t('description')}</p>
-        </div>
-        <div className={styles.bannerImage}>
-          <Image src="/banner.png" alt="hero illustration" width={1000} height={1000} />
+        <p className={styles.bannerTitle}>{t('title')}</p>
+        <p className={styles.bannerDescription}>{t('description')}</p>
+        <div className={styles.bannerButtons}>
+          <Button buttonType={ButtonType.Default}>Tuyển dụng</Button>
+          <Button buttonType={ButtonType.Info}>Liên hệ</Button>
         </div>
       </div>
     </Container>

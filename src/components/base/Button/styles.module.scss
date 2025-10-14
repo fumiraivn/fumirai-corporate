@@ -3,6 +3,7 @@
   color: $button-text-on-default !important;
 
   &:hover {
+    border-color: unset !important;
     background-color: $button-default-hover !important;
   }
 
@@ -13,5 +14,25 @@
   &:disabled {
     background-color: $button-default-disabled !important;
     color: $button-text-on-default-disabled !important;
+  }
+}
+
+.info {
+  background-color: $button-info !important;
+  color: $button-text-on-info !important;
+  border: 1px solid $button-info-border;
+
+  &:hover {
+    border: 1px solid $button-info-border !important;
+    background-color: $button-info-hover !important;
+  }
+
+  &:active {
+    background-color: $button-info-active !important;
+  }
+
+  &:disabled {
+    background-color: $button-info-disabled !important;
+    color: $button-text-on-info-disabled !important;
   }
 }

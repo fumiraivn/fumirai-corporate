@@ -12,13 +12,6 @@ export enum ButtonVariant {
 
 export enum ButtonType {
   Default = 'default',
-  Primary = 'primary',
-  Ghost = 'ghost',
-  Link = 'link',
-  Text = 'text',
-  Danger = 'danger',
-  Warning = 'warning',
-  Success = 'success',
   Info = 'info',
 }
 

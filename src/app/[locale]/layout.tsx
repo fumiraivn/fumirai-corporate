@@ -3,10 +3,11 @@ import '@ant-design/v5-patch-for-react-19';
 import { Geist_Mono, Noto_Sans, Noto_Sans_JP } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
+import { getCommon } from '@/apis';
 import { BackToTop, ConditionalLayout } from '@/components';
 import LoadingFullPage from '@/components/user/layouts/LoadingFullPage';
 import { getMessages } from '@/i18n';
-import { type AppLocale, SUPPORTED_LOCALES } from '@/i18n/request';
+import { SUPPORTED_LOCALES } from '@/i18n/request';
 import { ELanguage } from '@/types';
 
 import { App as AntdApp, ConfigProvider, theme as antdTheme } from 'antd';
@@ -55,10 +56,14 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   const { locale } = await params;
 
   // Validate that the incoming `locale` parameter is valid
-  if (!SUPPORTED_LOCALES.includes(locale as AppLocale)) notFound();
+  if (!SUPPORTED_LOCALES.includes(locale as ELanguage)) notFound();
 
   const messages = getMessages(locale);
   const antdLocale = locale === ELanguage.VI ? viVN : locale === ELanguage.JA ? jaJP : enUS;
+
+  const commonData = await getCommon(locale as ELanguage);
+
+  console.log('commonData', commonData);
 
   return (
     <html lang={locale} suppressHydrationWarning>
