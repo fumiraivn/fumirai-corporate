@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState } from 'react';
 
-import { useTranslations } from 'next-intl';
-
 import styles from './styles.module.scss';
 
-export default function AboutUs() {
-  const t = useTranslations('homePage.aboutUs');
+export type AboutUsProps = {
+  title?: string;
+  items?: string[];
+};
+
+export default function AboutUs({ title, items }: AboutUsProps) {
   const [isVisible, setIsVisible] = useState(false);
   const hasAnimatedRef = useRef(false);
   const ref = useRef<HTMLDivElement>(null);
@@ -29,16 +31,21 @@ export default function AboutUs() {
     return () => observer.disconnect();
   }, []);
 
+  const leadText = title ?? '';
+  const paragraphs: string[] = items ?? [];
+
   return (
     <div
       ref={ref}
       className={`${styles.aboutUs} ${isVisible ? styles.animateIn : styles.animateOut}`}
     >
-      <p className={styles.lead}>{t('lead')}</p>
+      <p className={styles.lead}>{leadText}</p>
       <div className={styles.grid}>
-        <p className={styles.paragraph}>{t('p1')}</p>
-        <p className={styles.paragraph}>{t('p2')}</p>
-        <p className={styles.paragraph}>{t('p3')}</p>
+        {paragraphs.map((text, idx) => (
+          <p key={idx} className={styles.paragraph}>
+            {text}
+          </p>
+        ))}
       </div>
     </div>
   );

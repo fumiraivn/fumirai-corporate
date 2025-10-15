@@ -13,6 +13,7 @@ const ROUTERS = {
 const API_ENDPOINTS = {
   COMMON: (locale: string) => `common/${locale}`,
   HOME: (locale: string) => `pages/home-${locale}`,
+  RECRUITMENT: (locale: string) => `pages/recruitment-${locale}`,
 };
 
 export * from './scrollUtils';

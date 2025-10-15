@@ -2,92 +2,90 @@
 
 import { Container } from '@/components/base';
 import { useScrollToHash } from '@/hooks/useScrollToHash';
-
-import { useTranslations } from 'next-intl';
+import { EHomeSection } from '@/types';
 
 import AboutCompany from './AboutCompany';
 import AboutUs from './AboutUs';
+import { useAboutUsData } from './AboutUs/hook';
 import InfoCard from './InfoCard';
+import { useOurCompanyData } from './OurCompany/hook';
 import OurServices from './OurServices';
+import { useOurServicesData } from './OurServices/hook';
 import styles from './styles.module.scss';
 
-export default function HomePage() {
-  const t = useTranslations('homePage');
-  const tOurCompany = useTranslations('homePage.aboutCompany.ourCompany.labels');
-  const tParentCompany = useTranslations('homePage.aboutCompany.parentCompany.labels');
-  const tParentValues = useTranslations('homePage.aboutCompany.parentCompany.values');
+type SectionKey = EHomeSection.ABOUT_US | EHomeSection.OUR_SERVICES | EHomeSection.OUR_COMPANY;
 
+type HomeContentItem = { card_type?: `${EHomeSection}`[]; scroll_id?: string };
+
+export default function HomePage({ content }: { content?: unknown[] }) {
   // Handle scrolling to section based on URL hash
   useScrollToHash();
 
-  const ourCompanyInfo = [
-    { label: tOurCompany('companyName'), value: 'FUMIRAI COMPANY LIMITED' },
-    {
-      label: tOurCompany('taxAddress'),
-      value: 'Tầng 3, số 35 Thái Phiên, Phường Hải Châu, TP Đà Nẵng, Việt Nam',
-    },
-    { label: tOurCompany('taxCode'), value: '0402302956' },
-    { label: tOurCompany('phone'), value: '0385-135-531' },
-    { label: tOurCompany('operationDate'), value: '2025-10-09' },
-  ];
+  const blocks = (content as HomeContentItem[] | undefined) ?? [];
+  const { meta: companyMeta, company, parent } = useOurCompanyData(blocks as unknown[]);
 
-  const parentCompanyInfo = [
-    { label: tParentCompany('companyName'), value: 'Fulfillments Ltd.' },
-    {
-      label: tParentCompany('address'),
-      value:
-        '〒103-0025 東京都中央区日本橋茅場町2-7-4 Aster茅場町9F 東京メトロ茅場町5番出口から徒歩0分',
-    },
-    { label: tParentCompany('email'), value: 'info@fulfillments.co.jp' },
-    { label: tParentCompany('establishmentDate'), value: '2013年2月14日' },
-    { label: tParentCompany('leadership'), value: `${tParentValues('leadership')} 宇野 文康` },
+  const defaultOrder: SectionKey[] = [
+    EHomeSection.ABOUT_US,
+    EHomeSection.OUR_SERVICES,
+    EHomeSection.OUR_COMPANY,
   ];
+  const derivedOrder: SectionKey[] = blocks
+    .map((c) => c.card_type?.[0])
+    .filter((v): v is `${EHomeSection}` => Boolean(v)) as SectionKey[];
+  const normalizedOrder: SectionKey[] = (derivedOrder.length ? derivedOrder : defaultOrder)
+    .map((s) => String(s))
+    .map((s) => s as SectionKey)
+    .filter((s): s is SectionKey =>
+      [EHomeSection.ABOUT_US, EHomeSection.OUR_SERVICES, EHomeSection.OUR_COMPANY].includes(s),
+    );
+
+  const { meta: aboutUsMeta, data: aboutUsData } = useAboutUsData(blocks as unknown[]);
+  const { meta: servicesMeta, data: servicesData } = useOurServicesData(blocks as unknown[]);
+
+  const sections: Record<SectionKey, React.ReactElement> = {
+    [EHomeSection.ABOUT_US]: (
+      <Container key="about-us">
+        <InfoCard
+          id={aboutUsMeta?.scroll_id}
+          title={aboutUsMeta?.title}
+          subtitle={aboutUsMeta?.subtitle}
+          position="center"
+        >
+          <AboutUs title={aboutUsData?.title} items={aboutUsData?.items} />
+        </InfoCard>
+      </Container>
+    ),
+    [EHomeSection.OUR_SERVICES]: (
+      <Container key="our-services">
+        <InfoCard
+          id={servicesMeta?.scroll_id}
+          title={servicesMeta?.title}
+          subtitle={servicesMeta?.subtitle}
+          position="center"
+        >
+          <OurServices data={servicesData} />
+        </InfoCard>
+      </Container>
+    ),
+    [EHomeSection.OUR_COMPANY]: (
+      <Container key="our-company">
+        <Container className={styles.aboutOurCompanyContainer}>
+          <InfoCard id={companyMeta?.scroll_id} subtitle={company?.title}>
+            <AboutCompany companyInfo={company?.items || []} mapHeight={380} />
+          </InfoCard>
+          <InfoCard subtitle={parent?.title}>
+            <AboutCompany companyInfo={parent?.items || []} mapHeight={380} />
+          </InfoCard>
+        </Container>
+      </Container>
+    ),
+  };
 
   return (
     <div className={styles.homePage}>
       {/* Home section for navigation */}
       <div id="home" />
-      <Container>
-        <InfoCard
-          id="about-us"
-          title={t('aboutUs.title')}
-          subtitle={t('aboutUs.subtitle')}
-          position="center"
-        >
-          <AboutUs />
-        </InfoCard>
-      </Container>
-      <Container>
-        <InfoCard
-          id="our-services"
-          title={t('ourServices.title')}
-          subtitle={t('ourServices.subtitle')}
-          position="center"
-        >
-          <OurServices />
-        </InfoCard>
-      </Container>
-
-      <Container>
-        <Container className={styles.aboutOurCompanyContainer}>
-          <InfoCard id="about-us" subtitle={t('aboutCompany.ourCompany.title')}>
-            <AboutCompany
-              companyInfo={ourCompanyInfo}
-              embedAddress={'Tầng 3, số 35 Thái Phiên, Phường Hải Châu, TP Đà Nẵng, Việt Nam'}
-              mapUrl={'https://maps.app.goo.gl/41mSu8LCktE8FJyu9'}
-              mapHeight={380}
-            />
-          </InfoCard>
-          <InfoCard subtitle={t('aboutCompany.parentCompany.title')}>
-            <AboutCompany
-              companyInfo={parentCompanyInfo}
-              embedAddress={'〒103-0025 東京都中央区日本橋茅場町2-7-4 Aster茅場町9F'}
-              mapUrl={'https://maps.app.goo.gl/McP4NWUEcgGAS3c27'}
-              mapHeight={380}
-            />
-          </InfoCard>
-        </Container>
-      </Container>
+      {normalizedOrder.map((key) => sections[key])}
     </div>
   );
 }

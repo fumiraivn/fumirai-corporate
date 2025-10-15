@@ -59,15 +59,15 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   if (!SUPPORTED_LOCALES.includes(locale as ELanguage)) notFound();
 
   const messages = getMessages(locale);
-  const antdLocale = locale === ELanguage.VI ? viVN : locale === ELanguage.JA ? jaJP : enUS;
+  const antdLocaleMap = {
+    [ELanguage.VI]: viVN,
+    [ELanguage.JA]: jaJP,
+    [ELanguage.EN]: enUS,
+  } as const;
+  const antdLocale = antdLocaleMap[locale as ELanguage] ?? jaJP;
 
-  const commonData = await getCommon(locale as ELanguage);
-
-  if (commonData) {
-    console.log('commonData', commonData);
-  } else {
-    console.warn('No common data available for locale:', locale);
-  }
+  let commonData = null;
+  commonData = await getCommon(locale as ELanguage);
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -78,8 +78,8 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <NextIntlClientProvider locale={locale} messages={messages}>
           <ConfigProvider locale={antdLocale} theme={{ algorithm: antdTheme.defaultAlgorithm }}>
             <AntdApp>
-              <LoadingFullPage />
-              <ConditionalLayout>{children}</ConditionalLayout>
+              <LoadingFullPage locale={locale as ELanguage} />
+              <ConditionalLayout commonData={commonData}>{children}</ConditionalLayout>
               <BackToTop />
             </AntdApp>
           </ConfigProvider>

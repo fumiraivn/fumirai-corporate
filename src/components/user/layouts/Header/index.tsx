@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation';
 
 import { Button, ButtonType, Container, Logo } from '@/components/base';
 import { MenuIcon } from '@/svgs/user/HomeIcon';
+import { CommonContent } from '@/types';
 import { ROUTERS } from '@/utils/constant';
 
 import { useLocale } from 'next-intl';
@@ -18,9 +19,10 @@ import styles from './styles.module.scss';
 
 interface HeaderProps {
   usePinnedHeader?: boolean;
+  commonData?: CommonContent | null;
 }
 
-export default function Header({ usePinnedHeader = false }: HeaderProps) {
+export default function Header({ usePinnedHeader = false, commonData }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPinned, setIsPinned] = useState(usePinnedHeader);
   const [isPinnedVisible, setIsPinnedVisible] = useState(usePinnedHeader);
@@ -91,21 +93,26 @@ export default function Header({ usePinnedHeader = false }: HeaderProps) {
         <Container>
           <div className={styles.navBarContent}>
             {/* Logo */}
-            <Logo href={ROUTERS.HOME(locale)} className={styles.logo} />
+            <Logo
+              alt={commonData?.logo?.alt}
+              imgSrc={commonData?.logo?.url}
+              href={ROUTERS.HOME(locale)}
+              className={styles.logo}
+            />
 
             {/* Navigation (desktop only) */}
             <div className={styles.navDesktop}>
-              <Navigation />
+              <Navigation menus={commonData?.menus} />
             </div>
 
             {/* CTA Section (desktop only) */}
             <div className={styles.ctaSection}>
-              <LanguageDropdown />
+              <LanguageDropdown languages={commonData?.languages_option} />
               <Button
                 onClick={() => router.push(ROUTERS.RECRUITMENT(locale))}
                 buttonType={ButtonType.Default}
               >
-                Tuyển dụng
+                {commonData?.recruitment_btn?.text || 'Tuyển dụng'}
               </Button>
             </div>
 
@@ -121,7 +128,9 @@ export default function Header({ usePinnedHeader = false }: HeaderProps) {
         </Container>
       </div>
       <MobileMenu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-      {!usePinnedHeader && <Banner />}
+      {!usePinnedHeader && (
+        <Banner banner={commonData?.banner} contactBtn={commonData?.contact_btn} />
+      )}
     </header>
   );
 }

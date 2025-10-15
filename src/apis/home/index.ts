@@ -1,4 +1,4 @@
-import { ELanguage } from '@/types';
+import { CommonContent, ELanguage } from '@/types';
 import { API_ENDPOINTS } from '@/utils/constant';
 
 import { apiGet } from '../apiWrapper';
@@ -31,13 +31,43 @@ export const getHomeData = async (
   return apiGet<CmsApiResponse<HomeData>>(API_ENDPOINTS.HOME(locale), 'home data', locale);
 };
 
+export const getRecruitmentPage = async (
+  locale: ELanguage = ELanguage.JA,
+): Promise<unknown | null> => {
+  return apiGet<unknown>(API_ENDPOINTS.RECRUITMENT(locale), 'recruitment page', locale);
+};
+
 /**
  * Fetch common data from the API
  * @param locale - The locale for the API endpoint (e.g., 'vi', 'en', 'ja')
- * @returns Promise<CmsApiResponse | null>
+ * @returns Promise<CommonContent | null>
  */
+// caching disabled; keep only in-flight de-duplication
+const inflight = new Map<string, Promise<CommonContent | null>>();
+
 export const getCommon = async (
   locale: ELanguage = ELanguage.JA,
-): Promise<CmsApiResponse | null> => {
-  return apiGet<CmsApiResponse>(API_ENDPOINTS.COMMON(locale), 'common data', locale);
+): Promise<CommonContent | null> => {
+  const key = String(locale);
+
+  // de-duplicate concurrent requests
+  const existing = inflight.get(key);
+  if (existing) return existing;
+
+  const p = apiGet<CommonContent>(API_ENDPOINTS.COMMON(locale), 'common data', locale, {
+    skipCache: true,
+  })
+    .then((data) => {
+      inflight.delete(key);
+      return data;
+    })
+    .catch((err) => {
+      inflight.delete(key);
+      throw err;
+    });
+
+  inflight.set(key, p);
+  return p;
 };
+
+export const clearCommonCache = () => {};

@@ -3,10 +3,15 @@
 import { useEffect, useState } from 'react';
 
 import { Logo } from '@/components/base';
+import { ELanguage } from '@/types';
 
 import styles from './styles.module.scss';
 
-export default function LoadingFullPage() {
+interface LoadingFullPageProps {
+  locale: ELanguage;
+}
+
+export default function LoadingFullPage({ locale }: LoadingFullPageProps) {
   const [isFading, setIsFading] = useState(false);
   const [isHidden, setIsHidden] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -18,10 +23,11 @@ export default function LoadingFullPage() {
     const start = Date.now();
 
     const done = async () => {
-      try {
-        type DocWithFonts = Document & { fonts?: { ready: Promise<unknown> } };
-        await (document as DocWithFonts).fonts?.ready;
-      } catch {}
+      // Wait for fonts to load
+      type DocWithFonts = Document & { fonts?: { ready: Promise<unknown> } };
+      await (document as DocWithFonts).fonts?.ready;
+
+      // API data is already loaded in layout, so we just need to wait for minimum time
       const remain = Math.max(0, minTime - (Date.now() - start));
       setTimeout(() => {
         setIsFading(true);
@@ -30,7 +36,7 @@ export default function LoadingFullPage() {
     };
 
     done();
-  }, []);
+  }, [locale]);
 
   // Prevent hydration mismatch by not rendering until mounted
   if (!isMounted || isHidden) return null;

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 import { useLocaleSwitcher } from '@/hooks';
 import { EnglishFlagIcon, JapaneseFlagIcon, VietnameseFlagIcon } from '@/svgs/user/HomeIcon';
-import { ELanguage } from '@/types';
+import { ELanguage, MenuItem } from '@/types';
 
 import { Dropdown } from 'antd';
 
@@ -35,11 +35,13 @@ const languageOptions: LanguageOption[] = [
 interface LanguageDropdownProps {
   className?: string;
   isMobile?: boolean;
+  languages?: MenuItem[];
 }
 
 const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   className = '',
   isMobile = false,
+  languages,
 }) => {
   const { currentLocale, switchLocale } = useLocaleSwitcher();
   const [selectedValue, setSelectedValue] = useState(currentLocale);
@@ -51,7 +53,24 @@ const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
 
   const dropdownClasses = [styles.languageDropdown, className].filter(Boolean).join(' ');
 
-  const selectedOption = languageOptions.find((option) => option.value === selectedValue);
+  // Use languages from API or fallback to hardcoded options
+  const availableLanguages =
+    languages?.map((lang) => {
+      const flagMap = {
+        en: <EnglishFlagIcon width={24} height={24} />,
+        ja: <JapaneseFlagIcon width={24} height={24} />,
+        vi: <VietnameseFlagIcon width={24} height={24} />,
+      };
+      return {
+        value: lang.value as ELanguage,
+        label: lang.text,
+        flag: flagMap[lang.value as keyof typeof flagMap] || (
+          <EnglishFlagIcon width={24} height={24} />
+        ),
+      };
+    }) || languageOptions;
+
+  const selectedOption = availableLanguages.find((option) => option.value === selectedValue);
 
   // Trigger component
   const triggerComponent = isMobile ? (
@@ -64,7 +83,7 @@ const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   );
 
   // Menu items
-  const menuItems = languageOptions.map((option) => ({
+  const menuItems = availableLanguages.map((option) => ({
     key: option.value,
     label: (
       <div className={styles.optionContent}>

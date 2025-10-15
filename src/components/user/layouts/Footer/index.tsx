@@ -1,14 +1,15 @@
 import { Container } from '@/components/base';
 import Logo from '@/components/base/Logo';
 import Navigation from '@/components/user/layouts/Header/Navigation';
-
-import { useTranslations } from 'next-intl';
+import { CommonContent } from '@/types';
 
 import styles from './styles.module.scss';
 
-export default function Footer() {
-  const t = useTranslations('homePage.footer');
-  const currentYear = new Date().getFullYear();
+interface FooterProps {
+  commonData?: CommonContent | null;
+}
+
+export default function Footer({ commonData }: FooterProps) {
   return (
     <footer id="contact" className={styles.footer}>
       <Container isFullWidth className={styles.container}>
@@ -18,25 +19,28 @@ export default function Footer() {
           </div>
 
           <div className={styles.contactRow}>
-            <div className={styles.contactItem}>
-              <span className={styles.contactLabel}>{t('contact.phone')}</span>
-              <a href="tel:+84385135531" className={styles.contactLink}>
-                (+84) 385 135 531
-              </a>
-            </div>
-            <div className={styles.contactItem}>
-              <span className={styles.contactLabel}>{t('contact.email')}</span>
-              <a href="mailto:fumirai@ltd.com?subject=Inquiry" className={styles.contactLink}>
-                fumirai@ltd.com
-              </a>
-            </div>
+            {commonData?.contact?.map((contact, index) => (
+              <div key={index} className={styles.contactItem}>
+                <span className={styles.contactLabel}>{contact.text}</span>
+                <a
+                  href={
+                    contact.value.includes('@')
+                      ? `mailto:${contact.value.trim()}?subject=Inquiry`
+                      : `tel:${contact.value}`
+                  }
+                  className={styles.contactLink}
+                >
+                  {contact.value}
+                </a>
+              </div>
+            ))}
           </div>
 
-          <div className={styles.copyright}>{`© ${currentYear} ${t('copyright')}`}</div>
+          <div className={styles.copyright}>{commonData?.copyright}</div>
         </div>
 
         <div className={styles.navBarBottom}>
-          <Navigation />
+          <Navigation menus={commonData?.menus} />
         </div>
       </Container>
     </footer>

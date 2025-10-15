@@ -2,31 +2,36 @@
 
 import { Button, ButtonType, Container } from '@/components/base';
 import { ArrowDownIcon } from '@/svgs/user/HomeIcon';
-
-import { useTranslations } from 'next-intl';
+import { BannerContent, Button as ButtonTypeDef } from '@/types';
+import { scrollToSection } from '@/utils/constant';
 
 import styles from './styles.module.scss';
 
-export default function Banner() {
-  const t = useTranslations('homePage.banner');
+interface BannerProps {
+  banner?: BannerContent;
+  contactBtn?: ButtonTypeDef;
+}
+
+export default function Banner({ banner, contactBtn }: BannerProps) {
+  const title = banner?.title;
+  const description = banner?.description;
+  const contactText = contactBtn?.text;
+  const contactTarget = contactBtn?.redirect_to;
 
   return (
     <Container>
       <div className={styles.bannerContent}>
-        <p className={styles.bannerTitle}>{t('title')}</p>
-        <p className={styles.bannerDescription}>{t('description')}</p>
+        <p className={styles.bannerTitle}>{title}</p>
+        <p className={styles.bannerDescription}>{description}</p>
         <div className={styles.bannerButtons}>
           <Button
             buttonType={ButtonType.Info}
             onClick={() => {
-              const footer = document.querySelector('footer');
-              if (footer) {
-                footer.scrollIntoView({ behavior: 'smooth', block: 'start' });
-              }
+              scrollToSection(contactTarget || 'contact');
             }}
           >
             <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
-              <span>Liên hệ</span>
+              <span>{contactText}</span>
               <ArrowDownIcon className={styles.arrowBounce} width={18} height={18} />
             </span>
           </Button>

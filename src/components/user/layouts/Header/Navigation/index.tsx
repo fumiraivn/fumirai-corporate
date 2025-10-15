@@ -2,28 +2,22 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
+import { MenuItem } from '@/types';
 import { ROUTERS, scrollToSection } from '@/utils/constant';
 
-import { useLocale, useTranslations } from 'next-intl';
+import { useLocale } from 'next-intl';
 
 import styles from './styles.module.scss';
 
 interface NavigationProps {
   direction?: 'horizontal' | 'vertical';
+  menus?: MenuItem[];
 }
 
-export default function Navigation({ direction = 'horizontal' }: NavigationProps) {
-  const t = useTranslations('homePage.navigation');
+export default function Navigation({ direction = 'horizontal', menus = [] }: NavigationProps) {
   const router = useRouter();
   const pathname = usePathname();
   const locale = useLocale();
-
-  const navigationItems = [
-    { key: 'home', sectionId: 'home' },
-    { key: 'aboutUs', sectionId: 'about-us' },
-    { key: 'ourServices', sectionId: 'our-services' },
-    { key: 'contact', sectionId: 'contact' },
-  ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
@@ -47,14 +41,14 @@ export default function Navigation({ direction = 'horizontal' }: NavigationProps
       className={`${styles.navigation} ${direction === 'vertical' ? styles.navigationVertical : ''}`}
     >
       <ul className={styles.navList}>
-        {navigationItems.map((item) => (
+        {menus?.map((item) => (
           <li className={styles.navItem} key={item.key}>
             <a
-              href={`#${item.sectionId}`}
+              href={`#${item.value}`}
               className={styles.navLink}
-              onClick={(e) => handleNavClick(e, item.sectionId!)}
+              onClick={(e) => handleNavClick(e, item.value!)}
             >
-              {t(item.key)}
+              {item.text}
             </a>
           </li>
         ))}

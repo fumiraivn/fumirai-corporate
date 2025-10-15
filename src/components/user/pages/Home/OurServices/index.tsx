@@ -2,8 +2,6 @@ import { PropsWithChildren, useEffect, useMemo, useRef } from 'react';
 
 import Image from 'next/image';
 
-import { useTranslations } from 'next-intl';
-
 import styles from './styles.module.scss';
 
 type ServiceItem = {
@@ -18,50 +16,7 @@ export type OurServicesProps = PropsWithChildren<{
   position?: 'left' | 'right' | 'center';
 }>;
 
-export default function OurServices({ data }: OurServicesProps) {
-  const t = useTranslations('homePage.ourServices.services');
-
-  const defaultServices: ServiceItem[] = [
-    {
-      id: 'web-dev',
-      title: t('webDev.title'),
-      description: t('webDev.description'),
-      icon: '/window.svg',
-    },
-    {
-      id: 'digital-marketing',
-      title: t('digitalMarketing.title'),
-      description: t('digitalMarketing.description'),
-      icon: '/globe.svg',
-    },
-    {
-      id: 'startup-solutions',
-      title: t('startupSolutions.title'),
-      description: t('startupSolutions.description'),
-      icon: '/next.svg',
-    },
-    {
-      id: 'networking-services',
-      title: t('networkingServices.title'),
-      description: t('networkingServices.description'),
-      icon: '/globe.svg',
-    },
-    {
-      id: 'seo-optimization',
-      title: t('seoOptimization.title'),
-      description: t('seoOptimization.description'),
-      icon: '/file.svg',
-    },
-    {
-      id: 'apps-development',
-      title: t('appsDevelopment.title'),
-      description: t('appsDevelopment.description'),
-      icon: '/window.svg',
-    },
-  ];
-
-  const servicesData = data || defaultServices;
-
+export default function OurServices({ data = [] }: OurServicesProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -106,12 +61,12 @@ export default function OurServices({ data }: OurServicesProps) {
     });
 
     return () => observer.disconnect();
-  }, [servicesData.length]);
+  }, [data.length]);
 
   return (
     <div className={styles.ourServices} ref={containerRef}>
       <div className={styles.grid}>
-        {servicesData.map((item, index) => (
+        {data.map((item, index) => (
           <div
             key={item.id}
             ref={(el) => {

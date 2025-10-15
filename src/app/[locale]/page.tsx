@@ -13,11 +13,13 @@ export default async function LocalePage({ params }: { params: Promise<{ locale:
 
   const homeData = await getHomeData(locale as ELanguage);
 
-  if (homeData) {
-    console.log('Home data fetched:', homeData);
-  } else {
-    console.warn('No home data available for locale:', locale);
-  }
+  // Support both list and single-object CMS shapes; when list, flatten all contents' content
+  type CmsEntry = { content?: unknown[] };
+  type CmsList = { contents?: CmsEntry[] };
+  const list = (homeData as unknown as CmsList | undefined)?.contents;
+  const contentBlocks: unknown[] | undefined = Array.isArray(list)
+    ? (list as CmsEntry[]).flatMap((entry) => (Array.isArray(entry?.content) ? entry.content : []))
+    : (homeData as unknown as CmsEntry | undefined)?.content;
 
-  return <HomePage />;
+  return <HomePage content={(contentBlocks as unknown[]) || []} />;
 }

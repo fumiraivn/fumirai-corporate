@@ -1,7 +1,6 @@
 import { Button, ButtonType } from '@/components/base';
 
 import { Tooltip } from 'antd';
-import { useTranslations } from 'next-intl';
 
 import styles from './styles.module.scss';
 
@@ -11,6 +10,9 @@ export type JobPosition = {
   description: string;
   requirements: string[];
   benefits: string[];
+  downloadText?: string;
+  requirementsTitle?: string;
+  benefitsTitle?: string;
 };
 
 export type JobCardProps = {
@@ -18,8 +20,6 @@ export type JobCardProps = {
 };
 
 export default function JobCard({ job }: JobCardProps) {
-  const t = useTranslations('recruitmentPage');
-
   return (
     <div className={styles.jobCard}>
       <div className={styles.cardHeader}>
@@ -33,7 +33,7 @@ export default function JobCard({ job }: JobCardProps) {
 
       <div className={styles.cardContent}>
         <div className={styles.section}>
-          <h4 className={styles.sectionTitle}>{t('requirements')}</h4>
+          <h4 className={styles.sectionTitle}>{job.requirementsTitle}</h4>
           <ul className={styles.requirementList}>
             {job.requirements.map((requirement, index) => (
               <li key={index} className={styles.requirementItem}>
@@ -44,7 +44,7 @@ export default function JobCard({ job }: JobCardProps) {
         </div>
 
         <div className={styles.section}>
-          <h4 className={styles.sectionTitle}>{t('benefits')}</h4>
+          <h4 className={styles.sectionTitle}>{job.benefitsTitle}</h4>
           <ul className={styles.benefitList}>
             {job.benefits.map((benefit, index) => (
               <li key={index} className={styles.benefitItem}>
@@ -57,7 +57,7 @@ export default function JobCard({ job }: JobCardProps) {
 
       <div className={styles.cardFooter}>
         <Button buttonType={ButtonType.Default} className={styles.applyButton}>
-          {t('jobDesc')}
+          {job.downloadText}
         </Button>
       </div>
     </div>

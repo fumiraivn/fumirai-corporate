@@ -22,7 +22,21 @@ export const apiWrapper = async <T>(
       return cachedError.data;
     }
 
-    console.error(`Error fetching ${errorContext}:`, error);
+    // Only log errors that are not expected or handled
+    const isAxiosError = error && typeof error === 'object' && 'response' in error;
+    const status = isAxiosError
+      ? (error as { response?: { status: number } }).response?.status
+      : null;
+    const isExpectedError = status === 404 || status === 401 || status === 403;
+    const isTimeoutError =
+      error &&
+      typeof error === 'object' &&
+      'code' in error &&
+      (error as { code: string }).code === 'ECONNABORTED';
+
+    if (!isExpectedError && !isTimeoutError) {
+      console.error(`Error fetching ${errorContext}:`, error);
+    }
 
     // Handle specific error cases
     if (error && typeof error === 'object' && 'response' in error) {
@@ -66,12 +80,25 @@ export const apiWrapper = async <T>(
  * @param locale - Locale for error messages
  * @returns Promise<T | null>
  */
+export interface ApiGetOptions {
+  skipCache?: boolean;
+  params?: Record<string, unknown>;
+}
+
 export const apiGet = async <T>(
   url: string,
   errorContext: string,
   locale?: string,
+  options?: ApiGetOptions,
 ): Promise<T | null> => {
-  return apiWrapper(() => axiosInstance.get(url), errorContext, locale);
+  return apiWrapper(
+    () =>
+      axiosInstance.get(url, {
+        params: options?.params,
+      }),
+    errorContext,
+    locale,
+  );
 };
 
 /**
