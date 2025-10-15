@@ -6,11 +6,15 @@ interface MasterLayoutProps {
   usePinnedHeader?: boolean;
 }
 
-export default function MasterLayout({ children, showHeader = true }: MasterLayoutProps) {
+export default function MasterLayout({
+  children,
+  showHeader = true,
+  usePinnedHeader = false,
+}: MasterLayoutProps) {
   return (
     <>
       <ScrollToTop />
-      {showHeader && <Header />}
+      {showHeader && <Header usePinnedHeader={usePinnedHeader} />}
       {children}
       <Footer />
     </>

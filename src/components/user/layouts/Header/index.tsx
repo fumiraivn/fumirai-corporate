@@ -16,17 +16,32 @@ import MobileMenu from './MobileMenu';
 import Navigation from './Navigation';
 import styles from './styles.module.scss';
 
-export default function Header() {
+interface HeaderProps {
+  usePinnedHeader?: boolean;
+}
+
+export default function Header({ usePinnedHeader = false }: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isPinned, setIsPinned] = useState(false);
-  const [isPinnedVisible, setIsPinnedVisible] = useState(false);
+  const [isPinned, setIsPinned] = useState(usePinnedHeader);
+  const [isPinnedVisible, setIsPinnedVisible] = useState(usePinnedHeader);
   const [navHeight, setNavHeight] = useState(0);
   const navBarRef = useRef<HTMLDivElement | null>(null);
   const lastScrollYRef = useRef(0);
   const locale = useLocale();
   const router = useRouter();
 
+  // Update pinned state when usePinnedHeader changes
   useEffect(() => {
+    setIsPinned(usePinnedHeader);
+    setIsPinnedVisible(usePinnedHeader);
+  }, [usePinnedHeader]);
+
+  useEffect(() => {
+    // If usePinnedHeader is true, don't add scroll listener
+    if (usePinnedHeader) {
+      return;
+    }
+
     const handleScroll = () => {
       const currentY = window.scrollY || window.pageYOffset;
 
@@ -48,7 +63,7 @@ export default function Header() {
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [usePinnedHeader]);
 
   useEffect(() => {
     const measure = () => {
@@ -62,12 +77,15 @@ export default function Header() {
   }, []);
 
   return (
-    <header className={styles.header} style={{ paddingTop: isPinned ? navHeight : 0 }}>
+    <header
+      className={styles.header}
+      style={{ paddingTop: usePinnedHeader ? 0 : isPinned ? navHeight : 0 }}
+    >
       {/* Navigation Bar */}
       <div
         ref={navBarRef}
-        className={`${styles.navBar} ${isPinned ? styles.navBarPinned : ''} ${
-          isPinned && isPinnedVisible ? styles.navBarPinnedVisible : ''
+        className={`${styles.navBar} ${isPinned || usePinnedHeader ? styles.navBarPinned : ''} ${
+          (isPinned && isPinnedVisible) || usePinnedHeader ? styles.navBarPinnedVisible : ''
         }`}
       >
         <Container>
@@ -103,8 +121,7 @@ export default function Header() {
         </Container>
       </div>
       <MobileMenu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
-
-      <Banner />
+      {!usePinnedHeader && <Banner />}
     </header>
   );
 }
