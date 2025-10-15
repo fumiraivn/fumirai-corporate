@@ -10,7 +10,7 @@ export default function Footer() {
   const t = useTranslations('homePage.footer');
   const currentYear = new Date().getFullYear();
   return (
-    <footer className={styles.footer}>
+    <footer id="contact" className={styles.footer}>
       <Container isFullWidth className={styles.container}>
         <div className={styles.bottomInfo}>
           <div className={styles.logoWrap}>

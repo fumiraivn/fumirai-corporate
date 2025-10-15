@@ -7,8 +7,7 @@ const ROUTERS = {
   RECRUITMENT: (locale: string) => `/${locale}/recruitment`,
   OUR_SERVICES: (locale: string) => `/${locale}#our-services`,
   ABOUT_US: (locale: string) => `/${locale}#about-us`,
-  CUSTOMERS: (locale: string) => `/${locale}#customers`,
-  TEAM_MEMBERS: (locale: string) => `/${locale}#team-members`,
+  CONTACT: (locale: string) => `/${locale}#contact`,
 };
 
 const API_ENDPOINTS = {

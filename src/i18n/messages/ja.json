@@ -4,8 +4,7 @@
       "home": "ホーム",
       "ourServices": "私たちのサービス",
       "aboutUs": "私たちについて",
-      "customers": "お客様",
-      "teamMembers": "チームメンバー",
+      "contact": "お問い合わせ",
       "recruitment": "採用情報"
     },
     "banner": {
@@ -73,20 +72,6 @@
         "values": {
           "leadership": "代表取締役"
         }
-      }
-    },
-    "customers": {
-      "title": "私たちの顧客",
-      "subtitle": "日本の多くの主要企業のパートナー"
-    },
-    "teamMembers": {
-      "title": "私たちのチーム",
-      "subtitle": "取締役会",
-      "positions": {
-        "founderCeo": "創設者、CEO",
-        "coFounderCto": "共同創設者、CTO",
-        "chiefCreativeOfficer": "最高クリエイティブ責任者",
-        "leadDeveloper": "リード開発者"
       }
     },
     "cta": {

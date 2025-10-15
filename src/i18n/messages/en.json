@@ -4,8 +4,7 @@
       "home": "Home",
       "ourServices": "Our Services",
       "aboutUs": "About Us",
-      "customers": "Customers",
-      "teamMembers": "Team Members",
+      "contact": "Contact",
       "recruitment": "Recruitment"
     },
     "banner": {
@@ -73,20 +72,6 @@
         "values": {
           "leadership": "Representative Director"
         }
-      }
-    },
-    "customers": {
-      "title": "Our Customers",
-      "subtitle": "Partners of many leading businesses in Japan"
-    },
-    "teamMembers": {
-      "title": "Our Team",
-      "subtitle": "Board of Directors",
-      "positions": {
-        "founderCeo": "Founder, CEO",
-        "coFounderCto": "Co-Founder, CTO",
-        "chiefCreativeOfficer": "Chief Creative Officer",
-        "leadDeveloper": "Lead Developer"
       }
     },
     "cta": {

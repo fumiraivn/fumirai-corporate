@@ -4,8 +4,7 @@
       "home": "Trang chủ",
       "ourServices": "Dịch vụ",
       "aboutUs": "Về chúng tôi",
-      "customers": "Khách hàng",
-      "teamMembers": "Nhân sự",
+      "contact": "Liên hệ",
       "recruitment": "Tuyển dụng"
     },
     "banner": {
@@ -73,20 +72,6 @@
         "values": {
           "leadership": "代表取締役"
         }
-      }
-    },
-    "customers": {
-      "title": "Khách hàng của chúng tôi",
-      "subtitle": "Đối tác của nhiều doanh nghiệp đầu tại Nhật Bản"
-    },
-    "teamMembers": {
-      "title": "Đội ngũ nhân sự",
-      "subtitle": "Ban giám đốc",
-      "positions": {
-        "founderCeo": "Người sáng lập, CEO",
-        "coFounderCto": "Đồng sáng lập, CTO",
-        "chiefCreativeOfficer": "Giám đốc Sáng tạo",
-        "leadDeveloper": "Trưởng nhóm Phát triển"
       }
     },
     "cta": {

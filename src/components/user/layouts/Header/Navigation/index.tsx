@@ -20,10 +20,9 @@ export default function Navigation({ direction = 'horizontal' }: NavigationProps
 
   const navigationItems = [
     { key: 'home', sectionId: 'home' },
-    { key: 'ourServices', sectionId: 'our-services' },
     { key: 'aboutUs', sectionId: 'about-us' },
-    { key: 'customers', sectionId: 'customers' },
-    { key: 'teamMembers', sectionId: 'team-members' },
+    { key: 'ourServices', sectionId: 'our-services' },
+    { key: 'contact', sectionId: 'contact' },
   ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
@@ -36,7 +35,9 @@ export default function Navigation({ direction = 'horizontal' }: NavigationProps
       // If not on home page, navigate to home with hash
       router.push(`${ROUTERS.HOME(locale)}#${sectionId}`);
     } else {
-      // If already on home page, just scroll to section
+      // If already on home page, update URL and scroll to section
+      const newUrl = `${ROUTERS.HOME(locale)}#${sectionId}`;
+      window.history.pushState(null, '', newUrl);
       scrollToSection(sectionId);
     }
   };
