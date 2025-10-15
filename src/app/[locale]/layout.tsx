@@ -63,7 +63,11 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   const commonData = await getCommon(locale as ELanguage);
 
-  console.log('commonData', commonData);
+  if (commonData) {
+    console.log('commonData', commonData);
+  } else {
+    console.warn('No common data available for locale:', locale);
+  }
 
   return (
     <html lang={locale} suppressHydrationWarning>

@@ -11,11 +11,12 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function LocalePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 
-  try {
-    const homeData = await getHomeData(locale as ELanguage);
+  const homeData = await getHomeData(locale as ELanguage);
+
+  if (homeData) {
     console.log('Home data fetched:', homeData);
-  } catch (error) {
-    console.error('Error fetching home data:', error);
+  } else {
+    console.warn('No home data available for locale:', locale);
   }
 
   return <HomePage />;

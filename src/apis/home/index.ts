@@ -1,7 +1,7 @@
 import { ELanguage } from '@/types';
 import { API_ENDPOINTS } from '@/utils/constant';
 
-import axiosInstance from '../axios';
+import { apiGet } from '../apiWrapper';
 
 export interface HomeData {
   id: string;
@@ -23,31 +23,21 @@ export interface CmsApiResponse<T = unknown> {
 /**
  * Fetch home data from the API
  * @param locale - The locale for the API endpoint (e.g., 'vi', 'en', 'ja')
- * @returns Promise<CmsApiResponse<HomeData>>
+ * @returns Promise<CmsApiResponse<HomeData> | null>
  */
 export const getHomeData = async (
   locale: ELanguage = ELanguage.JA,
-): Promise<CmsApiResponse<HomeData>> => {
-  try {
-    const response = await axiosInstance.get(API_ENDPOINTS.HOME(locale));
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching home data:', error);
-    throw error;
-  }
+): Promise<CmsApiResponse<HomeData> | null> => {
+  return apiGet<CmsApiResponse<HomeData>>(API_ENDPOINTS.HOME(locale), 'home data', locale);
 };
 
 /**
- * Fetch home data from the API
+ * Fetch common data from the API
  * @param locale - The locale for the API endpoint (e.g., 'vi', 'en', 'ja')
- * @returns Promise<any>
+ * @returns Promise<CmsApiResponse | null>
  */
-export const getCommon = async (locale: ELanguage = ELanguage.JA): Promise<CmsApiResponse> => {
-  try {
-    const response = await axiosInstance.get(API_ENDPOINTS.COMMON(locale));
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching common data:', error);
-    throw error;
-  }
+export const getCommon = async (
+  locale: ELanguage = ELanguage.JA,
+): Promise<CmsApiResponse | null> => {
+  return apiGet<CmsApiResponse>(API_ENDPOINTS.COMMON(locale), 'common data', locale);
 };
