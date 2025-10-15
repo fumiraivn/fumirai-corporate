@@ -87,7 +87,6 @@ export default function HomePage() {
             />
           </InfoCard>
         </Container>
-        {/* Removed separate Map section; maps now shown inside each AboutCompany */}
       </Container>
     </div>
   );

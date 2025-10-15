@@ -92,13 +92,13 @@ export default function Header() {
             </div>
 
             {/* Mobile menu button (md and below) */}
-            <button
+            <div
               aria-label="Open menu"
               className={styles.menuButton}
               onClick={() => setIsMenuOpen(true)}
             >
               <MenuIcon width={28} height={28} />
-            </button>
+            </div>
           </div>
         </Container>
       </div>

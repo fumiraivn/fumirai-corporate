@@ -14,7 +14,7 @@ export default function Footer() {
       <Container isFullWidth className={styles.container}>
         <div className={styles.bottomInfo}>
           <div className={styles.logoWrap}>
-            <Logo imgSrc="/logo-light.png" text="" width={140} height={60} />
+            <Logo />
           </div>
 
           <div className={styles.contactRow}>

@@ -40,7 +40,6 @@
   }
 
   &:active {
-    background: $color-primary-500;
     transform: translateY(-2px) scale(0.98);
     transition:
       transform 0.1s ease,

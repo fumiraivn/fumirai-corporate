@@ -1,6 +1,6 @@
 .footer {
   margin-top: 80px;
-  background: linear-gradient(to top right, rgb(239, 246, 255) 0%, #ffffff 100%);
+  background: linear-gradient(to top, rgb(239, 246, 255) 0%, #ffffff 100%);
   color: $color-text-main;
   margin-top: auto;
   position: relative;
@@ -23,6 +23,10 @@
   margin-top: 1rem;
   padding-top: 1rem;
   border-top: 1px solid $color-gray-200;
+
+  @include respond-below(md) {
+    display: none;
+  }
 }
 
 .logoSection {

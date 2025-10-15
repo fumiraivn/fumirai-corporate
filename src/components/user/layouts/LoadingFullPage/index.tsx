@@ -39,9 +39,7 @@ export default function LoadingFullPage() {
     <div className={`${styles.loadingContainer} ${isFading ? styles.fadeOut : ''}`}>
       <div className={styles.gradientBackground}></div>
       <div className={styles.vignette}></div>
-      <div className={styles.loadingContent}>
-        <Logo className={styles.logo} />
-      </div>
+      <Logo width={50} height={50} className={styles.logo} />
     </div>
   );
 }
