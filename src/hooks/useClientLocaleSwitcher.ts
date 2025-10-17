@@ -16,14 +16,14 @@ export function useClientLocaleSwitcher() {
   const serverLocale = useLocale();
   const [clientLocale, setClientLocale] = useState<AppLocale>(serverLocale as AppLocale);
 
-  // Initialize client locale from localStorage or server locale
+  // Initialize and sync client locale with URL/server locale (source of truth)
+  // Keep localStorage in sync but do NOT let it override the URL locale
   useEffect(() => {
-    const storedLocale = localStorage.getItem(LOCALE_STORAGE_KEY) as AppLocale;
-    if (storedLocale && SUPPORTED_LOCALES.includes(storedLocale)) {
-      setClientLocale(storedLocale);
-    } else {
-      setClientLocale(serverLocale as AppLocale);
-    }
+    const urlLocale = serverLocale as AppLocale;
+    setClientLocale(urlLocale);
+    try {
+      localStorage.setItem(LOCALE_STORAGE_KEY, urlLocale);
+    } catch {}
   }, [serverLocale]);
 
   const switchLocale = useCallback(

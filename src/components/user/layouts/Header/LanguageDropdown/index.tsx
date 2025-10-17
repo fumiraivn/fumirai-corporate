@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useClientLocaleSwitcher } from '@/hooks';
 import { EnglishFlagIcon, JapaneseFlagIcon, VietnameseFlagIcon } from '@/svgs/user/HomeIcon';
@@ -47,6 +47,13 @@ const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   const { currentLocale, switchLocale } = useClientLocaleSwitcher();
   const [selectedValue, setSelectedValue] = useState(currentLocale);
 
+  // Keep selected value in sync with current client locale
+  useEffect(() => {
+    if (currentLocale !== selectedValue) {
+      setSelectedValue(currentLocale as ELanguage);
+    }
+  }, [currentLocale, selectedValue]);
+
   const handleChange = (newValue: string) => {
     setSelectedValue(newValue as ELanguage);
     switchLocale(newValue);
@@ -70,17 +77,17 @@ const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
     return [
       {
         value: ELanguage.EN,
-        label: option.en?.[0]?.text || 'English',
+        label: option.en?.[0]?.text,
         flag: flagMap.en,
       },
       {
         value: ELanguage.JA,
-        label: option.ja?.[0]?.text || '日本語',
+        label: option.ja?.[0]?.text,
         flag: flagMap.ja,
       },
       {
         value: ELanguage.VI,
-        label: option.vi?.[0]?.text || 'Tiếng Việt',
+        label: option.vi?.[0]?.text,
         flag: flagMap.vi,
       },
     ];

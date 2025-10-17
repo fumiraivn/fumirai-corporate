@@ -121,9 +121,6 @@ export function useAboutCompanyData(content: BlockContent[], locale: ELanguage):
       });
     }
 
-    console.log(companySubtitleText);
-    console.log(parentSubtitleText);
-
     return {
       meta: { scroll_id: EBlockId.OUR_COMPANY },
       company: { items: companyItems, mapUrl: companyMapUrl, embedAddress: companyEmbedAddress },
