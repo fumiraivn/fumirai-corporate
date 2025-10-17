@@ -14,6 +14,9 @@ const API_ENDPOINTS = {
   COMMON: (locale: string) => `common/${locale}`,
   HOME: (locale: string) => `pages/home-${locale}`,
   RECRUITMENT: (locale: string) => `pages/recruitment-${locale}`,
+  COMMON_LANGUAGES: 'common-languages',
+  HOME_LANGUAGES: 'pages-languages/home',
+  RECRUITMENT_LANGUAGES: 'pages-languages/recruitment',
 };
 
 export * from './scrollUtils';

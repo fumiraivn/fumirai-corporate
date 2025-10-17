@@ -22,7 +22,10 @@ export function useLocaleSwitcher() {
     segments[1] = newLocale; // Replace the locale segment
     const newPathname = segments.join('/');
 
-    router.push(newPathname);
+    // Use replace instead of push to avoid adding to history
+    // This will change the URL but won't trigger a full page reload
+    // The data is already available, just need to update the locale context
+    router.replace(newPathname);
   };
 
   const getCurrentLocale = () => locale;

@@ -1,7 +1,7 @@
-import { getRecruitmentPage } from '@/apis/home';
+import { getRecruitmentLanguages } from '@/apis';
 import { RecruitmentPage } from '@/components';
 import { generateRecruitmentMetadata } from '@/lib/recruitmentSEO';
-import { ELanguage } from '@/types';
+import { ELanguage, PageData } from '@/types';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -11,10 +11,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
 
-  const recruitmentPage = await getRecruitmentPage(locale as ELanguage);
+  const recruitmentData = await getRecruitmentLanguages();
 
-  type CmsEntry = { content?: unknown[] };
-  const contentBlocks = (recruitmentPage as CmsEntry | null | undefined)?.content || [];
-
-  return <RecruitmentPage content={contentBlocks as unknown[]} />;
+  return (
+    <RecruitmentPage recruitmentData={recruitmentData as PageData} locale={locale as ELanguage} />
+  );
 }

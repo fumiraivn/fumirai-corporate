@@ -2,18 +2,9 @@ import { Button, ButtonType } from '@/components/base';
 
 import { Tooltip } from 'antd';
 
-import styles from './styles.module.scss';
+import { JobPosition } from '../hook';
 
-export type JobPosition = {
-  id: string;
-  title: string;
-  description: string;
-  requirements: string[];
-  benefits: string[];
-  downloadText?: string;
-  requirementsTitle?: string;
-  benefitsTitle?: string;
-};
+import styles from './styles.module.scss';
 
 export type JobCardProps = {
   job: JobPosition;
@@ -32,32 +23,12 @@ export default function JobCard({ job }: JobCardProps) {
       </div>
 
       <div className={styles.cardContent}>
-        <div className={styles.section}>
-          <h4 className={styles.sectionTitle}>{job.requirementsTitle}</h4>
-          <ul className={styles.requirementList}>
-            {job.requirements.map((requirement, index) => (
-              <li key={index} className={styles.requirementItem}>
-                {requirement}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className={styles.section}>
-          <h4 className={styles.sectionTitle}>{job.benefitsTitle}</h4>
-          <ul className={styles.benefitList}>
-            {job.benefits.map((benefit, index) => (
-              <li key={index} className={styles.benefitItem}>
-                {benefit}
-              </li>
-            ))}
-          </ul>
-        </div>
+        <div className={styles.htmlContent} dangerouslySetInnerHTML={{ __html: job.content }} />
       </div>
 
       <div className={styles.cardFooter}>
         <Button buttonType={ButtonType.Default} className={styles.applyButton}>
-          {job.downloadText}
+          Apply Now
         </Button>
       </div>
     </div>

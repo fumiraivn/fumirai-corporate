@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 
-import { useLocaleSwitcher } from '@/hooks';
+import { useClientLocaleSwitcher } from '@/hooks';
 import { EnglishFlagIcon, JapaneseFlagIcon, VietnameseFlagIcon } from '@/svgs/user/HomeIcon';
-import { ELanguage, MenuItem } from '@/types';
+import { ELanguage, LanguageDropdown as LanguageDropdownType } from '@/types';
 
 import { Dropdown } from 'antd';
 
@@ -35,40 +35,56 @@ const languageOptions: LanguageOption[] = [
 interface LanguageDropdownProps {
   className?: string;
   isMobile?: boolean;
-  languages?: MenuItem[];
+  languageDropdown?: LanguageDropdownType | null;
+  locale?: ELanguage;
 }
 
 const LanguageDropdown: React.FC<LanguageDropdownProps> = ({
   className = '',
   isMobile = false,
-  languages,
+  languageDropdown,
 }) => {
-  const { currentLocale, switchLocale } = useLocaleSwitcher();
+  const { currentLocale, switchLocale } = useClientLocaleSwitcher();
   const [selectedValue, setSelectedValue] = useState(currentLocale);
 
   const handleChange = (newValue: string) => {
-    setSelectedValue(newValue);
+    setSelectedValue(newValue as ELanguage);
     switchLocale(newValue);
   };
 
   const dropdownClasses = [styles.languageDropdown, className].filter(Boolean).join(' ');
 
-  // Use languages from API or fallback to hardcoded options
-  const availableLanguages =
-    languages?.map((lang) => {
-      const flagMap = {
-        en: <EnglishFlagIcon width={24} height={24} />,
-        ja: <JapaneseFlagIcon width={24} height={24} />,
-        vi: <VietnameseFlagIcon width={24} height={24} />,
-      };
-      return {
-        value: lang.value as ELanguage,
-        label: lang.text,
-        flag: flagMap[lang.value as keyof typeof flagMap] || (
-          <EnglishFlagIcon width={24} height={24} />
-        ),
-      };
-    }) || languageOptions;
+  // Use language dropdown from API or fallback to hardcoded options
+  const availableLanguages = (() => {
+    if (!languageDropdown?.options?.[0]) {
+      return languageOptions;
+    }
+
+    const option = languageDropdown.options[0];
+    const flagMap = {
+      en: <EnglishFlagIcon width={24} height={24} />,
+      ja: <JapaneseFlagIcon width={24} height={24} />,
+      vi: <VietnameseFlagIcon width={24} height={24} />,
+    };
+
+    return [
+      {
+        value: ELanguage.EN,
+        label: option.en?.[0]?.text || 'English',
+        flag: flagMap.en,
+      },
+      {
+        value: ELanguage.JA,
+        label: option.ja?.[0]?.text || '日本語',
+        flag: flagMap.ja,
+      },
+      {
+        value: ELanguage.VI,
+        label: option.vi?.[0]?.text || 'Tiếng Việt',
+        flag: flagMap.vi,
+      },
+    ];
+  })();
 
   const selectedOption = availableLanguages.find((option) => option.value === selectedValue);
 

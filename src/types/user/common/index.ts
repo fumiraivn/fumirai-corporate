@@ -3,9 +3,10 @@ import type { EHomeSection } from './enum';
 
 export interface MenuItem {
   fieldId: string;
-  value: string;
-  text: string;
-  key: string;
+  url: string;
+  vi: string;
+  en: string;
+  ja: string;
 }
 
 export interface Logo {
@@ -17,8 +18,10 @@ export interface Logo {
 
 export interface Button {
   fieldId: string;
-  text: string;
   redirect_to: string;
+  text_vi: string;
+  text_en: string;
+  text_ja: string;
 }
 
 export interface BannerContent {
@@ -29,10 +32,53 @@ export interface BannerContent {
 
 export interface ContactItem {
   fieldId: string;
-  value: string;
-  text: string;
+  title_vi: string;
+  title_en: string;
+  title_ja: string;
+  description: string;
 }
 
+export interface LanguageDropdownItem {
+  fieldId: string;
+  text: string;
+  url: string;
+}
+
+export interface LanguageDropdownOption {
+  fieldId: string;
+  vi: LanguageDropdownItem[];
+  en: LanguageDropdownItem[];
+  ja: LanguageDropdownItem[];
+}
+
+export interface LanguageDropdown {
+  fieldId: string;
+  current_language: string[];
+  options: LanguageDropdownOption[];
+}
+
+export interface Copyright {
+  fieldId: string;
+  text_vi: string;
+  text_en: string;
+  text_ja: string;
+}
+
+export interface CommonContentLanguages {
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  logo: Logo;
+  menus: MenuItem[];
+  language_dropdown: LanguageDropdown[];
+  recruitment_button: Button;
+  phone: ContactItem;
+  email: ContactItem;
+  copyright: Copyright;
+}
+
+// Legacy interface for backward compatibility (will be removed)
 export interface CommonContent {
   id: string;
   createdAt: string;
@@ -50,6 +96,69 @@ export interface CommonContent {
   contact: ContactItem[];
 }
 
+// New data structure types
+export interface TextContent {
+  fieldId: string;
+  vietnamese_text: string;
+  english_text: string;
+  japanese_text: string;
+  text_type?: string[];
+}
+
+export interface TextareaContent {
+  fieldId: string;
+  vietnamese_text: string;
+  english_text: string;
+  japanese_text: string;
+}
+
+export interface HtmlContent {
+  fieldId: string;
+  language: string[];
+  content: string;
+}
+
+export interface ImageContent {
+  fieldId: string;
+  Alt: string;
+  image: {
+    url: string;
+    height: number;
+    width: number;
+  };
+}
+
+export interface GroupItem {
+  fieldId: string;
+  content: (TextContent | TextareaContent | HtmlContent | ImageContent)[];
+}
+
+export interface GroupContent {
+  fieldId: string;
+  group_name?: string;
+  items: GroupItem[];
+}
+
+export interface BlockContent {
+  fieldId: string;
+  block_id: string;
+  title: (TextContent | TextareaContent)[];
+  description: (TextContent | TextareaContent)[];
+  content: (HtmlContent | GroupContent)[];
+  block_name: string;
+}
+
+export interface PageData {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  revisedAt: string;
+  page_name: string;
+  content: BlockContent[];
+}
+
+// Legacy types (will be removed)
 export type InfoItem = { fieldId?: 'info'; label?: string; value?: string };
 export type ListTextCard = { fieldId?: 'list_text'; title?: string; items?: InfoItem[] };
 export type HomeContentItem = {

@@ -2,7 +2,7 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 
-import { MenuItem } from '@/types';
+import { ELanguage, MenuItem } from '@/types';
 import { ROUTERS, scrollToSection } from '@/utils/constant';
 
 import { useLocale } from 'next-intl';
@@ -12,25 +12,39 @@ import styles from './styles.module.scss';
 interface NavigationProps {
   direction?: 'horizontal' | 'vertical';
   menus?: MenuItem[];
+  locale?: ELanguage;
 }
 
-export default function Navigation({ direction = 'horizontal', menus = [] }: NavigationProps) {
+export default function Navigation({
+  direction = 'horizontal',
+  menus = [],
+  locale,
+}: NavigationProps) {
   const router = useRouter();
   const pathname = usePathname();
-  const locale = useLocale();
+  const currentLocale = useLocale();
+  const activeLocale = locale || (currentLocale as ELanguage);
+
+  // Helper function to get localized text
+  const getLocalizedText = (item: MenuItem) => {
+    if (!item) return '';
+    const localeKey = activeLocale.toLowerCase();
+    return (item[localeKey as keyof MenuItem] as string) || '';
+  };
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
 
     // Check if we're on home page
-    const isHomePage = pathname === `/${locale}` || pathname === `/${locale}/` || pathname === '/';
+    const isHomePage =
+      pathname === `/${activeLocale}` || pathname === `/${activeLocale}/` || pathname === '/';
 
     if (!isHomePage) {
       // If not on home page, navigate to home with hash
-      router.push(`${ROUTERS.HOME(locale)}#${sectionId}`);
+      router.push(`${ROUTERS.HOME(activeLocale)}#${sectionId}`);
     } else {
       // If already on home page, update URL and scroll to section
-      const newUrl = `${ROUTERS.HOME(locale)}#${sectionId}`;
+      const newUrl = `${ROUTERS.HOME(activeLocale)}#${sectionId}`;
       window.history.pushState(null, '', newUrl);
       scrollToSection(sectionId);
     }
@@ -42,13 +56,13 @@ export default function Navigation({ direction = 'horizontal', menus = [] }: Nav
     >
       <ul className={styles.navList}>
         {menus?.map((item) => (
-          <li className={styles.navItem} key={item.key}>
+          <li className={styles.navItem} key={item.url}>
             <a
-              href={`#${item.value}`}
+              href={`#${item.url}`}
               className={styles.navLink}
-              onClick={(e) => handleNavClick(e, item.value!)}
+              onClick={(e) => handleNavClick(e, item.url!)}
             >
-              {item.text}
+              {getLocalizedText(item)}
             </a>
           </li>
         ))}

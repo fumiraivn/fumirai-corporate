@@ -1,26 +1,36 @@
 import { Footer, Header, ScrollToTop } from '@/components';
-import { CommonContent, ELanguage } from '@/types';
+import { BlockContent, CommonContentLanguages, ELanguage } from '@/types';
 
 interface MasterLayoutProps {
   children: React.ReactNode;
   showHeader?: boolean;
   usePinnedHeader?: boolean;
   locale: ELanguage;
-  commonData?: CommonContent | null;
+  commonData?: CommonContentLanguages | null;
+  bannerData?: BlockContent | null;
 }
 
 export default function MasterLayout({
   children,
   showHeader = true,
   usePinnedHeader = false,
+  locale,
   commonData,
+  bannerData,
 }: MasterLayoutProps) {
   return (
     <>
       <ScrollToTop />
-      {showHeader && <Header usePinnedHeader={usePinnedHeader} commonData={commonData} />}
+      {showHeader && (
+        <Header
+          usePinnedHeader={usePinnedHeader}
+          commonData={commonData}
+          locale={locale}
+          bannerData={bannerData}
+        />
+      )}
       {children}
-      <Footer commonData={commonData} />
+      <Footer commonData={commonData} locale={locale} />
     </>
   );
 }

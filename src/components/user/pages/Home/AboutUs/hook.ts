@@ -1,29 +1,57 @@
-import { EHomeSection, HomeContentItem, ListTextCard, SectionData, SectionMeta } from '@/types';
+import { useMemo } from 'react';
 
-export function useHomeSectionData(blocks?: unknown[], section?: `${EHomeSection}`) {
-  const items = (blocks as HomeContentItem[] | undefined) ?? [];
-  const sectionBlock = items.find((c) => c.card_type?.[0] === section || c.scroll_id === section);
+import { getLocalizedTextFromArray } from '@/hooks';
+import { BlockContent, EBlockId, EFieldId, ELanguage } from '@/types';
 
-  const listTextCard = (
-    sectionBlock?.cards as (ListTextCard | Record<string, unknown>)[] | undefined
-  )?.find((c): c is ListTextCard => (c as ListTextCard)?.fieldId === 'list_text');
+export function useAboutUsData(content: BlockContent[], locale: ELanguage) {
+  return useMemo(() => {
+    const aboutUsBlock = content.find((block) => block.block_id === EBlockId.ABOUT_US);
 
-  const data: SectionData = {
-    title: listTextCard?.title ?? undefined,
-    items: (listTextCard?.items || [])
-      .filter((it) => it?.fieldId === 'info')
-      .map((it) => (typeof it?.value === 'string' ? it.value.trim() : ''))
-      .filter((v): v is string => typeof v === 'string' && v.length > 0),
-  };
+    if (!aboutUsBlock) {
+      return {
+        meta: {
+          title: '',
+          subtitle: '',
+          scroll_id: EBlockId.ABOUT_US,
+        },
+        data: {
+          title: '',
+          items: [],
+        },
+      };
+    }
 
-  const meta: SectionMeta = {
-    title: sectionBlock?.title,
-    subtitle: sectionBlock?.description,
-    scroll_id: (sectionBlock?.scroll_id as string) || (section as string) || undefined,
-  };
-  return { meta, data };
-}
+    // Get title and subtitle from block
+    const title = getLocalizedTextFromArray(aboutUsBlock.title || [], locale);
+    const subtitle = getLocalizedTextFromArray(aboutUsBlock.description || [], locale);
 
-export function useAboutUsData(blocks?: unknown[]) {
-  return useHomeSectionData(blocks, EHomeSection.ABOUT_US);
+    // Extract HTML content items
+    const htmlItems =
+      aboutUsBlock.content?.filter((item) => item.fieldId === EFieldId.HTML_RAW) || [];
+
+    type HtmlRaw = { fieldId: EFieldId.HTML_RAW; language?: string[]; content?: string };
+    const items = htmlItems
+      .map((item) => {
+        if (item.fieldId === EFieldId.HTML_RAW) {
+          const { language, content } = item as HtmlRaw;
+          const matchesLocale = (language || []).includes(locale);
+          const isFallback = !language || language.length === 0;
+          if (matchesLocale || isFallback) return content || '';
+        }
+        return '';
+      })
+      .filter((html) => html.length > 0);
+
+    return {
+      meta: {
+        title,
+        subtitle,
+        scroll_id: EBlockId.ABOUT_US,
+      },
+      data: {
+        title,
+        items,
+      },
+    };
+  }, [content, locale]);
 }

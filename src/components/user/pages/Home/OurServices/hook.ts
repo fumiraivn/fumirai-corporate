@@ -1,62 +1,101 @@
-import { EHomeSection } from '@/types';
+import { useMemo } from 'react';
 
-type ImageFull = {
-  fieldId?: 'image_full';
-  image?: { url?: string; height?: number; width?: number };
-  alt?: string;
-};
-type CardService = {
-  fieldId?: 'card_service';
-  title?: string;
-  description?: string;
-  image?: ImageFull[];
+import { getLocalizedTextFromArray } from '@/hooks';
+import {
+  BlockContent,
+  EBlockId,
+  EContentFieldKey,
+  EFieldId,
+  ELanguage,
+  GroupContent,
+  GroupItem,
+  ImageContent,
+  TextContent,
+  TextareaContent,
+} from '@/types';
+
+export type OurServiceItem = {
+  id: string;
+  title: string;
+  description: string;
+  icon?: string;
 };
 
-type HomeContentItem = {
-  card_type?: `${EHomeSection}`[];
-  fieldId?: 'card';
-  scroll_id?: `${EHomeSection}` | string;
-  title?: string;
-  description?: string;
-  cards?: (CardService | Record<string, unknown>)[];
-};
-
-export type OurServiceItem = { id: string; title: string; description: string; icon?: string };
 export type OurServicesData = {
   meta: { title?: string; subtitle?: string; scroll_id?: string };
   data: OurServiceItem[];
 };
 
-export function useOurServicesData(blocks?: unknown[]): OurServicesData {
-  const items = (blocks as HomeContentItem[] | undefined) ?? [];
-  const block = items.find(
-    (c) =>
-      c.card_type?.[0] === EHomeSection.OUR_SERVICES || c.scroll_id === EHomeSection.OUR_SERVICES,
-  );
+export function useOurServicesData(content: BlockContent[], locale: ELanguage): OurServicesData {
+  return useMemo(() => {
+    const ourServicesBlock = content.find((block) => block.block_id === EBlockId.OUR_SERVICES);
 
-  const cards = (block?.cards as (CardService | Record<string, unknown>)[] | undefined) || [];
-  const services: OurServiceItem[] = cards
-    .filter((c): c is CardService => (c as CardService)?.fieldId === 'card_service')
-    .map((c, index) => {
-      const icon =
-        c?.image && Array.isArray(c.image) && c.image[0]?.image?.url
-          ? c.image[0].image.url
-          : undefined;
+    if (!ourServicesBlock) {
       return {
-        id: `service-${index}`,
-        title: c?.title || '',
-        description: c?.description || '',
-        icon,
+        meta: {
+          title: '',
+          subtitle: '',
+          scroll_id: EBlockId.OUR_SERVICES,
+        },
+        data: [],
       };
-    })
-    .filter((s) => s.title || s.description || s.icon);
+    }
 
-  return {
-    meta: {
-      title: block?.title,
-      subtitle: block?.description,
-      scroll_id: (block?.scroll_id as string) || EHomeSection.OUR_SERVICES,
-    },
-    data: services,
-  };
+    // Get title and subtitle from block
+    const title = getLocalizedTextFromArray(ourServicesBlock.title || [], locale);
+    const subtitle = getLocalizedTextFromArray(ourServicesBlock.description || [], locale);
+
+    // Extract services from group content
+    const groupContent = ourServicesBlock.content?.find(
+      (item) => item.fieldId === EFieldId.GROUP,
+    ) as GroupContent | undefined;
+    const services: OurServiceItem[] = [];
+
+    if (groupContent?.items?.length) {
+      const items = groupContent.items as GroupItem[];
+
+      items.forEach((item, index) => {
+        if (item.fieldId === EFieldId.GROUP_ITEM && item.content) {
+          const serviceItem: OurServiceItem = {
+            id: `service-${index}`,
+            title: '',
+            description: '',
+            icon: '',
+          };
+
+          // Extract data from group item content
+          item.content.forEach((contentItem) => {
+            if (contentItem.fieldId === EFieldId.IMAGE_CUSTOM) {
+              const image = (contentItem as ImageContent).image;
+              serviceItem.icon = image?.url || '';
+            } else if (contentItem.fieldId === EFieldId.TEXT) {
+              const text = contentItem as TextContent;
+              const textType = text[EContentFieldKey.TEXT_TYPE]?.[0];
+              if (textType === 'main') {
+                serviceItem.title = getLocalizedTextFromArray([text], locale);
+              } else if (textType === 'sub') {
+                serviceItem.description = getLocalizedTextFromArray([text], locale);
+              }
+            } else if (contentItem.fieldId === EFieldId.TEXTAREA) {
+              const textarea = contentItem as TextareaContent;
+              serviceItem.description = getLocalizedTextFromArray([textarea], locale);
+            }
+          });
+
+          if (serviceItem.title || serviceItem.description || serviceItem.icon) {
+            services.push(serviceItem);
+          }
+        }
+      });
+    }
+
+    return {
+      meta: {
+        title,
+        subtitle,
+        scroll_id: EBlockId.OUR_SERVICES,
+      },
+      data: services,
+    };
+  }, [content, locale]);
 }

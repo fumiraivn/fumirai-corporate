@@ -3,12 +3,12 @@ import '@ant-design/v5-patch-for-react-19';
 import { Geist_Mono, Noto_Sans, Noto_Sans_JP } from 'next/font/google';
 import { notFound } from 'next/navigation';
 
-import { getCommon } from '@/apis';
+import { getCommonLanguages, getHomeLanguages } from '@/apis';
 import { BackToTop, ConditionalLayout } from '@/components';
 import LoadingFullPage from '@/components/user/layouts/LoadingFullPage';
 import { getMessages } from '@/i18n';
 import { SUPPORTED_LOCALES } from '@/i18n/request';
-import { ELanguage } from '@/types';
+import { CommonContentLanguages, EBlockId, ELanguage, PageData } from '@/types';
 
 import { App as AntdApp, ConfigProvider, theme as antdTheme } from 'antd';
 import 'antd/dist/reset.css';
@@ -66,8 +66,14 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
   } as const;
   const antdLocale = antdLocaleMap[locale as ELanguage] ?? jaJP;
 
-  let commonData = null;
-  commonData = await getCommon(locale as ELanguage);
+  let commonDataLanguages = null;
+  commonDataLanguages = await getCommonLanguages();
+
+  let homeLanguages: { content?: PageData['content'] } | null = null;
+  homeLanguages = (await getHomeLanguages()) as { content?: PageData['content'] } | null;
+
+  const bannerData =
+    homeLanguages?.content?.find((block) => block.block_id === EBlockId.BANNER) || null;
 
   return (
     <html lang={locale} suppressHydrationWarning>
@@ -79,7 +85,12 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
           <ConfigProvider locale={antdLocale} theme={{ algorithm: antdTheme.defaultAlgorithm }}>
             <AntdApp>
               <LoadingFullPage locale={locale as ELanguage} />
-              <ConditionalLayout commonData={commonData}>{children}</ConditionalLayout>
+              <ConditionalLayout
+                commonData={commonDataLanguages as CommonContentLanguages}
+                bannerData={bannerData as PageData['content'][0] | null}
+              >
+                {children}
+              </ConditionalLayout>
               <BackToTop />
             </AntdApp>
           </ConfigProvider>

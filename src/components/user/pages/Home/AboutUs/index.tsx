@@ -41,10 +41,12 @@ export default function AboutUs({ title, items }: AboutUsProps) {
     >
       <p className={styles.lead}>{leadText}</p>
       <div className={styles.grid}>
-        {paragraphs.map((text, idx) => (
-          <p key={idx} className={styles.paragraph}>
-            {text}
-          </p>
+        {paragraphs.map((htmlContent, idx) => (
+          <div
+            key={idx}
+            className={styles.paragraph}
+            dangerouslySetInnerHTML={{ __html: htmlContent }}
+          />
         ))}
       </div>
     </div>

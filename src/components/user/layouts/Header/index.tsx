@@ -5,8 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { Button, ButtonType, Container, Logo } from '@/components/base';
+import { getLocalizedTextFromArray, useClientLocaleSwitcher } from '@/hooks';
 import { MenuIcon } from '@/svgs/user/HomeIcon';
-import { CommonContent } from '@/types';
+import { BlockContent, Button as ButtonTypeDef, CommonContentLanguages, ELanguage } from '@/types';
 import { ROUTERS } from '@/utils/constant';
 
 import { useLocale } from 'next-intl';
@@ -19,18 +20,55 @@ import styles from './styles.module.scss';
 
 interface HeaderProps {
   usePinnedHeader?: boolean;
-  commonData?: CommonContent | null;
+  commonData?: CommonContentLanguages | null;
+  locale?: ELanguage;
+  bannerData?: BlockContent | null;
 }
 
-export default function Header({ usePinnedHeader = false, commonData }: HeaderProps) {
+export default function Header({
+  usePinnedHeader = false,
+  commonData,
+  locale,
+  bannerData,
+}: HeaderProps) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isPinned, setIsPinned] = useState(usePinnedHeader);
   const [isPinnedVisible, setIsPinnedVisible] = useState(usePinnedHeader);
   const [navHeight, setNavHeight] = useState(0);
   const navBarRef = useRef<HTMLDivElement | null>(null);
   const lastScrollYRef = useRef(0);
-  const locale = useLocale();
+  const { currentLocale: clientLocale } = useClientLocaleSwitcher();
+  const currentLocale = useLocale();
   const router = useRouter();
+
+  // Use client locale if available, otherwise fallback to provided locale
+  const activeLocale = clientLocale || locale || (currentLocale as ELanguage);
+
+  // Helper function to get localized text
+  const getLocalizedText = (item: ButtonTypeDef | undefined, field: string): string => {
+    if (!item) return '';
+    const localeKey = activeLocale.toLowerCase();
+    const localizedField = `${field}_${localeKey}` as keyof ButtonTypeDef;
+    return (item[localizedField] as string) || (item[field as keyof ButtonTypeDef] as string) || '';
+  };
+
+  // Get current language dropdown data
+  const getCurrentLanguageDropdown = () => {
+    if (!commonData?.language_dropdown) return null;
+    return commonData.language_dropdown.find((dropdown) =>
+      dropdown.current_language.includes(activeLocale),
+    );
+  };
+
+  const currentLanguageDropdown = getCurrentLanguageDropdown();
+
+  // Get banner title and description using helper function
+  const bannerTitle = bannerData
+    ? getLocalizedTextFromArray(bannerData.title || [], activeLocale)
+    : '';
+  const bannerDescription = bannerData
+    ? getLocalizedTextFromArray(bannerData.description || [], activeLocale)
+    : '';
 
   // Update pinned state when usePinnedHeader changes
   useEffect(() => {
@@ -96,23 +134,23 @@ export default function Header({ usePinnedHeader = false, commonData }: HeaderPr
             <Logo
               alt={commonData?.logo?.alt}
               imgSrc={commonData?.logo?.url}
-              href={ROUTERS.HOME(locale)}
+              href={ROUTERS.HOME(activeLocale)}
               className={styles.logo}
             />
 
             {/* Navigation (desktop only) */}
             <div className={styles.navDesktop}>
-              <Navigation menus={commonData?.menus} />
+              <Navigation menus={commonData?.menus} locale={activeLocale} />
             </div>
 
             {/* CTA Section (desktop only) */}
             <div className={styles.ctaSection}>
-              <LanguageDropdown languages={commonData?.languages_option} />
+              <LanguageDropdown languageDropdown={currentLanguageDropdown} locale={activeLocale} />
               <Button
-                onClick={() => router.push(ROUTERS.RECRUITMENT(locale))}
+                onClick={() => router.push(ROUTERS.RECRUITMENT(activeLocale))}
                 buttonType={ButtonType.Default}
               >
-                {commonData?.recruitment_btn?.text || 'Tuyển dụng'}
+                {getLocalizedText(commonData?.recruitment_button, 'text') || 'Tuyển dụng'}
               </Button>
             </div>
 
@@ -127,9 +165,14 @@ export default function Header({ usePinnedHeader = false, commonData }: HeaderPr
           </div>
         </Container>
       </div>
-      <MobileMenu open={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <MobileMenu
+        open={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        commonData={commonData}
+        locale={activeLocale}
+      />
       {!usePinnedHeader && (
-        <Banner banner={commonData?.banner} contactBtn={commonData?.contact_btn} />
+        <Banner title={bannerTitle} description={bannerDescription} locale={activeLocale} />
       )}
     </header>
   );

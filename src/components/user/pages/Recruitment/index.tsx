@@ -1,59 +1,29 @@
 import { Container } from '@/components/base';
+import { BlockContent, ELanguage } from '@/types';
 
-import JobCard, { JobPosition } from './JobCard';
+import JobCard from './JobCard';
+import { useRecruitmentData } from './hook';
 import styles from './styles.module.scss';
 
-type ListText = {
-  fieldId?: 'list_text';
-  title?: string;
-  items?: { fieldId?: 'info'; value?: string }[];
-};
-type CardRecruitment = {
-  fieldId?: 'card-recruitment';
-  title?: string;
-  description?: string;
-  requirements?: ListText[];
-  benefits?: ListText[];
-  download_text?: string;
-};
-type RecruitmentBlock = {
-  fieldId?: 'card';
-  title?: string;
-  description?: string;
-  cards?: (CardRecruitment | Record<string, unknown>)[];
-};
+export default function RecruitmentPage({
+  recruitmentData,
+  locale,
+}: {
+  recruitmentData: { content?: BlockContent[] };
+  locale: ELanguage;
+}) {
+  // Get blocks from recruitmentData
+  const blocks = recruitmentData?.content || [];
 
-export default function RecruitmentPage({ content }: { content?: unknown[] }) {
-  const blocks = (content as RecruitmentBlock[] | undefined) ?? [];
-  const header = blocks.find((b) => b.fieldId === 'card');
-  const cards = (header?.cards as CardRecruitment[] | undefined) ?? [];
-
-  const toItems = (sections?: ListText[]) =>
-    (sections || [])
-      .flatMap((s) => s.items || [])
-      .filter((i) => i?.fieldId === 'info')
-      .map((i) => (i?.value || '').trim())
-      .filter((s) => !!s);
-
-  const getSectionTitle = (sections?: ListText[]) => (sections && sections[0]?.title) || undefined;
-
-  const jobs: JobPosition[] = cards.map((c, idx) => ({
-    id: `job-${idx}`,
-    title: c?.title || '',
-    description: c?.description || '',
-    requirements: toItems(c?.requirements),
-    benefits: toItems(c?.benefits),
-    downloadText: c?.download_text || undefined,
-    requirementsTitle: getSectionTitle(c?.requirements),
-    benefitsTitle: getSectionTitle(c?.benefits),
-  }));
+  // Use the new hook to get recruitment data
+  const { meta, jobs } = useRecruitmentData(blocks, locale);
 
   return (
     <div className={styles.recruitmentPage}>
       <Container>
         <div className={styles.header}>
-          <h1 className={styles.title}>{header?.title}</h1>
-          <p className={styles.subtitle}>{header?.description}</p>
+          <h1 className={styles.title}>{meta.title}</h1>
+          <p className={styles.subtitle}>{meta.subtitle}</p>
         </div>
 
         <div className={styles.jobGrid}>

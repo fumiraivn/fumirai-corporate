@@ -1,46 +1,66 @@
 'use client';
 
 import { Container } from '@/components/base';
-import { useScrollToHash } from '@/hooks/useScrollToHash';
-import { EHomeSection } from '@/types';
+import { useScrollToHash } from '@/hooks';
+import { EHomeSection, ELanguage, PageData } from '@/types';
 
 import AboutCompany from './AboutCompany';
+import { useAboutCompanyData } from './AboutCompany/hook';
 import AboutUs from './AboutUs';
 import { useAboutUsData } from './AboutUs/hook';
 import InfoCard from './InfoCard';
-import { useOurCompanyData } from './OurCompany/hook';
 import OurServices from './OurServices';
 import { useOurServicesData } from './OurServices/hook';
 import styles from './styles.module.scss';
 
 type SectionKey = EHomeSection.ABOUT_US | EHomeSection.OUR_SERVICES | EHomeSection.OUR_COMPANY;
 
-type HomeContentItem = { card_type?: `${EHomeSection}`[]; scroll_id?: string };
-
-export default function HomePage({ content }: { content?: unknown[] }) {
+export default function HomePage({
+  homeData,
+  locale,
+}: {
+  homeData: PageData | null;
+  locale: ELanguage;
+}) {
   // Handle scrolling to section based on URL hash
   useScrollToHash();
 
-  const blocks = (content as HomeContentItem[] | undefined) ?? [];
-  const { meta: companyMeta, company, parent } = useOurCompanyData(blocks as unknown[]);
+  // Get blocks from homeData
+  const blocks = homeData?.content || [];
+
+  // Get data for each section using new hooks
+  const { meta: aboutUsMeta, data: aboutUsData } = useAboutUsData(blocks, locale);
+  const { meta: servicesMeta, data: servicesData } = useOurServicesData(blocks, locale);
+  const { company, parent, companySubtitle, parentSubtitle } = useAboutCompanyData(blocks, locale);
 
   const defaultOrder: SectionKey[] = [
     EHomeSection.ABOUT_US,
     EHomeSection.OUR_SERVICES,
     EHomeSection.OUR_COMPANY,
   ];
+
+  // Use block_id to determine order instead of card_type
   const derivedOrder: SectionKey[] = blocks
-    .map((c) => c.card_type?.[0])
-    .filter((v): v is `${EHomeSection}` => Boolean(v)) as SectionKey[];
+    .map((block) => {
+      switch (block.block_id) {
+        case 'about-us':
+          return EHomeSection.ABOUT_US;
+        case 'our-services':
+          return EHomeSection.OUR_SERVICES;
+        case 'our-company':
+          return EHomeSection.OUR_COMPANY;
+        default:
+          return null;
+      }
+    })
+    .filter((v): v is SectionKey => Boolean(v));
+
   const normalizedOrder: SectionKey[] = (derivedOrder.length ? derivedOrder : defaultOrder)
     .map((s) => String(s))
     .map((s) => s as SectionKey)
     .filter((s): s is SectionKey =>
       [EHomeSection.ABOUT_US, EHomeSection.OUR_SERVICES, EHomeSection.OUR_COMPANY].includes(s),
     );
-
-  const { meta: aboutUsMeta, data: aboutUsData } = useAboutUsData(blocks as unknown[]);
-  const { meta: servicesMeta, data: servicesData } = useOurServicesData(blocks as unknown[]);
 
   const sections: Record<SectionKey, React.ReactElement> = {
     [EHomeSection.ABOUT_US]: (
@@ -70,11 +90,21 @@ export default function HomePage({ content }: { content?: unknown[] }) {
     [EHomeSection.OUR_COMPANY]: (
       <Container key="our-company">
         <Container className={styles.aboutOurCompanyContainer}>
-          <InfoCard id={companyMeta?.scroll_id} subtitle={company?.title}>
-            <AboutCompany companyInfo={company?.items || []} mapHeight={380} />
+          <InfoCard subtitle={companySubtitle}>
+            <AboutCompany
+              htmlItems={company?.items || []}
+              mapUrl={company?.mapUrl}
+              embedAddress={company?.embedAddress}
+              mapHeight={380}
+            />
           </InfoCard>
-          <InfoCard subtitle={parent?.title}>
-            <AboutCompany companyInfo={parent?.items || []} mapHeight={380} />
+          <InfoCard subtitle={parentSubtitle}>
+            <AboutCompany
+              htmlItems={parent?.items || []}
+              mapUrl={parent?.mapUrl}
+              embedAddress={parent?.embedAddress}
+              mapHeight={380}
+            />
           </InfoCard>
         </Container>
       </Container>
