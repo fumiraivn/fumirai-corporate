@@ -1,5 +1,5 @@
 // Home page shared types
-import type { EHomeSection } from './enum';
+import type { EHomeSection, ELanguage } from './enum';
 
 export interface MenuItem {
   fieldId: string;
@@ -53,7 +53,7 @@ export interface LanguageDropdownOption {
 
 export interface LanguageDropdown {
   fieldId: string;
-  current_language: string[];
+  current_language: ELanguage[];
   options: LanguageDropdownOption[];
 }
 
@@ -114,7 +114,7 @@ export interface TextareaContent {
 
 export interface HtmlContent {
   fieldId: string;
-  language: string[];
+  language: ELanguage[];
   content: string;
 }
 
@@ -156,6 +156,7 @@ export interface PageData {
   revisedAt: string;
   page_name: string;
   content: BlockContent[];
+  seo?: SEOItem[];
 }
 
 // Legacy types (will be removed)
@@ -172,3 +173,21 @@ export type HomeContentItem = {
 
 export type SectionMeta = { title?: string; subtitle?: string; scroll_id?: string };
 export type SectionData = { title?: string; items?: string[] };
+
+// SEO types based on microCMS payload structure
+export interface SEOImage {
+  url: string;
+  height: number;
+  width: number;
+  alt?: string;
+}
+
+export interface SEOItem {
+  fieldId: string; // 'seo_data'
+  description: string;
+  keywords: string;
+  ogImage: SEOImage;
+  canonicalUrl: string;
+  title: string;
+  Language: ELanguage[]; // e.g., ['vi'] | ['en'] | ['ja']
+}

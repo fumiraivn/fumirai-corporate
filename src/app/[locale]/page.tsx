@@ -5,7 +5,8 @@ import { ELanguage } from '@/types';
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
-  return generateHomeMetadata(locale);
+  const homeData = await getHomeLanguages();
+  return generateHomeMetadata(locale, homeData?.seo);
 }
 
 export default async function LocalePage({ params }: { params: Promise<{ locale: string }> }) {
